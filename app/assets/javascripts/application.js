@@ -13,6 +13,5 @@
 //= require angular
 //= require angular-resource
 //= require jquery
-//= require foundation
 //= require app
 //= require_tree .
