@@ -1,0 +1,21 @@
+.row.classes
+  .twelve.columns
+    Do you want to expand your understanding of the world?
+    Do you want to believe most people are good and want the same things in life?
+    .button.small Browse classes
+    %h4 You live in Portland, OR.
+    Choose a route
+    %select{ 'ng-options' => 'r.route_description for r in routes', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
+
+    %div{ 'ng-show' => 'route' }
+      .start{ 'ng-hide' => 'get_on' }
+        %h4 Where do you get on the bus?
+        .wrapper{ 'ng-repeat' => 'stop in stops' }
+          .green.label.padded{ 'ng-click' => 'get_on = stop'} {{stop.name}}
+      .stop{ 'ng-show' => 'get_on && !get_off' }
+        %h4 Where do you get off?
+        .wrapper{ 'ng-repeat' => 'stop in stops' }
+          .green.label.padded{ 'ng-click' => 'get_off = stop'} {{stop.name}}
+        
+
+

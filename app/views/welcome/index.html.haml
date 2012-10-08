@@ -1,34 +1,7 @@
 .row{ 'ng-app' => 'movingteachings', 'ng-controller' => "Main" }
-  .eight.columns.centered
+  .eight.mobile-four.columns.centered
     %h2 Moving Teachings
     %h4.subheader Connect with people. Learn things. Listen. Teach.
-    
     .row
-      .six.columns
-        .button.large{ 'ng-click' => 'teach = true', 'ng-hide' => 'teach' } Want to teach something?
-        .more{ 'ng-hide' => 'teach' }
-          Do you have an idea for a tiny class you could teach on a bus?
-          Do you want to connect with people riding with you?
-          .button.small Offer a class
-        .classes{ 'ng-show' => 'teach' }
-          %h3 My classes:
-          - 6.times do |i|
-            .wrapper
-              .green.label.padded= Faker::Lorem.sentence
-      .six.columns
-        .button.large{ 'ng-click' => 'learn = true', 'ng-hide' => 'learn' }  Want to learn something?
-        .more{ 'ng-hide' => 'learn' }
-          Do you want to expand your understanding of the world?
-          Do you want to believe most people are good and want the same things in life?
-          .button.small Browse classes
-        .classes{ 'ng-show' => 'learn' }
-          %h4 You live in Portland, OR.
-          Choose a route
-          %select{ 'ng-options' => 'r.route_description for r in routes', 'ng-model' => 'route' }
-
-          %h3{ 'ng-show' => 'route' } 
-            Offered classes
-            - 6.times do |i|
-              .wrapper
-                .green.label.padded= Faker::Lorem.sentence
+      .ng-view
 

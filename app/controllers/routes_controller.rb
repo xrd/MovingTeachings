@@ -7,4 +7,9 @@ class RoutesController < ApplicationController
     route = Route.find params[:id]
     render json: route.stops
   end
+
+  def classes
+    route = Route.find params[:id]
+    render json: route.classes
+  end
 end

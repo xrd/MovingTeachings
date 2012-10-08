@@ -37,7 +37,7 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-gem "zurb-foundation"
+gem "twitter-bootstrap-rails"
 gem "faker"
 gem "nokogiri"
 

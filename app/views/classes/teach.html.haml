@@ -1,0 +1,10 @@
+.row
+  .twelve.columns
+    Do you have an idea for a tiny class you could teach on a bus?
+    Do you want to connect with people riding with you?
+    .button.small Offer a class
+    .classes
+      %h3 My classes:
+      - 6.times do |i|
+        .wrapper
+          .green.label.padded= Faker::Lorem.sentence
