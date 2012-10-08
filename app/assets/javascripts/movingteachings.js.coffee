@@ -1,13 +1,16 @@
 module = angular.module 'movingteachings', [ 'ngResource' ]
 
-module.factory 'stuff', [ '$resource', ($resource) ->
-        $resource "/stuff", {}, {}
+module.factory 'Route', [ '$resource', ($resource) ->
+        $resource "/routes/:id/:action", { id: '@id' },
+                index: { method: 'GET', isArray: true },
+                stops: { method: 'GET', isArray: true, params: { action: 'stops' } }
         ]
 
 class Main
-        constructor: ($scope, stuff) ->
+        constructor: ($scope, Route) ->
                 console.log "Got inside"
 
-                $scope.routes = [ 14, 24, 15, 17, 19 ]
+                Route.index {}, (response) ->
+                        $scope.routes = response
 
 @Main = Main

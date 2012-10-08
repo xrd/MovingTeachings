@@ -24,7 +24,7 @@
         .classes{ 'ng-show' => 'learn' }
           %h4 You live in Portland, OR.
           Choose a route
-          %select{ 'ng-options' => 'r for r in routes', 'ng-model' => 'route' }
+          %select{ 'ng-options' => 'r.route_description for r in routes', 'ng-model' => 'route' }
 
           %h3{ 'ng-show' => 'route' } 
             Offered classes

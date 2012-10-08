@@ -2,7 +2,8 @@ class AddStop < ActiveRecord::Migration
   def up
     create_table :stops do |t|
       t.string :name, :jurisdiction, :zipcode
-      t.integer :location_id, :route_id, :sequence, :lat, :lng, :kml_stop_id
+      t.integer :location_id, :route_id, :sequence, :kml_stop_id
+      t.float :lat, :lng
       t.timestamps
     end
 

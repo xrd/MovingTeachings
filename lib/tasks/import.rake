@@ -10,7 +10,7 @@ namespace "movingteachings" do
       puts "Processed XML, now parsing"
       doc.css( "Placemark" ).each_with_index do |node, index|
         puts "Processing new placemark #{index}"
-        RouteInformation.parse_node( l, node )
+        Route.parse_node( l, node )
         puts "Done"
       end
     else

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20121008194037) do
 
   add_index "rails_admin_histories", ["item", "table", "month", "year"], :name => "index_rails_admin_histories"
 
-  create_table "route_informations", :force => true do |t|
+  create_table "routes", :force => true do |t|
     t.string   "route_number"
     t.string   "direction"
     t.string   "route_description"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20121008194037) do
     t.string   "transport_type"
     t.string   "stop_name"
     t.string   "jurisdiction"
-    t.string   "zipcode"
     t.string   "frequent"
     t.integer  "location_id"
     t.datetime "created_at",            :null => false
@@ -52,11 +51,13 @@ ActiveRecord::Schema.define(:version => 20121008194037) do
   create_table "stops", :force => true do |t|
     t.string   "name"
     t.string   "jurisdiction"
+    t.string   "zipcode"
     t.integer  "location_id"
     t.integer  "route_id"
     t.integer  "sequence"
-    t.integer  "lat"
-    t.integer  "lng"
+    t.integer  "kml_stop_id"
+    t.float    "lat"
+    t.float    "lng"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end

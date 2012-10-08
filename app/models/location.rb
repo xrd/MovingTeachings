@@ -1,3 +1,3 @@
 class Location < ActiveRecord::Base
-  has_many :route_informations
+  has_many :routes
 end
