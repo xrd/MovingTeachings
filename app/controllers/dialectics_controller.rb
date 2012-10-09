@@ -1,4 +1,4 @@
-class ClassesController < ApplicationController
+class DialecticsController < ApplicationController
   def teach
     render layout: false
   end
