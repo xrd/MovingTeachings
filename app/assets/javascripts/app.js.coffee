@@ -1,4 +1,4 @@
-appmod = angular.module 'movingteachings', [ 'ngResource' ]
+appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize' ]
 
 appmod.factory 'Route', [ '$resource', ($resource) ->
         $resource "/routes/:id/:action", { id: '@id' },

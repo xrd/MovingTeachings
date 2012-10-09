@@ -5,6 +5,14 @@ class RouteCtrl
                 Route.index {}, (response) ->
                         $scope.routes = response
 
+                $scope.mkdwn = (text) ->
+                        out = ""
+                        if text
+                                console.log "formatting: #{text}"
+                                out = markdown.toHTML( text )
+                                console.log "out: #{out}"
+                        out
+
                 $scope.loadStops = (route) ->
                         console.log "Got route, loading stops"
                         Route.classes {id: route.id}, (response) ->

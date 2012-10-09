@@ -1,7 +1,4 @@
 class RoutesController < ApplicationController
-  def index
-    render json: Route.all
-  end
 
   def stops
     route = Route.find params[:id]
@@ -16,4 +13,20 @@ class RoutesController < ApplicationController
   def alternatives
     render json: Dialectic.all(limit: 10)
   end
+
+  def tmpl
+    render layout: false
+  end
+
+  def index
+    respond_to do |format|
+      format.html {
+        render template: 'welcome/index'
+      }
+      format.json {
+        render json: Route.all
+      }
+    end
+  end
+  
 end

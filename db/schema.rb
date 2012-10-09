@@ -11,15 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121009124447) do
+ActiveRecord::Schema.define(:version => 20121009135221) do
 
   create_table "dialectics", :force => true do |t|
     t.integer  "route_id"
     t.integer  "user_id"
-    t.string   "description"
+    t.string   "title"
     t.string   "offered_dates"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.text     "description"
   end
 
   create_table "locations", :force => true do |t|
