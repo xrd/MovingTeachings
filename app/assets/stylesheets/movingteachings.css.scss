@@ -13,10 +13,15 @@ body {
   }
 }
 
-.routes {
-.stop {
-.badge {
+.identity {
+display: inline-block;
 float: right;
 }
-}
+
+.routes {
+    .stop {
+        .badge {
+            float: right;
+        }
+    }
 }

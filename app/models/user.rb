@@ -8,6 +8,19 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 
+  def printable_provider
+    rv = ""
+    if self.provider
+      if self.provider.eql? "google_oauth2"
+        rv = "google"
+      else
+        rv = self.provider
+      end
+    end
+    rv = rv[0].upcase + rv[1..-1]
+    "(#{rv})"
+  end
+  
   def self.find_for_oauth(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     unless user
