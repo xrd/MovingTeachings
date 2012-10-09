@@ -45,3 +45,6 @@ gem "rails_admin"
 
 
 gem "devise"
+gem 'omniauth'
+gem 'oauth2'
+gem 'omniauth-facebook'
