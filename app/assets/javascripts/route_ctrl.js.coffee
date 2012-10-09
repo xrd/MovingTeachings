@@ -1,0 +1,21 @@
+class RouteCtrl
+        constructor: ($scope, Route ) ->
+                $scope.breadcrumbs.push "Route"
+
+                Route.index {}, (response) ->
+                        $scope.routes = response
+
+                $scope.loadStops = (route) ->
+                        console.log "Got route, loading stops"
+                        Route.stops {id: route.id}, (response) ->
+                                $scope.stops = response
+                                $scope.breadcrumbs.push route.route_description
+
+                                for stop in $scope.stops
+                                        if Math.random() > 0.5
+                                                stop.classes = []
+                                                for x in [0..parseInt(Math.random()*10)]
+                                                        stop.classes.push x
+
+
+@RouteCtrl = RouteCtrl
