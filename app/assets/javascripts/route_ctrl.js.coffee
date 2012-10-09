@@ -7,6 +7,14 @@ class RouteCtrl
 
                 $scope.loadStops = (route) ->
                         console.log "Got route, loading stops"
+                        Route.classes {id: route.id}, (response) ->
+                                $scope.classes = response
+
+                                unless $scope.classes and $scope.classes.length > 1
+                                        # Load alternatives
+                                        Route.alternatives {}, (response) ->
+                                                $scope.alternatives = response
+
                         Route.stops {id: route.id}, (response) ->
                                 $scope.stops = response
                                 $scope.breadcrumbs.push route.route_description

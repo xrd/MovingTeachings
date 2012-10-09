@@ -3,6 +3,7 @@ class Route < ActiveRecord::Base
   validates_presence_of :location_id
   belongs_to :location
   has_many :stops
+  has_many :dialectics
   
   def self.parse_node( location, node )
     stuff ={}

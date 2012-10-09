@@ -7,6 +7,9 @@ Movingteachings::Application.routes.draw do
       get :classes
       get :stops
     end
+    collection do
+      get :alternatives
+    end
   end
   resources :classes do
     collection do

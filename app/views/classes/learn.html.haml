@@ -5,11 +5,22 @@
     .button.small Browse classes
     %h4 You live in Portland, OR.
     Choose a route
-    %select{ 'ng-options' => 'r.route_description for r in routes', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
+    %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
 
     %div{ 'ng-show' => 'route' }
-      %h4 See classes
-      .wrapper{ 'ng-repeat' => 'stop in stops' }
+      .classes{ 'ng-show' => 'classes' }
+        %h4 Classes on this route
+        .wrapper{ 'ng-repeat' => 'c in classes' }
+          .stop.label.label-info.padded{ 'ng-click' => 'class = c' }{{c.name}}
+      .noclasses{ 'ng-hide' => 'classes' }
+        There are no classes on this route. 
+        Here are some classes on other routes
+  
+        .wrapper{ 'ng-repeat' => 'class in alternatives' }
+          .stop.label.label-info.padded{ 'ng-click' => 'get_off = stop'}
+            {{class.description}}
+
+      .wrapper{ 'ng-repeat' => 'class in classes', 'ng-show' => '0' }
         .stop.label.label-info.padded{ 'ng-click' => 'get_off = stop'}
           {{stop.name}}
           %span.badge{ 'ng-show' => 'stop.classes' }{{stop.classes.length}}

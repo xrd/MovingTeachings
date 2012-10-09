@@ -10,6 +10,10 @@ class RoutesController < ApplicationController
 
   def classes
     route = Route.find params[:id]
-    render json: route.classes
+    render json: route.dialectics
+  end
+
+  def alternatives
+    render json: Dialectic.all(limit: 10)
   end
 end
