@@ -48,3 +48,4 @@ gem "devise"
 gem 'omniauth'
 gem 'oauth2'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
