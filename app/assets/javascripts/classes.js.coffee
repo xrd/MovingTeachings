@@ -1,4 +1,4 @@
-class ClassCtrl
+class DialecticCtrl
         constructor: ($scope, Route) ->
                 console.log "Got inside"
 
