@@ -1,5 +1,9 @@
 class RoutesController < ApplicationController
 
+  def samples
+    render json: Dialectic.all( limit: 10 )
+  end
+  
   def stops
     route = Route.find params[:id]
     render json: route.stops

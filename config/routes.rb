@@ -1,17 +1,19 @@
 Movingteachings::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  match 'users/loggedIn' => 'users#loggedIn'
   resources :stops
   resources :routes do
     member do
-      get :classes
+      get :dialectics
       get :stops
     end
     collection do
       get :alternatives
+      get :samples
     end
   end
-  resources :classes do
+  resources :dialectics do
     collection do
       get :teach
       get :learn

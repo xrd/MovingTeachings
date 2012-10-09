@@ -6,4 +6,5 @@ class ClassesController < ApplicationController
   def learn
     render layout: false
   end
+
 end

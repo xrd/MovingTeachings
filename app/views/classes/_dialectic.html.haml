@@ -1,0 +1,9 @@
+.stop.label.label-info.padded{ 'ng-click' => 'class.details = !class.details' }
+  {{class.title}} 
+  %span.route.badge (on {{class.route.route_description}} {{class.route.direction_description}})
+.details{ 'ng-show' => 'class.details' }
+  .description{ 'ng-bind-html' => 'mkdwn(class.description) || "No class description available"' }
+  .btn.btn-success{ 'ng-click' => 'register(class)' } Sign up for this class.
+  .btn.btn-success{ 'ng-click' => 'save(class)' } Save to my favorites.
+  .btn.btn-danger.btn-mini{ 'ng-click' => 'class.details = false' } Close
+
