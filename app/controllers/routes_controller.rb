@@ -9,7 +9,7 @@ class RoutesController < ApplicationController
     render json: route.stops
   end
 
-  def classes
+  def dialectics
     route = Route.find params[:id]
     render json: route.dialectics
   end

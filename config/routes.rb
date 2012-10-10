@@ -11,12 +11,14 @@ Movingteachings::Application.routes.draw do
     collection do
       get :alternatives
       get :samples
+      get :tmpl
     end
   end
   resources :dialectics do
     collection do
       get :teach
       get :learn
+      get :tmpl
     end
   end
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }

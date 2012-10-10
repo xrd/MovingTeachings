@@ -10,10 +10,10 @@ Take mini-classes from random people.
 
 It's completely anonymous and fun.
 
-.btn{ 'ng-click' => 'loadSampleClasses()' } Browse sample classes
+.btn{ 'ng-click' => 'loadSampleDialectics()' } Browse sample classes
 
-.classes{ 'ng-show' => 'samples' }
-  .wrapper{ 'ng-repeat' => 'class in samples' }
-    = render partial: 'classes/dialectic'
+.dialectics{ 'ng-show' => 'samples' }
+  .wrapper{ 'ng-repeat' => 'dialectic in samples' }
+    = render partial: 'dialectics/dialectic'
 
 

@@ -22,7 +22,7 @@ class MainCtrl
                                 console.log "out: #{out}"
                         out
 
-                $scope.loadSampleClasses = () ->
+                $scope.loadSampleDialectics = () ->
                         Route.samples {}, (response) ->
                                 $scope.samples = response
 

@@ -6,7 +6,7 @@ body {
     background-color: white;
 }
 
-.routes,.classes
+.routes, .dialectics
  {
   .wrapper {
       padding: 5px;
@@ -24,8 +24,10 @@ float: right;
 
 .routes {
     .stop {
-        .badge {
+        .route {
             float: right;
+            color: #ddd;
+            background-color: #111;
         }
     }
 }

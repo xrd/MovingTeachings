@@ -7,10 +7,10 @@ class RouteCtrl
 
                 $scope.loadStops = (route) ->
                         console.log "Got route, loading stops"
-                        Route.classes {id: route.id}, (response) ->
-                                $scope.classes = response
+                        Route.dialectics {id: route.id}, (response) ->
+                                $scope.dialectics = response
 
-                                unless $scope.classes and $scope.classes.length > 1
+                                unless $scope.dialectics and $scope.dialectics.length > 1
                                         # Load alternatives
                                         Route.alternatives {}, (response) ->
                                                 $scope.alternatives = response
@@ -21,9 +21,9 @@ class RouteCtrl
 
                                 for stop in $scope.stops
                                         if Math.random() > 0.5
-                                                stop.classes = []
+                                                stop.dialectics = []
                                                 for x in [0..parseInt(Math.random()*10)]
-                                                        stop.classes.push x
+                                                        stop.dialectics.push x
 
 
 @RouteCtrl = RouteCtrl

@@ -8,24 +8,17 @@
     %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
 
     %div{ 'ng-show' => 'route' }
-      .classes{ 'ng-show' => 'classes' }
+      .dialectics{ 'ng-show' => 'dialectics' }
         %h4 Classes on this route
-        .wrapper{ 'ng-repeat' => 'c in classes' }
-          .stop.label.label-info.padded{ 'ng-click' => 'class = c' }{{c.name}}
-      .noclasses{ 'ng-hide' => 'classes' }
+        .wrapper{ 'ng-repeat' => 'c in dialectics' }
+          .stop.label.label-info.padded{ 'ng-click' => 'dialectic = c' }{{c.name}}
+      .nodialectics{ 'ng-hide' => 'dialectics' }
         There are no classes on this route. 
         Here are some classes on other routes. Click to expand and see details.
 
         .spinner{ 'ng-hide' => 'alternatives' }
           %img{ src: '/assets/spinner.gif' }  
           Please wait, loading alternative classes.
-        .wrapper{ 'ng-repeat' => 'class in alternatives' }
-          = render partial: 'classes/dialectic'
-
-      .wrapper{ 'ng-repeat' => 'class in classes', 'ng-show' => '0' }
-        .stop.label.label-info.padded{ 'ng-click' => 'get_off = stop'}
-          {{stop.name}}
-          %span.badge{ 'ng-show' => 'stop.classes' }{{stop.classes.length}}
-      
-
+        .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
+          = render partial: 'dialectics/dialectic'
 

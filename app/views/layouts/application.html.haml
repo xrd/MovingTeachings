@@ -12,13 +12,14 @@
       .row-fluid
         .span12
           - if current_user
-            .btn= link_to "Take a class", "/classes/learn"
-            .btn= link_to "Teach a class", "/classes/teach"
+            .btn= link_to "Take a class", "/dialectics/learn"
+            .btn= link_to "Teach a class", "/dialectics/teach"
             .identity
               %span.visible-desktop
                 = current_user.name
                 = current_user.printable_provider
-              .btn= link_to "Logout", destroy_user_session_path(), :method => :delete
+              .btn.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
+              .btn.visible-phone.icon-off= link_to "", destroy_user_session_path(), :method => :delete
           - else
             = render partial: 'layouts/login'
         - if current_user
