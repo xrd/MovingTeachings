@@ -14,12 +14,12 @@ class RoutesController < ApplicationController
     render json: route.dialectics
   end
 
+  def show
+    @route = Route.find params[:id]
+  end
+  
   def alternatives
     render json: Dialectic.all(limit: 10)
-  end
-
-  def tmpl
-    render layout: false
   end
 
   def index

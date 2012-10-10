@@ -1,10 +1,25 @@
 class RouteCtrl
-        constructor: ($scope, Route ) ->
+        constructor: ( $scope, Route, $window , $route, $routeParams ) ->
 
                 Route.index {}, (response) ->
                         $scope.routes = response
+                        if $routeParams.id
+                                for route in response
+                                        if route.id == parseInt($routeParams.id)
+                                                $scope.route = route
+                                                $scope.loadStops($scope.route)
+
+                $scope.shareRoute = (method) ->
+                        text = "Moving teachings, little classes on the bus. This route looks fun: "
+                        url = "http://movingteachings.com/routes/#{$scope.routeId}"
+                        if method == "facebook"
+                                $window.open( "http://facebook.com/sharer.php?u=#{url}", method )
+                        else if method = "twitter"
+                                $window.open( "http://twitter.com/share?text=#{text}&url=#{url}", method )
+                        end
 
                 $scope.loadStops = (route) ->
+                        $scope.routeId = route.id
                         console.log "Got route, loading stops"
                         Route.dialectics {id: route.id}, (response) ->
                                 $scope.dialectics = response

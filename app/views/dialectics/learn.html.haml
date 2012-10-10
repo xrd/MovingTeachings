@@ -1,7 +1,6 @@
 .routes{ 'ng-controller' => 'RouteCtrl' }
   .span12
     Do you want to expand your understanding of the world?
-    Do you want to believe most people are good and want the same things in life?
     .button.small Browse classes
     %h4 You live in Portland, OR.
     Choose a route
@@ -10,6 +9,12 @@
     %div{ 'ng-show' => 'route' }
       .dialectics{ 'ng-show' => 'dialectics', 'ng-class' => 'DialecticCtrl' }
         %h4 Classes on this route
+        %span.visible-phone Share
+        %span.hidden-phone Share classes on this route
+        .btn{ 'ng-click' => 'shareRoute("facebook")' }
+          = image_tag 'facebook.png'
+        .btn{ 'ng-click' => 'shareRoute("twitter")' }
+          = image_tag 'twitter.png'
         .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
           = render partial: 'dialectics/dialectic'
       .nodialectics{ 'ng-hide' => 'dialectics' }
