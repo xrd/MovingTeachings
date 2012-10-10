@@ -5,16 +5,16 @@
     .button.small Browse classes
     %h4 You live in Portland, OR.
     Choose a route
-    %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
+    %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
 
     %div{ 'ng-show' => 'route' }
-      .dialectics{ 'ng-show' => 'dialectics' }
+      .dialectics{ 'ng-show' => 'dialectics', 'ng-class' => 'DialecticCtrl' }
         %h4 Classes on this route
-        .wrapper{ 'ng-repeat' => 'c in dialectics' }
-          .stop.label.label-info.padded{ 'ng-click' => 'dialectic = c' }{{c.name}}
+        .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
+          = render partial: 'dialectics/dialectic'
       .nodialectics{ 'ng-hide' => 'dialectics' }
-        There are no classes on this route. 
-        Here are some classes on other routes. Click to expand and see details.
+        .none There are no classes offered on this route. 
+        Why not take different path sometime? Here are other classes offered on other routes.        
 
         .spinner{ 'ng-hide' => 'alternatives' }
           %img{ src: '/assets/spinner.gif' }  

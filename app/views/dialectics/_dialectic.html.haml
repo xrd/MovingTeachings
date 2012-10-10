@@ -3,7 +3,14 @@
   %span.route (on {{dialectic.route.route_description}} {{dialectic.route.direction_description}})
 .details{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
-  .btn{ 'ng-click' => 'register(dialectic)' } Sign up for this dialectic.
-  .btn{ 'ng-click' => 'save(dialectic)' } Save to my favorites.
-  .btn.btn-danger.btn-mini{ 'ng-click' => 'dialectic.details = false' } Close
+  .btn{ 'ng-click' => 'register(dialectic)' }
+    Register
+  .btn{ 'ng-click' => 'toggle(dialectic)' } 
+    .visible-phone{ 'ng-class' => '{"icon-star-empty":!dialectic.saved,"icon-star":dialectic.saved}' } &nbsp;
+    .hidden-phone
+      %span{ 'ng-show' => 'dialectic.saved' } Save
+      %span{ 'ng-hide' => 'dialectic.saved' } Remove
+  .hideIt.btn.btn-danger{ 'ng-click' => 'dialectic.details = false' } 
+    .visible-phone.icon-remove-sign &nbsp;
+    .hidden-phone Close
 

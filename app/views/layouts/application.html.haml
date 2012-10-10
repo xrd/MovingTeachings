@@ -13,12 +13,13 @@
         .span12
           - if current_user
             Classes:
-            .btn= link_to "Register", "/dialectics/learn"
-            .btn= link_to "Teach", "/dialectics/teach"
+            .btn= link_to "Register", learn_path()
+            .btn= link_to "Teach", teach_path()
             .identity
               %span.visible-desktop
                 = current_user.name
-                = current_user.printable_provider
+                - if current_user.provider.eql?( "facebook" )
+                  %img{ src: "/assets/#{current_user.provider}.png" }
               .btn.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
               .btn.visible-phone.icon-off= link_to "", destroy_user_session_path(), :method => :delete
           - else

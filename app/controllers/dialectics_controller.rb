@@ -1,10 +1,20 @@
 class DialecticsController < ApplicationController
   def teach
-    render layout: false
+    respond_to do |format|
+      format.html { render template: 'welcome/index' }
+      format.json { render layout: false, template: 'dialectics/teach.html.haml' }
+    end
   end
 
+  def show
+    @dialectic = Dialectic.find params[:id]
+  end
+  
   def learn
-    render layout: false
+    respond_to do |format|
+      format.html { render template: 'welcome/index' }
+      format.json { render layout: false, template: 'dialectics/learn.html.haml' }
+    end
   end
 
 end

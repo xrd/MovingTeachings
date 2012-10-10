@@ -1,6 +1,11 @@
 Movingteachings::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  match 'teach' => 'dialectics#teach', as: 'teach'
+  match 'learn' => 'dialectics#learn', as: 'learn'
+  match 'learn/:id' => 'dialectics#show', as: 'show_dialectic'
+  match 'welcome/intro' => 'welcome#intro', as: 'intro'
+  
   match 'users/loggedIn' => 'users#loggedIn'
   resources :stops
   resources :routes do

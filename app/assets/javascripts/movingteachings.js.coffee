@@ -15,10 +15,7 @@ class MainCtrl
 
                 $scope.mkdwn = (text) ->
                         out = ""
-                        if text
-                                console.log "formatting: #{text}"
-                                out = markdown.toHTML( text )
-                                console.log "out: #{out}"
+                        out = markdown.toHTML( text ) if text
                         out
 
                 $scope.loadSampleDialectics = () ->

@@ -14,12 +14,18 @@ body {
 }
 
 .login {
-display: inline-block;
+    display: inline-block;
+}
+
+.details {
+    .hideIt {
+        float: right;
+    }
 }
 
 .identity {
-display: inline-block;
-float: right;
+    display: inline-block;
+    float: right;
 }
 
 .routes {
