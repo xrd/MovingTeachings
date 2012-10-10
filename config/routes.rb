@@ -7,6 +7,7 @@ Movingteachings::Application.routes.draw do
   match 'welcome/intro' => 'welcome#intro', as: 'intro'
   
   match 'users/loggedIn' => 'users#loggedIn'
+  match 'welcome/login' => 'welcome#login'
   
   resources :stops
   resources :routes do
