@@ -1,8 +1,5 @@
 appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize' ]
 
-appmod.factory 'Breadcrumbs', () ->
-        []
-
 appmod.factory 'User', [ '$resource', ($resource) ->
         $resource "/users/:action", {},
                 loggedIn: { method: 'GET', isArray: false, params: { action: 'loggedIn' } }

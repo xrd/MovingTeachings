@@ -1,6 +1,5 @@
 class RouteCtrl
-        constructor: ($scope, Route, Breadcrumbs ) ->
-                Breadcrumbs = []
+        constructor: ($scope, Route ) ->
 
                 Route.index {}, (response) ->
                         $scope.routes = response
@@ -17,7 +16,6 @@ class RouteCtrl
 
                         Route.stops {id: route.id}, (response) ->
                                 $scope.stops = response
-                                Breadcrumbs.push route.route_description
 
                                 for stop in $scope.stops
                                         if Math.random() > 0.5

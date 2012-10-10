@@ -1,8 +1,7 @@
 
 
 class MainCtrl
-        constructor: ( $scope, Route, User, Breadcrumbs, Dialectic ) ->
-                $scope.breadcrumbs = Breadcrumbs
+        constructor: ( $scope, Route, User, Dialectic ) ->
 
                 User.loggedIn {}, (response) ->
                         $scope.loggedIn = response.loggedIn
