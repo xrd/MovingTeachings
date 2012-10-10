@@ -35,9 +35,8 @@ display: none;
 .routes {
     .stop {
         .route {
-            float: right;
-            color: #ddd;
-            background-color: #111;
+            background-color: darken( #D47500, 20% );
+            color: reverse( darken( #D47500, 20% ) );
         }
     }
 }
