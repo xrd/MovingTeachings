@@ -2,7 +2,7 @@
   .wrapper
     {{dialectic.title}} 
     %span.route 
-      == (on #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}})", "/routes/{{dialectic.route.id}}"})
+      == #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}}", "/routes/{{dialectic.route.id}}"}
     .expand
       %small Click for more details
 .details{ 'ng-show' => 'dialectic.details' }

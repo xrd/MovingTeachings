@@ -32,11 +32,16 @@ display: none;
     float: right;
 }
 
+
 .routes {
     .stop {
         .route {
-            background-color: darken( #D47500, 20% );
-            color: reverse( darken( #D47500, 20% ) );
+            $base : lighten( #1b8f9a, 17% );
+            background-color: $base;
+            padding: 3px;
+            a { 
+                color: complement( $base );
+            }
         }
     }
 }
