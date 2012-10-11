@@ -1,5 +1,12 @@
 class RouteCtrl
-        constructor: ( $scope, Location, Route, $window , $route, $routeParams ) ->
+        constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location ) ->
+
+                $scope.$watch 'route', (newVal, oldVal) ->
+                        if $scope.route and $scope.location
+                                $location.path( "/locations/#{$scope.location.id}/#{$scope.route.id}" )
+                $scope.$watch 'location', (newVal, oldVal) ->
+                        if $scope.location
+                                $location.path( "/locations/#{$scope.location.id}" )
 
                 Location.index {}, (response) ->
                         $scope.locations = response
@@ -12,9 +19,10 @@ class RouteCtrl
                 $scope.loadRoutes = (location) ->
                         Location.routes { id: location.id }, (response) ->
                                 $scope.routes = response
-                                if $routeParams.id
+                                if $routeParams.route_id
+
                                         for route in response
-                                                if route.id == parseInt($routeParams.id)
+                                                if route.id == parseInt($routeParams.route_id)
                                                         $scope.route = route
                                                         $scope.loadStops($scope.route)
 

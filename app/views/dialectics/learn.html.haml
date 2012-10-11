@@ -3,7 +3,7 @@
 
     .city
       Choose a city:
-      %select{ 'ng-options' => 'c.name for c in locations', 'ng-model' => 'city', 'ng-change' => 'loadRoutes(city)' }
+      %select{ 'ng-options' => 'l.name for l in locations', 'ng-model' => 'location', 'ng-change' => 'loadRoutes(location)' }
 
     .route{ 'ng-show' => 'city' }      
       Choose a route
@@ -22,7 +22,7 @@
             = render partial: 'dialectics/dialectic'
         .nodialectics{ 'ng-hide' => 'dialectics' }
           .none There are no classes offered on this route. 
-          Why not take different path sometime? Here are other classes offered on other routes.        
+          Why not take a different path sometime? Here are some classes offered on other routes.        
   
           .spinner{ 'ng-hide' => 'alternatives' }
             %img{ src: '/assets/spinner.gif' }  
