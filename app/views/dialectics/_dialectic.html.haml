@@ -1,10 +1,13 @@
 .stop.alert.alert-block.padded{ 'ng-click' => 'dialectic.details = !dialectic.details' }
   .wrapper
     %strong {{dialectic.title}} 
-    %span.route 
+    %span.route{ 'ng-show' => 'dialectic.route' }
       == (on route #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}}", "/locations/{{dialectic.route.location_id}}/{{dialectic.route.id}}"})
     .expand
-      %small Click for more details
+      %small 
+        %span{ 'ng-show' => 'dialectic.favorited_count > 1' }
+          Favorited by {{dialectic.favorited_count-1}} other(s).
+        Click for more details
 .details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
   .message.alert.alert-success{ 'ng-show' => 'dialectic.message' }
