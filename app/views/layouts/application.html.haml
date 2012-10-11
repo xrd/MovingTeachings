@@ -20,7 +20,8 @@
                 - if current_user.provider.eql?( "facebook" )
                   %img{ src: "/assets/#{current_user.provider}.png" }
               .btn.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
-              .icon_off.btn.visibile-phone{ 'ng-click' => 'logout()' } &nbsp;
+              .visible-phone{ 'ng-click' => 'logout()' }
+                .icon-off.btn
                 
           - else
             = render partial: 'layouts/login'

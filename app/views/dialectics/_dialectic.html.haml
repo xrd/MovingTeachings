@@ -7,6 +7,8 @@
       %small Click for more details
 .details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
+  .message.alert.alert-success{ 'ng-show' => 'dialectic.message' }
+    {{dialectic.message}}
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register
   .btn{ 'ng-click' => 'save(dialectic)' } 
@@ -14,6 +16,11 @@
     .hidden-phone
       %span{ 'ng-hide' => 'dialectic.saved' } Save
       %span{ 'ng-show' => 'dialectic.saved' } Remove
+
+  .btn{ 'ng-click' => 'faq()' } 
+    .visible-phone.icon-question-sign &nbsp;
+    .hidden-phone What/why/how register?
+
   .hideIt.btn.btn-danger{ 'ng-click' => 'dialectic.details = false' } 
     .visible-phone.icon-remove-sign &nbsp;
     .hidden-phone Close

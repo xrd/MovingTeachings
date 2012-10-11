@@ -19,9 +19,7 @@ class MainCtrl
                         out
 
                 $scope.logout = () ->
-                        alert "Logging off"
                         User.logout {}, (response) ->
-                                alert "Logged off, redirecting"
                                 $window.location.href = "/reload"
 
                 $scope.loadSampleDialectics = () ->
