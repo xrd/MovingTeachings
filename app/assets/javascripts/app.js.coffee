@@ -6,6 +6,12 @@ appmod.factory 'User', [ '$resource', ($resource) ->
                 logout: { method: 'DELETE', isArray: false, params: { action: 'sign_out' } }
                 ]
 
+
+appmod.factory 'Favorite', [ '$resource', ($resource) ->
+        $resource "/favorites/:id/:action", {},
+                star: { method: 'POST', isArray: false, params: { action: 'star' } }
+                ]
+
 appmod.factory 'Location', [ '$resource', ($resource) ->
         $resource "/locations/:id/:action", { id: '@id' },
                 index: { method: 'GET', isArray: true },
@@ -26,5 +32,10 @@ appmod.factory 'Dialectic', [ '$resource', ($resource) ->
                 register: { method: 'POST', isArray: false, params: { action: 'register' } }
         ]
 
+appmod.config [ '$httpProvider', ($httpProvider) ->
+        authToken = $('meta[name="csrf-token"]').attr('content')
+        console.log "token: #{authToken}"
+        $httpProvider.defaults.headers.common[ 'X-CSRF-TOKEN' ] = authToken
+        ]
 
 @appmod = appmod

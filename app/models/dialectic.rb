@@ -3,6 +3,6 @@ class Dialectic < ActiveRecord::Base
   belongs_to :route
 
   def as_json(options={})
-    super( :include => :route )
+    super( :include => :route, :except => :user_id )
   end
 end

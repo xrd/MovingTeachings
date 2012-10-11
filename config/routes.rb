@@ -9,7 +9,12 @@ Movingteachings::Application.routes.draw do
   
   match 'users/loggedIn' => 'users#loggedIn'
   match 'welcome/login' => 'welcome#login'
-  
+
+  resources :favorites do
+    collection do
+      get :starred
+    end
+  end
   resources :stops
   resources :routes do
     member do

@@ -5,6 +5,8 @@
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
+    %meta{ :name => "csrf-token", :content => form_authenticity_token() }
+
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body{ 'ng-app' => 'movingteachings', 'ng-controller' => "MainCtrl" }
     .container-fluid.movingteachings
