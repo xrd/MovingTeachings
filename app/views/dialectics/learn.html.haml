@@ -1,17 +1,23 @@
 .routes{ 'ng-controller' => 'RouteCtrl' }
   .span12
 
-    .city
-      Choose a city:
-      %select{ 'ng-options' => 'l.name for l in locations', 'ng-model' => 'location', 'ng-change' => 'loadRoutes(location)' }
+    .row
+      .city
+        .span2
+          %strong Choose a city:
+        .span2
+          %select{ 'ng-options' => 'l.name for l in locations', 'ng-model' => 'location', 'ng-change' => 'loadRoutes(location)' }
 
     .route{ 'ng-show' => 'location' }      
-      Choose a route
-      %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
+      .row
+        .span2
+          %strong Choose a route
+        .span2
+          %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
   
-      %div{ 'ng-show' => 'route' }
-        .dialectics{ 'ng-show' => 'dialectics', 'ng-class' => 'DialecticCtrl' }
-          %h4 Classes on this route
+      .row{ 'ng-show' => 'route' }
+        .span12.dialectics{ 'ng-show' => 'dialectics', 'ng-class' => 'DialecticCtrl' }
+          %h3 Classes on {{route.route_description}}
           %span.visible-phone Share
           %span.hidden-phone Share classes on this route
           .btn{ 'ng-click' => 'shareRoute("facebook")' }
@@ -21,8 +27,8 @@
           .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
             = render partial: 'dialectics/dialectic'
         .nodialectics{ 'ng-hide' => 'dialectics' }
-          .none There are no classes offered on this route. 
-          Why not take a different path sometime? Here are some classes offered on other routes.        
+          %h3 There are no classes offered on the route: {{route.route_description}}
+          %h5 Why not take a different path sometime? Here are some classes offered on other routes.        
   
           .spinner{ 'ng-hide' => 'alternatives' }
             %img{ src: '/assets/spinner.gif' }  

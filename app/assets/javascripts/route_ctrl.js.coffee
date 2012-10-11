@@ -5,10 +5,10 @@ class RouteCtrl
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
                                 if $routeParams.route_id and $routeParams.location_id
-                                        $location.path( "/locations/#{$scope.location.id}/#{$scope.route.id}" )
+                                        $location.path( "/locations/#{$routeParams.location_id}/#{$routeParams.route_id}" )
                         $scope.$watch 'location', (newVal, oldVal) ->
                                 if $routeParams.location_id and !$routeParams.route_id
-                                        $location.path( "/locations/#{$scope.location.id}" )
+                                        $location.path( "/locations/#{$routeParams.location_id}" )
 
                 $scope.watchRoutes()
 
