@@ -1,7 +1,7 @@
 
 
 class MainCtrl
-        constructor: ( $scope, Route, User, Dialectic ) ->
+        constructor: ( $scope, Route, User, Dialectic, $window ) ->
 
                 User.loggedIn {}, (response) ->
                         $scope.loggedIn = response.loggedIn
@@ -17,6 +17,12 @@ class MainCtrl
                         out = ""
                         out = markdown.toHTML( text ) if text
                         out
+
+                $scope.logout = () ->
+                        alert "Logging off"
+                        User.logout {}, (response) ->
+                                alert "Logged off, redirecting"
+                                $window.location.href = "/reload"
 
                 $scope.loadSampleDialectics = () ->
                         Route.samples {}, (response) ->

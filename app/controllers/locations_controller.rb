@@ -10,13 +10,12 @@ class LocationsController < ApplicationController
     end
   end
 
-
-  def show
-    @location = Location.find params[:id]
-  end
-
   def routes
     render json: Location.find( params[:id] ).routes
+  end
+  
+  def show
+    @location = Location.find params[:id]
   end
 
   def index

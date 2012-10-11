@@ -1,12 +1,16 @@
 class RouteCtrl
         constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location ) ->
 
-                $scope.$watch 'route', (newVal, oldVal) ->
-                        if $scope.route and $scope.location
-                                $location.path( "/locations/#{$scope.location.id}/#{$scope.route.id}" )
-                $scope.$watch 'location', (newVal, oldVal) ->
-                        if $scope.location
-                                $location.path( "/locations/#{$scope.location.id}" )
+
+                $scope.watchRoutes = () ->
+                        $scope.$watch 'route', (newVal, oldVal) ->
+                                if $routeParams.route_id and $routeParams.location_id
+                                        $location.path( "/locations/#{$scope.location.id}/#{$scope.route.id}" )
+                        $scope.$watch 'location', (newVal, oldVal) ->
+                                if $routeParams.location_id and !$routeParams.route_id
+                                        $location.path( "/locations/#{$scope.location.id}" )
+
+                $scope.watchRoutes()
 
                 Location.index {}, (response) ->
                         $scope.locations = response
@@ -54,6 +58,9 @@ class RouteCtrl
                                                 stop.dialectics = []
                                                 for x in [0..parseInt(Math.random()*10)]
                                                         stop.dialectics.push x
+
+
+
 
 
 @RouteCtrl = RouteCtrl

@@ -5,7 +5,7 @@
       Choose a city:
       %select{ 'ng-options' => 'l.name for l in locations', 'ng-model' => 'location', 'ng-change' => 'loadRoutes(location)' }
 
-    .route{ 'ng-show' => 'city' }      
+    .route{ 'ng-show' => 'location' }      
       Choose a route
       %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
   

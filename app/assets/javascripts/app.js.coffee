@@ -3,6 +3,7 @@ appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize' ]
 appmod.factory 'User', [ '$resource', ($resource) ->
         $resource "/users/:action", {},
                 loggedIn: { method: 'GET', isArray: false, params: { action: 'loggedIn' } }
+                logout: { method: 'DELETE', isArray: false, params: { action: 'sign_out' } }
                 ]
 
 appmod.factory 'Location', [ '$resource', ($resource) ->

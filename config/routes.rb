@@ -1,6 +1,7 @@
 Movingteachings::Application.routes.draw do
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
 
+  match "reload" => "application#reload"
   match 'teach' => 'dialectics#teach', as: 'teach'
   match 'learn' => 'dialectics#learn', as: 'learn'
   match 'learn/:id' => 'dialectics#show', as: 'show_dialectic'
@@ -33,6 +34,9 @@ Movingteachings::Application.routes.draw do
       get :tmpl
     end
   end
+
+  match 'locations/:id/:route_id' => 'locations#show'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
 
   # The priority is based upon order of creation:
