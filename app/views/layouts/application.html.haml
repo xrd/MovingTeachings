@@ -20,7 +20,7 @@
                 - if current_user.provider.eql?( "facebook" )
                   %img{ src: "/assets/#{current_user.provider}.png" }
               .btn.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
-              .btn.visible-phone.icon-off= link_to "", destroy_user_session_path(), :method => :delete
+              .btn.visible-phone.icon-off= link_to "&nbsp;", destroy_user_session_path(), :method => :delete
           - else
             = render partial: 'layouts/login'
         = yield

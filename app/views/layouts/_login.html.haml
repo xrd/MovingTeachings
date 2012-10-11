@@ -1,6 +1,11 @@
 .login
-  .btn= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-  .btn{ 'title' => 'Login here' }
-    = link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+  %span.hidden-phone
+    .btn.hidden-phone= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+    .btn.hidden-phone= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+  %span.visible-phone
+    Login via:
+    .btn.visible-phone= link_to "Facebook", user_omniauth_authorize_path(:facebook)
+    .btn.visible-phone= link_to "Google", user_omniauth_authorize_path(:google_oauth2)
+
 
 

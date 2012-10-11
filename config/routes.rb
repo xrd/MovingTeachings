@@ -21,6 +21,11 @@ Movingteachings::Application.routes.draw do
       get :tmpl
     end
   end
+  resources :locations do
+    member do
+      get :routes
+    end
+  end
   resources :dialectics do
     collection do
       get :teach

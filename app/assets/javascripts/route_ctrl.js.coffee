@@ -1,13 +1,22 @@
 class RouteCtrl
-        constructor: ( $scope, Route, $window , $route, $routeParams ) ->
+        constructor: ( $scope, Location, Route, $window , $route, $routeParams ) ->
 
-                Route.index {}, (response) ->
-                        $scope.routes = response
-                        if $routeParams.id
-                                for route in response
-                                        if route.id == parseInt($routeParams.id)
-                                                $scope.route = route
-                                                $scope.loadStops($scope.route)
+                Location.index {}, (response) ->
+                        $scope.locations = response
+                        if $routeParams.location_id
+                                for location in response
+                                        if location.id == parseInt($routeParams.location_id)
+                                                $scope.location = location
+                                                $scope.loadRoutes($scope.location)
+
+                $scope.loadRoutes = (location) ->
+                        Location.routes { id: location.id }, (response) ->
+                                $scope.routes = response
+                                if $routeParams.id
+                                        for route in response
+                                                if route.id == parseInt($routeParams.id)
+                                                        $scope.route = route
+                                                        $scope.loadStops($scope.route)
 
                 $scope.shareRoute = (method) ->
                         text = "Moving teachings, little classes on the bus. This route looks fun: "

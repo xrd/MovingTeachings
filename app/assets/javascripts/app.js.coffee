@@ -5,9 +5,15 @@ appmod.factory 'User', [ '$resource', ($resource) ->
                 loggedIn: { method: 'GET', isArray: false, params: { action: 'loggedIn' } }
                 ]
 
+appmod.factory 'Location', [ '$resource', ($resource) ->
+        $resource "/locations/:id/:action", { id: '@id' },
+                index: { method: 'GET', isArray: true },
+                routes: { method: 'GET', isArray: true, params: { action: 'routes' } }
+                ]
+
 appmod.factory 'Route', [ '$resource', ($resource) ->
         $resource "/routes/:id/:action", { id: '@id' },
-                index: { method: 'GET', isArray: true },
+                routes: { method: 'GET', isArray: true },
                 stops: { method: 'GET', isArray: true, params: { action: 'stops' } }
                 dialectics: { method: 'GET', isArray: true, params: { action: 'dialectics' } }
                 samples: { method: 'GET', isArray: true, params: { action: 'samples' } }

@@ -1,11 +1,3 @@
-body {
-    background-color: grey;
-}
-
-.movingteachings {
-    background-color: white;
-}
-
 .routes, .dialectics
  {
   .wrapper {
@@ -18,6 +10,8 @@ body {
 }
 
 .details {
+    position: relative;
+    top: -15px;
     .hideIt {
         float: right;
     }
@@ -33,15 +27,3 @@ display: none;
 }
 
 
-.routes {
-    .stop {
-        .route {
-            $base : lighten( #1b8f9a, 17% );
-            background-color: $base;
-            padding: 3px;
-            a { 
-                color: complement( $base );
-            }
-        }
-    }
-}

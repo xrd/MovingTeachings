@@ -1,15 +1,15 @@
 .stop.alert.alert-block.padded{ 'ng-click' => 'dialectic.details = !dialectic.details' }
   .wrapper
-    {{dialectic.title}} 
+    %strong {{dialectic.title}} 
     %span.route 
-      == #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}}", "/routes/{{dialectic.route.id}}"}
+      == (on route #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}}", "/routes/{{dialectic.route.id}}"})
     .expand
       %small Click for more details
-.details{ 'ng-show' => 'dialectic.details' }
+.details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register
-  .btn{ 'ng-click' => 'toggle(dialectic)' } 
+  .btn{ 'ng-click' => 'save(dialectic)' } 
     .visible-phone{ 'ng-class' => '{"icon-star-empty":!dialectic.saved,"icon-star":dialectic.saved}' } &nbsp;
     .hidden-phone
       %span{ 'ng-hide' => 'dialectic.saved' } Save
