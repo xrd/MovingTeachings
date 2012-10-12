@@ -17,3 +17,11 @@
 //= require jquery_ujs
 //= require app
 //= require_tree .
+
+// Strip the location hash if '#_=_' is included
+//console.log( "Looking at hash: " + window.location.hash );
+if (window.location.hash == '#_=_') {
+  //console.log( "Stripping location hash, doh!" );
+  window.location.hash = '';
+}
+
