@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121011195532) do
+ActiveRecord::Schema.define(:version => 20121013184331) do
 
   create_table "dialectics", :force => true do |t|
     t.integer  "route_id"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(:version => 20121011195532) do
     t.datetime "updated_at",      :null => false
     t.text     "description"
     t.integer  "favorited_count"
+    t.boolean  "approved"
   end
 
   create_table "favorites", :force => true do |t|
