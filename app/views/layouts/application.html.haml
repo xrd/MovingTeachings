@@ -4,6 +4,7 @@
     %title Movingteachings
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false"
     = csrf_meta_tags
     %meta{ :name => "csrf-token", :content => form_authenticity_token() }
 
@@ -30,4 +31,8 @@
             = render partial: 'layouts/login'
         = yield
         = render partial: 'layouts/common'
-
+      #overlay{ 'ng-show' => 'dialog' }
+        %div.mobile.visible-phone
+          {{dialogContents}}
+        %div.desktop.hidden-phone
+          {{dialogContents}}

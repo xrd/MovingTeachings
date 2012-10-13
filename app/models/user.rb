@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :provider, :uid, :name
 
   has_many :favorites
+  has_many :dialectics
   
   def printable_provider
     rv = ""

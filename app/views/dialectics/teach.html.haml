@@ -1,8 +1,31 @@
-Do you have an idea for a tiny class you could teach on a bus?
-Do you want to connect with people riding with you?
-.button.small Offer a class
-.dialectics
-  %h3 My classes:
-  - 6.times do |i|
-    .wrapper
-      .alert.alert-block.padded= Faker::Lorem.sentence
+.dialectics{ 'ng-controller' => 'RouteCtrl' }
+  Do you have an idea for a tiny class you could teach on a bus?
+  Do you want to connect with people riding with you?
+  .btn.small{ 'ng-click' => 'doCreate = true' } Offer a class
+  .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
+
+  .create{ 'ng-show' => 'doCreate', 'ng-controller' => 'DialecticCtrl' }
+    %form
+      %legend Create a class
+      %label Title
+      %input{ 'ng-model' => 'dialectic.title', type: 'text', required: true }
+      %label Description
+      %textarea{ 'ng-model' => 'dialectic.description', type: 'text', required: true }
+      .small
+        Fancy formatting using 
+        %a{ href: 'http://daringfireball.net/projects/markdown/', target: "_new" } Markdown 
+        = "|"
+        %a{ 'ng-click' => 'useTemplate()' } Template
+        = "|"
+        %a{ 'ng-click' => 'preview()' } Preview
+
+      = render partial: 'dialectics/city_and_route'     
+
+      .btn{ 'ng-click' => 'create()' } Create this class
+
+  
+  .dialectics{ 'ng-show' => 'dialectics' }
+    %h3 My classes:
+    .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
+      = render partial: "dialectics/dialectic"
+  

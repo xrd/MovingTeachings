@@ -22,6 +22,14 @@ class MainCtrl
                         User.logout {}, (response) ->
                                 $window.location.href = "/reload"
 
+                $scope.popDialog = () ->
+                        $scope.dialog = true
+                        $scope.dialogContents = "Hi there!"
+                        # $('#overlay').css( 'visibility', "visible" )
+
+                $scope.faq = () ->
+                        $scope.popDialog()
+
                 $scope.loadSampleDialectics = () ->
                         Route.samples {}, (response) ->
                                 $scope.samples = response

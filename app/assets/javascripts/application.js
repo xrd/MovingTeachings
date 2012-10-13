@@ -13,6 +13,7 @@
 //= require angular
 //= require angular-resource
 //= require angular-sanitize
+//= require angular-ui
 //= require jquery
 //= require jquery_ujs
 //= require app

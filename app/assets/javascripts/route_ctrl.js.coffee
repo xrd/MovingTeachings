@@ -1,6 +1,10 @@
 class RouteCtrl
-        constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location ) ->
+        constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location, Dialectic ) ->
 
+                $scope.mapOptions =
+                        center: new google.maps.LatLng(35.784, -78.670),
+                        zoom: 15,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
 
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
@@ -19,6 +23,11 @@ class RouteCtrl
                                         if location.id == parseInt($routeParams.location_id)
                                                 $scope.location = location
                                                 $scope.loadRoutes($scope.location)
+
+                $scope.loadDialectics = () ->
+                        console.log "Loading dialectics"
+                        Dialectic.mine {}, (response) ->
+                                $scope.dialectics = response
 
                 $scope.loadRoutes = (location) ->
                         Location.routes { id: location.id }, (response) ->

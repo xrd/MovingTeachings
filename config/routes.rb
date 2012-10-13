@@ -36,7 +36,7 @@ Movingteachings::Application.routes.draw do
     collection do
       get :teach
       get :learn
-      get :tmpl
+      get :mine
     end
   end
 

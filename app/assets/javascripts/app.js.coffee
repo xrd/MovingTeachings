@@ -1,4 +1,4 @@
-appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize' ]
+appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize', 'ui' ]
 
 appmod.factory 'User', [ '$resource', ($resource) ->
         $resource "/users/:action", {},
@@ -28,8 +28,9 @@ appmod.factory 'Route', [ '$resource', ($resource) ->
         ]
 
 appmod.factory 'Dialectic', [ '$resource', ($resource) ->
-        $resource "/dialectic/:id/:action", { id: '@id' },
-                register: { method: 'POST', isArray: false, params: { action: 'register' } }
+        $resource "/dialectics/:id/:action", { id: '@id' },
+                register: { method: 'POST', isArray: false, params: { action: 'register' } },
+                mine: { method: 'GET', isArray: true, params: { action: 'mine' } }
         ]
 
 appmod.config [ '$httpProvider', ($httpProvider) ->

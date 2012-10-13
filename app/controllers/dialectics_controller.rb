@@ -6,6 +6,18 @@ class DialecticsController < ApplicationController
     end
   end
 
+  def register
+  end
+
+  def mine
+    render json: current_user.dialectics
+  end
+  
+  def create
+    current_user.dialectics.create( params[:dialectic] )
+    render json: { status: 'ok' }
+  end
+  
   def show
     @dialectic = Dialectic.find params[:id]
   end
