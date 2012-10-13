@@ -10,10 +10,10 @@
         Click for more details
 .details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
-  .days 
+  .days{ 'ng-show' => 'days' }
     Offered on 
     %span.day{ 'ng-repeat' => 'day in dialectic.days' }{{day}}
-  .times 
+  .times{ 'ng-show' => 'times' }
     Offered potentially at 
     %span.time{ 'ng-repeat' => 'time in dialectic.times' }
       %span{ 'ng-show' => '$index != 0' }, 

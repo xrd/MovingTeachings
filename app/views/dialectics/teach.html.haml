@@ -7,17 +7,15 @@
   .create{ 'ng-show' => 'doCreate', 'ng-controller' => 'DialecticCtrl' }
     %form{ 'ng-hide' => 'created' }
       %legend Create a class
+      .alert.alert-error{ 'ng-show' => 'errors' } {{errors}}
       %label Title
       %input{ 'ng-model' => 'dialectic.title', type: 'text', required: true }
       %label Description
       %textarea{ 'ng-model' => 'dialectic.description', type: 'text', required: true }
       .small
-        Fancy formatting using 
+        %a{ 'ng-click' => 'useTemplate()' } Use template
+        == | Fancy formatting using 
         %a{ href: 'http://daringfireball.net/projects/markdown/', target: "_new" } Markdown 
-        = "|"
-        %a{ 'ng-click' => 'useTemplate()' } Template
-        = "|"
-        %a{ 'ng-click' => 'preview()' } Preview
 
       %label Where do you want to teach this class
       = render partial: 'dialectics/city_and_route'     
@@ -31,13 +29,31 @@
         %select{ 'ng-options' => 'c for c in minOptions', "ng-model" => "dialectic.minimum" }
           %option{ val: '' } No minimum
   
-      %label What days do you want to offer the class?
-      .btn-group
-        %span.btn{ 'ng-repeat' => 'd in days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d.name}}
+      .after_route{ 'ng-show' => 'route' }
+        %label (optional) What days do you want to offer the class?
+        .btn-group
+          %span.btn{ 'ng-repeat' => 'd in days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d.name}}
+  
+        %label (optional) What time slots are you willing to offer your class?
+        %select{ 'ng-options' => 'c for c in times', "ng-model" => "dialectic.times", multiple: true }
 
-      %label What time slots are you willing to offer your class?
-      %select{ 'ng-options' => 'c for c in times', "ng-model" => "dialectic.times", multiple: true }
-
+        .prerequisites.visible-phone
+          If you edit this on a desktop computer you can edit prerequisites, like books to read in advance, links to check out, or even locations to visit.
+        .prerequisites.hidden-phone
+          %label (optional) Add a prerequisite (book, link, location to visit)?
+          %input{ type: 'checkbox', 'ng-model' => 'prerequisite' } Add prerequisites
+          .prerequisites{ 'ng-show' => 'prerequisite' }
+            .btn{ 'ng-click' => 'adding = true' } Add prerequisite
+            .adding{ 'ng-show' => 'adding' }
+              %select{ 'ng-options' => 'c for c in prereq_types', 'ng-model' => 'prereq.type' }
+  
+              .btn{ 'ng-click' => 'modalShown = true' } Show the modal.
+  
+              .places{ "ui-modal" => true, class: "fade", "ng-model" => "modalShown", id: "myModal" } 
+                Hi there, is a map here.
+  
+              .btn{ 'ng-click' => 'addPrequisite()' }
+    
       %br
       .btn{ 'ng-click' => 'create()' } Create this class
     %div{ 'ng-show' => 'created' }

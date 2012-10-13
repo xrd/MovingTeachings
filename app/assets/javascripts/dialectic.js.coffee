@@ -1,10 +1,11 @@
 class DialecticCtrl
         constructor: ( $scope, $timeout, Favorite, Dialectic ) ->
-                console.log "Inside dialectic ctrl"
-
                 $scope.resetDialectic = () ->
                         $scope.dialectic = {}
                         $scope.dialectic.days = {}
+
+                $scope.prereq_types = [ 'link', 'book', 'location' ]
+                $scope.prereq = {}
 
                 $scope.resetDialectic()
                 $scope.days = [
@@ -24,7 +25,6 @@ class DialecticCtrl
                         for x in [0..24]
                                 for y in [ 0, 15, 30, 45 ]
                                         out = sprintf( "%02d:%02d", x, y )
-                                        console.log out
                                         rv.push out
                         rv
 
@@ -41,14 +41,18 @@ class DialecticCtrl
                                 $scope.dialectic.description = "# A special class #\n\nTell us all about it\n\n>This is a quote about the class"
 
                 $scope.create = () ->
-                        console.log "Creating a class"
-                        $scope.dialectic.route_id = $scope.route.id
-                        $scope.dialectic.days = $scope.days
-                        Dialectic.save {}, dialectic: $scope.dialectic, (response) ->
-                                $scope.created = true
-                                $scope.message = "Created your new class. New classes require approval, and we will notify you when your class has been approved"
-                                $scope.resetDialectic()
-                                $timeout ( () -> $scope.doCreate = false; $scope.created = false ), 3000
+                        if $scope.dialectic.title and $scope.dialectic.description and $scope.route
+                                console.log "Creating a class"
+                                $scope.dialectic.route_id = $scope.route.id
+                                $scope.dialectic.days = $scope.days
+                                Dialectic.save {}, dialectic: $scope.dialectic, (response) ->
+                                        $scope.created = true
+                                        $scope.message = "Created your new class. New classes require approval, and we will notify you when your class has been approved"
+                                        $scope.resetDialectic()
+                                        $timeout ( () -> $scope.doCreate = false; $scope.created = false ), 3000
+                        else
+                                $scope.errors = "You must provide at least a title, description and choose a route"
+                                $timeout ( () -> $scope.errors = "" ), 3000
 
                 $scope.save = (dialectic) ->
                         Favorite.save {}, { dialectic_id: dialectic.id }, (response) ->
