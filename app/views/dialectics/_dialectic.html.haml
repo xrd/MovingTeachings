@@ -10,6 +10,15 @@
         Click for more details
 .details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
+  .days 
+    Offered on 
+    %span.day{ 'ng-repeat' => 'day in dialectic.days' }{{day}}
+  .times 
+    Offered potentially at 
+    %span.time{ 'ng-repeat' => 'time in dialectic.times' }
+      %span{ 'ng-show' => '$index != 0' }, 
+      {{time}}
+
 
   .hidden.desktop_map.hidden-phone{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
   .hidden.phone_map.visible-phone{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
