@@ -16,9 +16,12 @@
         %h3 There are no classes offered on the route: {{route.route_description}}
         %h5 "Not all those who wander are lost." Why not take a different path sometime? Here are some classes offered on other routes.        
 
-        .spinner{ 'ng-hide' => 'alternatives' }
-          %img{ src: '/assets/spinner.gif' }  
-          Please wait, loading alternative classes.
-        .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
-          = render partial: 'dialectics/dialectic'
-
+        .noalternatives{ 'ng-show' => 'noAlternatives' }
+          Sorry, there are no courses offered in your city right now.
+        .alternatives{ 'ng-hide' => 'noAlternatives' }
+          .spinner{ 'ng-hide' => 'alternatives' }
+            %img{ src: '/assets/spinner.gif' }  
+            Please wait, loading alternative classes.
+          .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
+            = render partial: 'dialectics/dialectic'
+  

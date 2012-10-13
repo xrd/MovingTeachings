@@ -59,6 +59,9 @@ class RouteCtrl
                                         Route.alternatives {}, (response) ->
                                                 $scope.alternatives = response
 
+                                                if 0 == $scope.alternatives.length
+                                                        $scope.noAlternatives = "Sorry, there are no classes offered in your city right now."
+
                         Route.stops {id: route.id}, (response) ->
                                 $scope.stops = response
 
