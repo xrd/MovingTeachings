@@ -5,7 +5,7 @@
   .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
 
   .create{ 'ng-show' => 'doCreate', 'ng-controller' => 'DialecticCtrl' }
-    %form
+    %form{ 'ng-hide' => 'created' }
       %legend Create a class
       %label Title
       %input{ 'ng-model' => 'dialectic.title', type: 'text', required: true }
@@ -19,9 +19,29 @@
         = "|"
         %a{ 'ng-click' => 'preview()' } Preview
 
+      %label Where do you want to teach this class
       = render partial: 'dialectics/city_and_route'     
 
+      .hide
+        %label Maximum participants?
+        %select{ 'ng-options' => 'c for c in maxOptions', "ng-model" => "dialectic.maximum" }
+          %option{ val: '' } No maximum
+  
+        %label Minimum participants?
+        %select{ 'ng-options' => 'c for c in minOptions', "ng-model" => "dialectic.minimum" }
+          %option{ val: '' } No minimum
+  
+      %label What days do you want to offer the class?
+      .btn-group
+        %span.btn{ 'ng-repeat' => 'd in days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d.name}}
+
+      %label What time slots are you willing to offer your class?
+      %select{ 'ng-options' => 'c for c in times', "ng-model" => "dialectic.times", multiple: true }
+
+      %br
       .btn{ 'ng-click' => 'create()' } Create this class
+    %div{ 'ng-show' => 'created' }
+      {{message}}
 
   
   .dialectics{ 'ng-show' => 'dialectics' }

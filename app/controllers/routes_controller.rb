@@ -19,7 +19,7 @@ class RoutesController < ApplicationController
   end
   
   def alternatives
-    render json: Dialectic.all(limit: 10).approved
+    render json: Dialectic.approved.all(limit: 10)
   end
 
   def index
