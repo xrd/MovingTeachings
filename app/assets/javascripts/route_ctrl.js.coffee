@@ -1,4 +1,4 @@
- class RouteCtrl
+class RouteCtrl
         constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location, Dialectic ) ->
 
                 $scope.mapOptions =
