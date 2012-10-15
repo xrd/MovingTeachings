@@ -3,4 +3,5 @@ class FavoriteCtrl
                 Favorite.query {}, (response) ->
                         $scope.favorites = response
 
+FavoriteCtrl.$inject =  [ "$scope", "Favorite" ]
 @FavoriteCtrl = FavoriteCtrl

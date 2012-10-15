@@ -59,4 +59,5 @@ class DialecticCtrl
                                 dialectic.message = "Saved to your favorites"
                                 $timeout ( () -> dialectic.message = "" ), 3000
 
+DialecticCtrl.$inject = [ "$scope", "$timeout", "Favorite", "Dialectic" ]
 @DialecticCtrl = DialecticCtrl

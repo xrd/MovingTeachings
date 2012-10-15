@@ -31,8 +31,3 @@
             = render partial: 'layouts/login'
         = yield
         = render partial: 'layouts/common'
-      #overlay{ 'ng-show' => 'dialog' }
-        %div.mobile.visible-phone
-          {{dialogContents}}
-        %div.desktop.hidden-phone
-          {{dialogContents}}

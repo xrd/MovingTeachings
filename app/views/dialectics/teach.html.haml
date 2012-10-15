@@ -47,10 +47,10 @@
             .adding{ 'ng-show' => 'adding' }
               %select{ 'ng-options' => 'c for c in prereq_types', 'ng-model' => 'prereq.type' }
   
-              .btn{ 'ng-click' => 'modalShown = true' } Show the modal.
+              .btn{ 'ng-click' => 'mapModal = true' } Show the modal.
   
-              .places{ "ui-modal" => true, class: "fade", "ng-model" => "modalShown", id: "myModal" } 
-                Hi there, is a map here.
+              .places{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal", id: "myModal" } 
+                .desktop_map{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
   
               .btn{ 'ng-click' => 'addPrequisite()' }
     

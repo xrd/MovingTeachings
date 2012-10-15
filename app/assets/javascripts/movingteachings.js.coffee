@@ -34,4 +34,5 @@ class MainCtrl
                         Route.samples {}, (response) ->
                                 $scope.samples = response
 
+MainCtrl.$inject = [ "$scope", "Route", "User", "Dialectic", "$window" ]
 @MainCtrl = MainCtrl
