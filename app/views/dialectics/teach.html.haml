@@ -40,20 +40,38 @@
         .prerequisites.visible-phone
           If you edit this on a desktop computer you can edit prerequisites, like books to read in advance, links to check out, or even locations to visit.
         .prerequisites.hidden-phone
+          .added{ 'ng-show' => 'prerequisites' }
+            Prerequisites:
+            .prerequisite{ 'ng-repeat' => 'p in prerequisites' }
+              {{p.comment}}
+
           %label (optional) Add a prerequisite (book, link, location to visit)?
-          %input{ type: 'checkbox', 'ng-model' => 'prerequisite' } Add prerequisites
-          .prerequisites{ 'ng-show' => 'prerequisite' }
-            .btn{ 'ng-click' => 'adding = true' } Add prerequisite
-            .adding{ 'ng-show' => 'adding' }
-              %select{ 'ng-options' => 'c for c in prereq_types', 'ng-model' => 'prereq.type' }
+          .btn{ 'ng-click' => 'adding = true' } Add prerequisite
+          .adding{ 'ng-show' => 'adding' }
+            .btn{ 'ng-click' => 'prereq.type == "link"' } Add link
+            .btn{ 'ng-click' => 'mapModal = true; prereq.type == "location"' } Add location
+            .btn{ 'ng-click' => 'bookModal = true; prereq.type == "book"' } Add book
+
+            .link{ 'ng-show' => 'prereq.type == "link"' }
+              %label
+              %input{ 'ng-model' => 'prereq.link' }
+              .btn{ 'ng-click' => 'addPrerequisite()' } Add link
+
+            #bookModal{ "ui-modal" => true, class: "fade", "ng-model" => "bookModal" }
+              .search Search for a book
+              .results Book results
+
+            #mapModal{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal" }
+              .wrapper{ 'ng-controller' => 'MapCtrl' }
+                #placesMap{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
+                .search
+                  %input{ 'ng-model' => 'mapSearch', placeholder: "Enter a location..." }
+                  .btn{ 'ng-click' => 'searchPlaces()' } Search
+                  .results
+                    .result{ 'ng-repeat' => 'item in results' }
+                      {{item.name}}
+
   
-              .btn{ 'ng-click' => 'mapModal = true' } Show the modal.
-  
-              .places{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal", id: "myModal" } 
-                .desktop_map{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
-  
-              .btn{ 'ng-click' => 'addPrequisite()' }
-    
       %br
       .btn{ 'ng-click' => 'create()' } Create this class
     %div{ 'ng-show' => 'created' }
