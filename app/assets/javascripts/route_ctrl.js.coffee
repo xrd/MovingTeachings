@@ -29,6 +29,10 @@ class RouteCtrl
                         Dialectic.mine {}, (response) ->
                                 $scope.dialectics = response
 
+                $scope.loadStops = (route) ->
+                        Route.stops { id: route.id }, (response) ->
+                                $scope.stops = response
+
                 $scope.loadRoutes = (location) ->
                         Location.routes { id: location.id }, (response) ->
                                 $scope.routes = response
@@ -48,7 +52,7 @@ class RouteCtrl
                                 $window.open( "http://twitter.com/share?text=#{text}&url=#{url}", method )
                         end
 
-                $scope.loadStops = (route) ->
+                $scope.loadClasses = (route) ->
                         $scope.routeId = route.id
                         console.log "Got route, loading stops"
                         Route.dialectics {id: route.id}, (response) ->

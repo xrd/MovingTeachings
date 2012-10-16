@@ -18,7 +18,9 @@
         %a{ href: 'http://daringfireball.net/projects/markdown/', target: "_new" } Markdown 
 
       %label Where do you want to teach this class
-      = render partial: 'dialectics/city_and_route'     
+      = render partial: 'dialectics/city'
+      = render partial: 'dialectics/routes'
+      = render partial: 'dialectics/stops'
 
       .hide
         %label Maximum participants?
@@ -29,7 +31,7 @@
         %select{ 'ng-options' => 'c for c in minOptions', "ng-model" => "dialectic.minimum" }
           %option{ val: '' } No minimum
   
-      .after_route{ 'ng-show' => 'route' }
+      .after_route{ 'ng-show' => 'stop' }
         %label (optional) What days do you want to offer the class?
         .btn-group
           %span.btn{ 'ng-repeat' => 'd in days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d.name}}
@@ -40,40 +42,42 @@
         .prerequisites.visible-phone
           If you edit this on a desktop computer you can edit prerequisites, like books to read in advance, links to check out, or even locations to visit.
         .prerequisites.hidden-phone
-          .added{ 'ng-show' => 'prerequisites' }
-            Prerequisites:
+          %div{ 'ng-show' => 'prerequisites' }
+            Prerequisites:          
             .prerequisite{ 'ng-repeat' => 'p in prerequisites' }
-              {{p.comment}}
+              %a{ href: "{{p.link}}" } {{p.comment}}
+              .btn{ 'ng-click' => 'remove(p)' } Remove this prerequisite
 
           %label (optional) Add a prerequisite (book, link, location to visit)?
           .btn-group{ 'ng-hide' => 'prereq.type' }
             .btn{ 'ng-click' => 'prereq.type == "link"' } Add link
-            .btn{ 'ng-click' => 'mapModal = true; prereq.type == "location"' } Add location
-            .btn{ 'ng-click' => 'bookModal = true; prereq.type == "book"' } Add book
+            .btn{ 'ng-click' => 'modals.map = true; prereq.type == "location"' } Add location
+            .btn{ 'ng-click' => 'modals.book = true; prereq.type == "book"' } Add book
 
           .link{ 'ng-show' => 'prereq.type == "link"' }
             %label Add link
             %input{ 'ng-model' => 'prereq.link', type: 'text', placeholder: 'Enter URL' }
             .btn{ 'ng-click' => 'addPrerequisite()' } Add link
 
-          #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "bookModal" }
+          #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
             .wrapper{ 'ng-controller' => 'BookCtrl' }
               %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
               .btn{ 'ng-click' => 'search()' } Search
 
               .results{ 'ng-show' => 'results' }
-                %strong All results
+                %strong Top 10 results
                 
                 .result{ 'ng-repeat' => 'item in results' }
                   .title
                     %strong {{item.attributes.Title}}
                   .details
-                    {{item.attributes.Author}}
-                    {{item.attributes.Manufacturer}}
-                    {{item.DetailPageURL}}
-                    .btn{ 'ng-click' => 'addBookAsPrerequisite(item)' } Add book as prerequisite
+                    .author {{item.attributes.Author}}
+                    .manufacturer {{item.attributes.Manufacturer}}
+                    .url
+                      %a{ href: '{{item.url}}', target: 'books' } See more about this book.
+                  .btn{ 'ng-click' => 'addBookAsPrerequisite(item)' } Add book as class prerequisite.
 
-          #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal" }
+          #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
             .wrapper{ 'ng-controller' => 'MapCtrl' }
               #placesMap{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
               .search

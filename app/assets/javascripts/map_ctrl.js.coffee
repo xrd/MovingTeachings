@@ -15,13 +15,13 @@ class MapCtrl
 
                 $scope.searchPlaces = () ->
 
-                        pyrmont = new google.maps.LatLng( $scope.route.lat, $scope.route.lng )
+                        center = new google.maps.LatLng( $scope.stop.lat, $scope.stop.lng )
 
                         $scope.items = []
                         console.log "Searching for: #{$scope.mapSearch}"
                         map = new google.maps.Map document.getElementById('placesMap')
                         request =
-                                location: pyrmont,
+                                location: center,
                                 radius: '500',
                                 types: ['store']
 

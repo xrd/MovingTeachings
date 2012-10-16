@@ -1,5 +1,6 @@
 class DialecticCtrl
         constructor: ( $scope, $timeout, Favorite, Dialectic ) ->
+                $scope.modals = {}
                 $scope.resetDialectic = () ->
                         $scope.dialectic = {}
                         $scope.dialectic.days = {}
@@ -30,16 +31,11 @@ class DialecticCtrl
 
                 $scope.times = times()
 
-                $scope.addPrerequisite = () ->
-                        if $scope.prereq.type == "link"
-                                comment = $scope.prereq.link
-                        else if $scope.prereq.type == "location"
-                                comment = $scope.prereq.book.name
-                        else if $scope.prereq.type == "book"
-                                comment = $scope.prereq.book.name
-
-                        $scope.prerequisites.push { comment: comment, type: $scope.prereq.type }
+                $scope.addPrerequisite = ( item ) ->
+                        $scope.prerequisites.push item
+                        console.log "Adding item as prerequisite (#{$scope.prerequisites.length})"
                         $scope.prereq = {}
+                        $scope.modals = {}
 
                 $scope.toggle = (dialectic) ->
                         dialectic.saved = !dialectic.saved

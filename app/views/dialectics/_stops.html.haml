@@ -1,0 +1,12 @@
+.route{ 'ng-show' => 'route' }      
+  .row-fluid{ 'ng-hide' => 'stops' }
+    .span12
+      = image_tag 'spinner.gif'
+      Loading stops, please wait.
+  .row-fluid{ 'ng-show' => 'stops' }
+    .span2
+      %strong What stop do you board?
+      (This information is kept private.)
+    .span2
+      %select{ 'ng-options' => 'r.stop_description for s in stops | orderBy:["stop_number"]', 'ng-model' => 'stop' }
+  

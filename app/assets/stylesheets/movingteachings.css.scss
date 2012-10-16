@@ -73,6 +73,20 @@ display: none;
 
 #bookModal {
     .results {
+        .result {
+
+            padding-bottom: 2em;
+            .title, .description {
+                display: block;
+            }
+            .title {
+                font-size: 1.2em;
+                padding-bottom: 0.7em;
+            }
+            .description {
+                padding-bottom: 5px;
+            }
+        }
         max-height: 400px;;
         overflow: auto;
     }
@@ -94,12 +108,10 @@ display: none;
     .wrapper {
         padding: 20px;
 
-        div {
-            display: inline-block   
-        }
     }
 
     .search {
+        display: inline-block;
         width: 200px;
         vertical-align: top;
         .results {
