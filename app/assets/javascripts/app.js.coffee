@@ -7,6 +7,11 @@ appmod.factory 'User', [ '$resource', ($resource) ->
                 ]
 
 
+appmod.factory 'Book', [ '$resource', ($resource) ->
+        $resource "/books/:action", {},
+                search: { method: 'GET', isArray: true, params: { action: 'search' } }
+                ]
+
 appmod.factory 'Favorite', [ '$resource', ($resource) ->
         $resource "/favorites/:id/:action", {},
                 star: { method: 'POST', isArray: false, params: { action: 'star' } }

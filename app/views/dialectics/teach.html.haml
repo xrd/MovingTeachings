@@ -46,30 +46,38 @@
               {{p.comment}}
 
           %label (optional) Add a prerequisite (book, link, location to visit)?
-          .btn{ 'ng-click' => 'adding = true' } Add prerequisite
-          .adding{ 'ng-show' => 'adding' }
+          .btn-group{ 'ng-hide' => 'prereq.type' }
             .btn{ 'ng-click' => 'prereq.type == "link"' } Add link
             .btn{ 'ng-click' => 'mapModal = true; prereq.type == "location"' } Add location
             .btn{ 'ng-click' => 'bookModal = true; prereq.type == "book"' } Add book
 
-            .link{ 'ng-show' => 'prereq.type == "link"' }
-              %label
-              %input{ 'ng-model' => 'prereq.link' }
-              .btn{ 'ng-click' => 'addPrerequisite()' } Add link
+          .link{ 'ng-show' => 'prereq.type == "link"' }
+            %label Add link
+            %input{ 'ng-model' => 'prereq.link', type: 'text', placeholder: 'Enter URL' }
+            .btn{ 'ng-click' => 'addPrerequisite()' } Add link
 
-            #bookModal{ "ui-modal" => true, class: "fade", "ng-model" => "bookModal" }
-              .search Search for a book
+          #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "bookModal" }
+            .wrapper{ 'ng-controller' => 'BookCtrl' }
               .results Book results
+              .search 
+                %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
+                .btn{ 'ng-click' => 'search()' } Search
 
-            #mapModal{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal" }
-              .wrapper{ 'ng-controller' => 'MapCtrl' }
-                #placesMap{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
-                .search
-                  %input{ 'ng-model' => 'mapSearch', placeholder: "Enter a location..." }
-                  .btn{ 'ng-click' => 'searchPlaces()' } Search
-                  .results
-                    .result{ 'ng-repeat' => 'item in results' }
-                      {{item.name}}
+                .results
+                  .result{ 'ng-repeat' => 'item in results' }
+                    {{item.name}}
+
+
+
+          #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal" }
+            .wrapper{ 'ng-controller' => 'MapCtrl' }
+              #placesMap{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
+              .search
+                %input{ 'ng-model' => 'mapSearch', placeholder: "Enter a location..." }
+                .btn{ 'ng-click' => 'searchPlaces()' } Search
+                .results
+                  .result{ 'ng-repeat' => 'item in results' }
+                    {{item.name}}
 
   
       %br

@@ -9,6 +9,7 @@ Movingteachings::Application.routes.draw do
   
   match 'users/loggedIn' => 'users#loggedIn'
   match 'welcome/login' => 'welcome#login'
+  match "books/search" => "books#search"
 
   resources :favorites do
     collection do

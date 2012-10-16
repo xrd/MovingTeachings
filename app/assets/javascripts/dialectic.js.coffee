@@ -38,7 +38,7 @@ class DialecticCtrl
                         else if $scope.prereq.type == "book"
                                 comment = $scope.prereq.book.name
 
-                        $scope.prerequisites.push { comment: comment }
+                        $scope.prerequisites.push { comment: comment, type: $scope.prereq.type }
                         $scope.prereq = {}
 
                 $scope.toggle = (dialectic) ->
