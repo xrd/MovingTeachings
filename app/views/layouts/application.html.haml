@@ -4,7 +4,9 @@
     %title Movingteachings
     = stylesheet_link_tag    "application", :media => "all"
     = javascript_include_tag "application"
-    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false"
+    =# javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false"
+    = javascript_include_tag "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"
+
     = csrf_meta_tags
     %meta{ :name => "csrf-token", :content => form_authenticity_token() }
 

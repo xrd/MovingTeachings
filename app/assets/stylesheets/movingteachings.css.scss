@@ -70,3 +70,33 @@ display: none;
     padding-left: 2px;
 }
 }
+
+#bookModal {
+    .search, .results {
+        width: 45%;
+    }        
+}
+
+#mapModal {
+    .wrapper {
+        padding: 20px;
+
+        div {
+            display: inline-block   
+        }
+    }
+
+    #placesMap {
+        width: 300px;
+        height: 300px;
+    }
+
+    .search {
+        width: 200px;
+        vertical-align: top;
+        .results {
+            max-height: 250px;
+            overflow: auto;
+        }
+    }
+}

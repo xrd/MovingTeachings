@@ -4,8 +4,8 @@ class DialecticCtrl
                         $scope.dialectic = {}
                         $scope.dialectic.days = {}
 
-                $scope.prereq_types = [ 'link', 'book', 'location' ]
                 $scope.prereq = {}
+                $scope.prerequisites = []
 
                 $scope.resetDialectic()
                 $scope.days = [
@@ -29,6 +29,17 @@ class DialecticCtrl
                         rv
 
                 $scope.times = times()
+
+                $scope.addPrerequisite = () ->
+                        if $scope.prereq.type == "link"
+                                comment = $scope.prereq.link
+                        else if $scope.prereq.type == "location"
+                                comment = $scope.prereq.book.name
+                        else if $scope.prereq.type == "book"
+                                comment = $scope.prereq.book.name
+
+                        $scope.prerequisites.push { comment: comment }
+                        $scope.prereq = {}
 
                 $scope.toggle = (dialectic) ->
                         dialectic.saved = !dialectic.saved
