@@ -29,14 +29,6 @@ namespace "movingteachings" do
     # stop_times.txt:  trip_id,arrival_time,departure_time,stop_id,stop_sequence,stop_headsign,pickup_type,drop_off_type,shape_dist_traveled
     # stops.txt:  stop_id,stop_name,stop_desc,stop_lat,stop_lon,zone_id,stop_url
     # trips.txt:  route_id,service_id,trip_id,trip_headsign,direction_id,block_id,shape_id
-    
-    doc.css( "Placemark" ).each_with_index do |node, index|
-        puts "Processing new placemark #{index}"
-        Route.parse_node( l, node )
-        puts "Done"
-      end
-    else
-      puts "Specify a filename to process for #{args.location}"
-    end
+
   end
 end
