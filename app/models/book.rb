@@ -1,13 +1,13 @@
+require 'nokogiri'
+
 class Book
 
   def self.request_from_amazon( name )
-    req = Vacuum.new :product_advertising
-    req.configure do |c|
-      c.key = 'AKIAIQ3IMU5UPJHQLUNA'
-      c.secret = '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'
-    end
-    response = req.get query: { "Operation" =>  'ItemSearch', "SearchIndex" => 'Books', "Keywords" => name }
-    response.body
+    req = Vacuum.new 
+    req.configure key: 'AKIAIQ3IMU5UPJHQLUNA',
+    secret: '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',
+    tag: 'movingteachings'
+    req.get query: { "Operation" =>  'ItemSearch', "SearchIndex" => 'Books', "Keywords" => name }
   end
 
   def self.search( search )
@@ -15,9 +15,10 @@ class Book
   end
   
   def self.items( search )
-    res = self.search( search )
+    response = self.search( search )
+    parser = Nokogiri::XML( response.body )
     items = []
-    res.find( 'Item' ) do |item|
+    parser.css( 'Item' ).each do |item|
       items << item
     end
     items
