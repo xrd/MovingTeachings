@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
 
   def search
-    render Book.search( params[:text] ).to_json
+    render json: Hash.from_xml( Book.search( params[:text] ).body ).to_json
   end
 end

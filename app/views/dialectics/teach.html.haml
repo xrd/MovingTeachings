@@ -58,16 +58,20 @@
 
           #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "bookModal" }
             .wrapper{ 'ng-controller' => 'BookCtrl' }
-              .results Book results
-              .search 
-                %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
-                .btn{ 'ng-click' => 'search()' } Search
+              %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
+              .btn{ 'ng-click' => 'search()' } Search
 
-                .results
-                  .result{ 'ng-repeat' => 'item in results' }
-                    {{item.name}}
-
-
+              .results{ 'ng-show' => 'results' }
+                %strong All results
+                
+                .result{ 'ng-repeat' => 'item in results' }
+                  .title
+                    %strong {{item.attributes.Title}}
+                  .details
+                    {{item.attributes.Author}}
+                    {{item.attributes.Manufacturer}}
+                    {{item.DetailPageURL}}
+                    .btn{ 'ng-click' => 'addBookAsPrerequisite(item)' } Add book as prerequisite
 
           #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "mapModal" }
             .wrapper{ 'ng-controller' => 'MapCtrl' }

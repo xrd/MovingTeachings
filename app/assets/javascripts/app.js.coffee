@@ -6,10 +6,9 @@ appmod.factory 'User', [ '$resource', ($resource) ->
                 logout: { method: 'DELETE', isArray: false, params: { action: 'sign_out' } }
                 ]
 
-
 appmod.factory 'Book', [ '$resource', ($resource) ->
         $resource "/books/:action", {},
-                search: { method: 'GET', isArray: true, params: { action: 'search' } }
+                search: { method: 'GET', isArray: false, params: { action: 'search' } }
                 ]
 
 appmod.factory 'Favorite', [ '$resource', ($resource) ->
