@@ -1,10 +1,9 @@
 .route{ 'ng-show' => 'location' }      
-  .row-fluid{ 'ng-hide' => 'routes' }
-    .span12
-      = image_tag 'spinner.gif'
-      Loading routes, please wait.
-  .row-fluid{ 'ng-show' => 'routes' }
-    .span2
+  .routes{ 'ng-hide' => 'routes' }
+    = image_tag 'spinner.gif'
+    Loading routes, please wait.
+  .routes{ 'ng-show' => 'routes' }
+    .choice-selection
       %strong Choose a route
-    .span2
+    .choice
       %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => "#{loadMethod}(route)" }

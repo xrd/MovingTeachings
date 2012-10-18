@@ -1,12 +1,11 @@
 .route{ 'ng-show' => 'route' }      
-  .row-fluid{ 'ng-hide' => 'stops' }
-    .span12
-      = image_tag 'spinner.gif'
-      Loading stops, please wait.
-  .row-fluid{ 'ng-show' => 'stops' }
-    .span2
+  .stops{ 'ng-hide' => 'stops' }
+    = image_tag 'spinner.gif'
+    Loading stops, please wait.
+  .stops{ 'ng-show' => 'stops' }
+    .choice-selection
       %strong What stop do you board?
       (This information is kept private.)
-    .span2
+    .choice
       %select{ 'ng-options' => 's.name for s in stops | orderBy:["kml_stop_id"]', 'ng-model' => 'stop', 'ng-change' => "#{changeMethod}()" }
   

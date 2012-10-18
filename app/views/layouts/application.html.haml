@@ -6,30 +6,37 @@
     = javascript_include_tag "application"
     =# javascript_include_tag "http://maps.googleapis.com/maps/api/js?sensor=false"
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"
-
     = csrf_meta_tags
-    %meta{ :name => "csrf-token", :content => form_authenticity_token() }
 
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
   %body{ 'ng-app' => 'movingteachings', 'ng-controller' => "MainCtrl" }
-    .container-fluid.movingteachings
-      .row-fluid
-        .span12
-          - if current_user
-            Classes:
-            .btn= link_to "Register", learn_path()
-            .btn= link_to "Teach", teach_path()
-            .btn= link_to "Favorites", favorites_path()
-            .identity
-              %span.visible-desktop
-                = current_user.name
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          .brand Moving Teachings
+          .bar
+            - if current_user
+              %ul.nav
+                = link_to "Register", learn_path()
+                = link_to "Teach", teach_path()
+                = link_to "Favorites", favorites_path()
+
+              .pull-right              
+                %strong= current_user.name
                 - if current_user.provider.eql?( "facebook" )
                   %img{ src: "/assets/#{current_user.provider}.png" }
-              .btn.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
-              .visible-phone{ 'ng-click' => 'logout()' }
-                .icon-off.btn
-                
-          - else
-            = render partial: 'layouts/login'
-        = yield
-        = render partial: 'layouts/common'
+                %span.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
+                %span.visible-phone{ 'ng-click' => 'logout()' }
+                  .icon-off.btn
+            - else
+              %span.hidden-phone
+                .btn.hidden-phone= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+                .btn.hidden-phone= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+              %span.visible-phone
+                Login via:
+                .btn.visible-phone= link_to "Facebook", user_omniauth_authorize_path(:facebook)
+                .btn.visible-phone= link_to "Google", user_omniauth_authorize_path(:google_oauth2)
+      
+    .container.movingteachings
+      = yield
+      = render partial: 'layouts/common'
