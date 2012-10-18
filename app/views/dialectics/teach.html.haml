@@ -19,8 +19,8 @@
 
       %label Where do you want to teach this class
       = render partial: 'dialectics/city'
-      = render partial: 'dialectics/routes'
-      = render partial: 'dialectics/stops'
+      = render partial: 'dialectics/routes', :locals => { :loadMethod => 'loadStops' }
+      = render partial: 'dialectics/stops', :locals => { :changeMethod => 'updateMap' }
 
       .hide
         %label Maximum participants?
@@ -51,8 +51,8 @@
           %label (optional) Add a prerequisite (book, link, location to visit)?
           .btn-group{ 'ng-hide' => 'prereq.type' }
             .btn{ 'ng-click' => 'prereq.type == "link"' } Add link
-            .btn{ 'ng-click' => 'modals.map = true; prereq.type == "location"' } Add location
-            .btn{ 'ng-click' => 'modals.book = true; prereq.type == "book"' } Add book
+            .btn{ 'ng-click' => 'openMapDialog()' } Add location
+            .btn{ 'ng-click' => 'openBooksDialog()' } Add book
 
           .link{ 'ng-show' => 'prereq.type == "link"' }
             %label Add link
@@ -60,33 +60,10 @@
             .btn{ 'ng-click' => 'addPrerequisite()' } Add link
 
           #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
-            .wrapper{ 'ng-controller' => 'BookCtrl' }
-              %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
-              .btn{ 'ng-click' => 'search()' } Search
-
-              .results{ 'ng-show' => 'results' }
-                %strong Top 10 results
-                
-                .result{ 'ng-repeat' => 'item in results' }
-                  .title
-                    %strong {{item.attributes.Title}}
-                  .details
-                    .author {{item.attributes.Author}}
-                    .manufacturer {{item.attributes.Manufacturer}}
-                    .url
-                      %a{ href: '{{item.url}}', target: 'books' } See more about this book.
-                  .btn{ 'ng-click' => 'addBookAsPrerequisite(item)' } Add book as class prerequisite.
-
+            Hello there
+            %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
           #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
-            .wrapper{ 'ng-controller' => 'MapCtrl' }
-              #placesMap{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
-              .search
-                %input{ 'ng-model' => 'mapSearch', placeholder: "Enter a location..." }
-                .btn{ 'ng-click' => 'searchPlaces()' } Search
-                .results
-                  .result{ 'ng-repeat' => 'item in results' }
-                    {{item.name}}
-
+            %div{ 'ng-include' => 'modals.includes.maps', 'onload' => 'clearMap()' }
   
       %br
       .btn{ 'ng-click' => 'create()' } Create this class

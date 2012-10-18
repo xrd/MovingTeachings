@@ -7,4 +7,4 @@
     .span2
       %strong Choose a route
     .span2
-      %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => 'loadStops(route)' }
+      %select{ 'ng-options' => 'r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]', 'ng-model' => 'route', 'ng-change' => "#{loadMethod}(route)" }

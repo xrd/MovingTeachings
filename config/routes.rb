@@ -37,6 +37,8 @@ Movingteachings::Application.routes.draw do
     collection do
       get :teach
       get :learn
+      get :map
+      get :book
       get :mine
     end
   end

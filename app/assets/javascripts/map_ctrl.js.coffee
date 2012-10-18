@@ -1,31 +1,39 @@
 class MapCtrl
-        constructor: ($scope) ->
+        constructor: ( $scope ) ->
 
-                $scope.myMarkers = []
+                $scope.map ||= {}
                 console.log "Inside map controller"
+
+                $scope.$on 'clearMap', () ->
+                        $scope.map.results = undefined
+                        $scope.map.query = undefined
+
+                console.log "Setting center to: #{$scope.stop.lat} #{$scope.stop.lng}"
+                $scope.myMarkers = {};
+                $scope.map.center = new google.maps.LatLng( $scope.stop.lat, $scope.stop.lng )
+
+                $scope.map.options =
+                        center: $scope.map.center
+                        zoom: 12,
+                        mapTypeId: google.maps.MapTypeId.ROADMAP
+
+                $scope.map.mine = new google.maps.Map( document.getElementById('map_canvas'), $scope.map.options)
+
+                $scope.foo = () ->
+                        alert "Um, hi"
 
                 callback = (results, status) ->
                         if status == google.maps.places.PlacesServiceStatus.OK
-                                $scope.results = results
+                                $scope.map.results = results
                                 $scope.$digest()
 
-                $scope.addMarker = () ->
-                        console.log "Adding a marker!"
-                        $scope.myMarkers.push( new google.maps.Marker( map: $scope.myMap, position: $event.latLng ) )
-
                 $scope.searchPlaces = () ->
-
-                        center = new google.maps.LatLng( $scope.stop.lat, $scope.stop.lng )
-
-                        $scope.items = []
-                        console.log "Searching for: #{$scope.mapSearch}"
-                        map = new google.maps.Map document.getElementById('placesMap')
                         request =
-                                location: center,
+                                location: $scope.map.center,
                                 radius: '500',
-                                types: ['store']
-
-                        service = new google.maps.places.PlacesService(map);
+                                types: []
+                        request.query = $scope.map.query
+                        service = new google.maps.places.PlacesService($scope.map.mine);
                         service.textSearch(request, callback);
 
 

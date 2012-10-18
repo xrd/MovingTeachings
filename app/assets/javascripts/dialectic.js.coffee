@@ -21,6 +21,22 @@ class DialecticCtrl
                 $scope.minOptions = [ 0...5 ]
                 $scope.maxOptions = [ 2...10 ]
 
+                $scope.openMapDialog = () ->
+                        $scope.modals = {}
+                        $scope.modals.includes = {}
+                        $scope.modals.map = true
+                        $scope.modals.includes.maps = "/dialectics/map"
+                        $scope.prereq.type == "location"
+                        $scope.$broadcast 'clearMap'
+
+                $scope.openBooksDialog = () ->
+                        $scope.modals = {}
+                        $scope.modals.includes = {}
+                        $scope.modals.book = true
+                        $scope.modals.includes.books = "/dialectics/book"
+                        $scope.prereq.type == "book"
+                        $scope.$broadcast 'clearBooks'
+
                 times = () ->
                         rv = []
                         for x in [0..24]

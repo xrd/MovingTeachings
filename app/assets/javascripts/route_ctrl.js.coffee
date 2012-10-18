@@ -1,10 +1,5 @@
 class RouteCtrl
         constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location, Dialectic ) ->
-                $scope.mapOptions =
-                        center: new google.maps.LatLng(35.784, -78.670),
-                        zoom: 15,
-                        mapTypeId: google.maps.MapTypeId.ROADMAP
-
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
                                 if $routeParams.route_id and $routeParams.location_id
@@ -15,6 +10,9 @@ class RouteCtrl
 
                 $scope.watchRoutes()
 
+                $scope.updateMap = () ->
+                        console.log "Let's initialize the map"
+                        # $scope.
 
                 Location.index {}, (response) ->
                         $scope.locations = response

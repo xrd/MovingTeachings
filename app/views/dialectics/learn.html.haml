@@ -1,6 +1,7 @@
 .routes{ 'ng-controller' => 'RouteCtrl' }
   .span12
-    = render partial: 'dialectics/city_and_route'
+    = render partial: 'dialectics/city'
+    = render partial: 'dialectics/routes', :locals => { :loadMethod => 'loadClasses' }
     .row-fluid{ 'ng-show' => 'route', 'ng-controller' => 'DialecticCtrl' }
       .span12.dialectics{ 'ng-show' => 'dialectics' }
         %h3 Classes on {{route.route_description}}

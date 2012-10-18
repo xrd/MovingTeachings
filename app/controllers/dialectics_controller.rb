@@ -6,6 +6,14 @@ class DialecticsController < ApplicationController
     end
   end
 
+  def book
+    render layout: false
+  end
+  
+  def map
+    render layout: false
+  end
+  
   def register
   end
 

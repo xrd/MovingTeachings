@@ -1,0 +1,21 @@
+.wrapper{ 'ng-controller' => 'MapCtrl' }
+  .column
+    .search
+      %input{ 'ng-model' => 'map.query', placeholder: "Enter a location..." }
+      .btn{ 'ng-click' => 'searchPlaces()' } Search
+      .results
+        .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"' }
+          {{item.name}}
+          %div.btn.btn-mini.add{  'ng-click' => 'item.expanded.shown = !item.expanded.shown' } +
+          %div{ 'ng-show' => 'item.expanded.shown' }
+            {{item.description}}
+            %div
+              %textarea{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
+              .btn.btn-mini{ 'ng-click' => 'addPrerequisite(item)' } Add prerequisite
+              .btn.btn-mini{ 'ng-click' => 'item.expanded = {}' } Cancel
+  
+  .column
+    .map
+      #map_canvas
+
+

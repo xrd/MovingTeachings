@@ -2,6 +2,9 @@ class BookCtrl
         constructor: ( $scope, Book ) ->
                 console.log "inside book ctrl"
 
+                $scope.initialize = () ->
+                        console.log "Initializing book ctrl"
+
                 $scope.search = () ->
                         Book.search { text: $scope.searchText }, (results) ->
                                 $scope.results = []

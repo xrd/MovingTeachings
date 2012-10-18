@@ -17,8 +17,9 @@ class Route < ActiveRecord::Base
     coordinates = node.css( "Point coordinates" )[0].text().to_s.strip
     if coordinates
       pair = coordinates.split ","
-      stuff['lat'] = pair[0]
-      stuff['lng'] = pair[1]
+      # KML orders them differently (lon,lat instead of Gmaps lat, lng)
+      stuff['lat'] = pair[1]
+      stuff['lng'] = pair[0]
     end
 
     me = find_by_route_number_and_direction( stuff['route_number'], stuff['direction'] )
