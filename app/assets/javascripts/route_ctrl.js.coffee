@@ -16,6 +16,7 @@ class RouteCtrl
 
                 Location.index {}, (response) ->
                         $scope.locations = response
+                        $scope.locations.push { name: "Your city not here?", requestIt: true }
                         if $routeParams.location_id
                                 for location in response
                                         if location.id == parseInt($routeParams.location_id)
@@ -32,14 +33,24 @@ class RouteCtrl
                                 $scope.stops = response
 
                 $scope.loadRoutes = (location) ->
-                        Location.routes { id: location.id }, (response) ->
-                                $scope.routes = response
-                                if $routeParams.route_id
+                        if location.requestIt
+                                location = prompt "Should we add your city? What city?"
+                                if location
+                                        # Add it...
+                                        share = confirm "The best way to convince us to add your city is for others to say they want it too! Would you go to our sharing page now and share on Twitter and Facebook?"
+                                        if share
+                                                $location.path( "/share" )
 
-                                        for route in response
-                                                if route.id == parseInt($routeParams.route_id)
-                                                        $scope.route = route
-                                                        $scope.loadStops($scope.route)
+                                $scope.location = undefined
+                                $scope.route = undefined
+                        else
+                                Location.routes { id: location.id }, (response) ->
+                                        $scope.routes = response
+                                        if $routeParams.route_id
+                                                for route in response
+                                                        if route.id == parseInt($routeParams.route_id)
+                                                                $scope.route = route
+                                                                $scope.loadStops($scope.route)
 
                 $scope.shareRoute = (method) ->
                         text = "Moving teachings, little classes on the bus. This route looks fun: "

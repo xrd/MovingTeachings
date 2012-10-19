@@ -4,6 +4,10 @@ class FavoritesController < ApplicationController
     render json: { status: :ok }
   end
 
+  def share
+    render layout: false
+  end
+  
   def starred
     render layout: false
   end

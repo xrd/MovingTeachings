@@ -14,6 +14,7 @@ Movingteachings::Application.routes.draw do
   resources :favorites do
     collection do
       get :starred
+      get :share
     end
   end
   resources :stops

@@ -41,6 +41,15 @@ appmod.config [ '$httpProvider', ($httpProvider) ->
         authToken = $('meta[name="csrf-token"]').attr('content')
         console.log "token: #{authToken}"
         $httpProvider.defaults.headers.common[ 'X-CSRF-TOKEN' ] = authToken
+
+        $httpProvider.responseInterceptors.push ( $q ) ->
+                ( promise ) ->
+                        success = (response) ->
+                                _gaq.push(['_trackPageview', response.config.url]) if _gaq?
+                                response
+                        failure = (response) ->
+                                $q.reject(response)
+                        promise.then success, failure
         ]
 
 @appmod = appmod

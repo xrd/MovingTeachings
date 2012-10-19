@@ -1,12 +1,13 @@
 %h1 Teach something.
 .dialectics{ 'ng-controller' => 'RouteCtrl' }
-  Do you have an idea for a tiny class you could teach on a bus?
-  Do you want to connect with people riding with you?
-  .btn.small{ 'ng-click' => 'doCreate = true' } Offer a class
-  .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
-
-  .create{ 'ng-show' => 'doCreate', 'ng-controller' => 'DialecticCtrl' }
-    %form{ 'ng-hide' => 'created' }
+  .invite{ 'ng-hide' => 'doCreate' }
+    Do you have an idea for a tiny class you could teach on a bus?
+    Do you want to connect with people riding with you?
+    .btn.small{ 'ng-click' => 'doCreate = true' } Offer a class
+    .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
+  
+  .create{ 'ng-show' => 'doCreate' }
+    %form{ 'ng-hide' => 'created', 'ng-controller' => 'DialecticCtrl' }
       %legend Create a class
       .alert.alert-error{ 'ng-show' => 'errors' } {{errors}}
       %label Title
@@ -61,13 +62,13 @@
             .btn{ 'ng-click' => 'addPrerequisite()' } Add link
 
           #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
-            Hello there
             %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
           #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
             %div{ 'ng-include' => 'modals.includes.maps', 'onload' => 'clearMap()' }
   
       %br
       .btn{ 'ng-click' => 'create()' } Create this class
+      .btn{ 'ng-click' => 'doCreate = false' } Cancel
     %div{ 'ng-show' => 'created' }
       {{message}}
 

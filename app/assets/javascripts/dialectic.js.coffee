@@ -74,7 +74,7 @@ class DialecticCtrl
                                         $scope.resetDialectic()
                                         $timeout ( () -> $scope.doCreate = false; $scope.created = false ), 3000
                         else
-                                $scope.errors = "You must provide at least a title, description and choose a route"
+                                $scope.errors = "You must provide at least a title, description and choose a stop on a route"
                                 $timeout ( () -> $scope.errors = "" ), 3000
 
                 $scope.save = (dialectic) ->
