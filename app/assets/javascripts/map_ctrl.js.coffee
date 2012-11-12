@@ -38,3 +38,4 @@ class MapCtrl
 
 
 @MapCtrl = MapCtrl
+MapCtrl.$inject = ['$scope']
