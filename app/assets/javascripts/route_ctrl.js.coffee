@@ -1,5 +1,7 @@
 class RouteCtrl
         constructor: ( $scope, Location, Route, $window, $route, $routeParams, $location, Dialectic ) ->
+                $scope.action = undefined
+
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
                                 if $routeParams.route_id and $routeParams.location_id
@@ -23,7 +25,14 @@ class RouteCtrl
                                                 $scope.location = location
                                                 $scope.loadRoutes($scope.location)
 
+                $scope.setAction = (action) ->
+                        $scope.action = undefined
+                        if action
+                                $scope.action = {}
+                                $scope.action[action] = true
+
                 $scope.loadDialectics = () ->
+                        $scope.setAction( 'mine' )
                         console.log "Loading dialectics"
                         Dialectic.mine {}, (response) ->
                                 $scope.dialectics = response

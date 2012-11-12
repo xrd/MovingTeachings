@@ -1,12 +1,12 @@
 %h1 Teach something.
 .dialectics{ 'ng-controller' => 'RouteCtrl' }
-  .invite{ 'ng-hide' => 'doCreate' }
+  .invite
     Do you have an idea for a tiny class you could teach on a bus?
     Do you want to connect with people riding with you?
-    .btn.small{ 'ng-click' => 'doCreate = true' } Offer a class
+    .btn.small{ 'ng-click' => 'setAction("create")' } Offer a class
     .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
   
-  .create{ 'ng-show' => 'doCreate' }
+  .create{ 'ng-show' => 'action.create' }
     %form{ 'ng-hide' => 'created', 'ng-controller' => 'DialecticCtrl' }
       %legend Create a class
       .alert.alert-error{ 'ng-show' => 'errors' } {{errors}}
@@ -41,18 +41,19 @@
         %label (optional) What time slots are you willing to offer your class?
         %select{ 'ng-options' => 'c for c in times', "ng-model" => "dialectic.times", multiple: true }
 
-        .prerequisites.visible-phone
-          If you edit this on a desktop computer you can edit prerequisites, like books to read in advance, links to check out, or even locations to visit.
-        .prerequisites.hidden-phone
-          %div{ 'ng-show' => 'prerequisites' }
-            Prerequisites:          
-            .prerequisite{ 'ng-repeat' => 'p in prerequisites' }
+        .prereqs.visible-phone
+          If you edit this on a desktop computer you can edit prereqs, like books to read in advance, links to check out, or even locations to visit.
+        .prereqs.hidden-phone
+          %div
+            Prereqs:
+            .none{ 'ng-hide' => 'prereqs' } No prereqs added yet.
+            .prerequisite{ 'ng-repeat' => 'p in prereqs' }
               %a{ href: "{{p.link}}" } {{p.comment}}
-              .btn{ 'ng-click' => 'remove(p)' } Remove this prerequisite
+              .btn{ 'ng-click' => 'remove(p)' } Remove
 
           %label (optional) Add a prerequisite (book, link, location to visit)?
           .btn-group{ 'ng-hide' => 'prereq.type' }
-            .btn{ 'ng-click' => 'prereq.type == "link"' } Add link
+            .btn{ 'ng-click' => 'prereq.type = "link"' } Add link
             .btn{ 'ng-click' => 'openMapDialog()' } Add location
             .btn{ 'ng-click' => 'openBooksDialog()' } Add book
 
@@ -68,13 +69,18 @@
   
       %br
       .btn{ 'ng-click' => 'create()' } Create this class
-      .btn{ 'ng-click' => 'doCreate = false' } Cancel
+      .btn{ 'ng-click' => 'setAction()' } Cancel
     %div{ 'ng-show' => 'created' }
       {{message}}
 
   
-  .dialectics{ 'ng-show' => 'dialectics' }
-    %h3 My classes:
-    .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
-      = render partial: "dialectics/dialectic"
+  .dialectics{ 'ng-show' => 'action.mine' }
+    .classes{ 'ng-show' => 'dialectics' }
+      %h3 My classes:
+      .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
+        = render partial: "dialectics/dialectic"
+    .loading{ 'ng-hide' => 'dialectics' }
+      = image_tag 'spinner.gif'
+      Loading my classes.
+   
   

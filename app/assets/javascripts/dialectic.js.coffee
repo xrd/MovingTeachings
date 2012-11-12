@@ -6,7 +6,7 @@ class DialecticCtrl
                         $scope.dialectic.days = {}
 
                 $scope.prereq = {}
-                $scope.prerequisites = []
+                $scope.prereqs = []
 
                 $scope.resetDialectic()
                 $scope.days = [
@@ -48,8 +48,8 @@ class DialecticCtrl
                 $scope.times = times()
 
                 $scope.addPrerequisite = ( item ) ->
-                        $scope.prerequisites.push item
-                        console.log "Adding item as prerequisite (#{$scope.prerequisites.length})"
+                        $scope.prereqs.push item
+                        console.log "Adding item as prerequisite (#{$scope.prereqs.length})"
                         $scope.prereq = {}
                         $scope.modals = {}
 

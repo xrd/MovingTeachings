@@ -4,6 +4,7 @@ Movingteachings::Application.routes.draw do
   match "reload" => "application#reload"
   match 'teach' => 'dialectics#teach', as: 'teach'
   match 'learn' => 'dialectics#learn', as: 'learn'
+  match 'share' => 'favorites#share', as: 'share'
   match 'learn/:id' => 'dialectics#show', as: 'show_dialectic'
   match 'welcome/intro' => 'welcome#intro', as: 'intro'
   

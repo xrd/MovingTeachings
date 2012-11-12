@@ -1,7 +1,7 @@
 class Dialectic < ActiveRecord::Base
   belongs_to :user
   belongs_to :route
-  scope :approved, where( "approved = 1" )
+  scope :approved, where( [ "approved = ?", true ] )
   serialize :times
   serialize :days
   

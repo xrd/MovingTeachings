@@ -13,15 +13,5 @@ class Book
   def self.search( search )
     request_from_amazon( search )
   end
-  
-  def self.items( search )
-    response = self.search( search )
-    parser = Nokogiri::XML( response.body )
-    items = []
-    parser.css( 'Item' ).each do |item|
-      items << item
-    end
-    items
-  end
  
 end
