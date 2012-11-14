@@ -78,7 +78,7 @@
     .classes{ 'ng-show' => 'dialectics' }
       %h3 My classes:
       .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
-        %div{ 'ng-include' => '"/tmpl/dialectics/dialectic"'
+        %div{ 'ng-include' => '"/tmpl/dialectics/dialectic"' }
     .loading{ 'ng-hide' => 'dialectics' }
       = image_tag '/assets/spinner.gif'
       Loading my classes.
