@@ -1,0 +1,180 @@
+<h1>Teach something.</h1>
+<div class='dialectics' ng-controller='RouteCtrl'>
+  <div class='invite'>
+    Do you have an idea for a tiny class you could teach on a bus?
+    Do you want to connect with people riding with you?
+    <div class='btn small' ng-click='setAction("create")'>Offer a class</div>
+    <div class='btn small' ng-click='loadDialectics()'>See my offered classes</div>
+  </div>
+  <div class='create' ng-show='action.create'>
+    <form ng-controller='DialecticCtrl' ng-hide='created'>
+      <legend>Create a class</legend>
+      <div class='alert alert-error' ng-show='errors'>{{errors}}</div>
+      <label>Title</label>
+      <input ng-model='dialectic.title' required='required' type='text' />
+      <label>Description</label>
+      <textarea ng-model='dialectic.description' required='required' type='text'></textarea>
+      <div class='small'>
+        <a ng-click='useTemplate()'>Use template</a>
+        | Fancy formatting using
+        <a href='http://daringfireball.net/projects/markdown/' target='_new'>Markdown</a>
+      </div>
+      <label>Where do you want to teach this class</label>
+      <div class='city'>
+        <div class='choice-selection'>
+          <strong>Choose a city:</strong>
+        </div>
+        <div class='choice'>
+          <select ng-change='loadRoutes(location)' ng-model='location' ng-options='l.name for l in locations'></select>
+        </div>
+      </div>
+      <div class='route' ng-show='location'>
+        <div class='routes' ng-hide='routes'>
+          <img src="/images/spinner.gif" />
+          Loading routes, please wait.
+        </div>
+        <div class='routes' ng-show='routes'>
+          <div class='choice-selection'>
+            <strong>Choose a route</strong>
+          </div>
+          <div class='choice'>
+            <select ng-change='loadStops(route)' ng-model='route' ng-options='r.route_description + " (" + r.direction_description + ")" for r in routes | orderBy:["route_number","route_description"]'></select>
+          </div>
+        </div>
+      </div>
+      <div class='route' ng-show='route'>
+        <div class='stops' ng-hide='stops'>
+          <img src="/images/spinner.gif" />
+          Loading stops, please wait.
+        </div>
+        <div class='stops' ng-show='stops'>
+          <div class='choice-selection'>
+            <strong>What stop do you board?</strong>
+            (This information is kept private.)
+          </div>
+          <div class='choice'>
+            <select ng-change='updateMap()' ng-model='stop' ng-options='s.name for s in stops | orderBy:["kml_stop_id"]'></select>
+          </div>
+        </div>
+      </div>
+      <div class='hide'>
+        <label>Maximum participants?</label>
+        <select ng-model='dialectic.maximum' ng-options='c for c in maxOptions'>
+          <option val=''>No maximum</option>
+        </select>
+        <label>Minimum participants?</label>
+        <select ng-model='dialectic.minimum' ng-options='c for c in minOptions'>
+          <option val=''>No minimum</option>
+        </select>
+      </div>
+      <div class='after_route' ng-show='stop'>
+        <label>(optional) What days do you want to offer the class?</label>
+        <div class='btn-group'>
+          <span class='btn' ng-class='{ "btn-inverse": d.selected }' ng-click='d.selected = !d.selected' ng-repeat='d in days'>{{d.name}}</span>
+        </div>
+        <label>(optional) What time slots are you willing to offer your class?</label>
+        <select multiple='multiple' ng-model='dialectic.times' ng-options='c for c in times'></select>
+        <div class='prereqs visible-phone'>
+          If you edit this on a desktop computer you can edit prereqs, like books to read in advance, links to check out, or even locations to visit.
+        </div>
+        <div class='prereqs hidden-phone'>
+          <div>
+            Prereqs:
+            <div class='none' ng-hide='prereqs'>No prereqs added yet.</div>
+            <div class='prerequisite' ng-repeat='p in prereqs'>
+              <a href='{{p.link}}'>{{p.comment}}</a>
+              <div class='btn' ng-click='remove(p)'>Remove</div>
+            </div>
+          </div>
+          <label>(optional) Add a prerequisite (book, link, location to visit)?</label>
+          <div class='btn-group' ng-hide='prereq.type'>
+            <div class='btn' ng-click='prereq.type = "link"'>Add link</div>
+            <div class='btn' ng-click='openMapDialog()'>Add location</div>
+            <div class='btn' ng-click='openBooksDialog()'>Add book</div>
+          </div>
+          <div class='link' ng-show='prereq.type == "link"'>
+            <label>Add link</label>
+            <input ng-model='prereq.link' placeholder='Enter URL' type='text' />
+            <div class='btn' ng-click='addPrerequisite()'>Add link</div>
+          </div>
+          <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
+            <div ng-include='modals.includes.books' onload='clearBooks()'></div>
+          </div>
+          <div class='fade modal' id='mapModal' ng-model='modals.map' ui-modal='ui-modal'>
+            <div ng-include='modals.includes.maps' onload='clearMap()'></div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class='btn' ng-click='create()'>Create this class</div>
+      <div class='btn' ng-click='setAction()'>Cancel</div>
+    </form>
+    <div ng-show='created'>
+      {{message}}
+    </div>
+  </div>
+  <div class='dialectics' ng-show='action.mine'>
+    <div class='classes' ng-show='dialectics'>
+      <h3>My classes:</h3>
+      <div class='wrapper' ng-repeat='dialectic in dialectics'>
+        <div class='stop alert alert-block padded' ng-click='dialectic.details = !dialectic.details'>
+          <div class='wrapper'>
+            <strong>{{dialectic.title}}</strong>
+            <span class='route' ng-show='dialectic.route'>
+              (on route <a href="/locations/{{dialectic.route.location_id}}/{{dialectic.route.id}}">{{dialectic.route.route_description}} {{dialectic.route.direction_description}}</a>)
+            </span>
+            <div class='expand'>
+              <small>
+                <span ng-show='dialectic.favorited_count &gt; 1'>
+                  Favorited by {{dialectic.favorited_count-1}} other(s).
+                </span>
+                Click for more details
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class='details alert alert-block' ng-show='dialectic.details'>
+          <div class='description' ng-bind-html='mkdwn(dialectic.description) || "No dialectic description available"'></div>
+          <div class='days' ng-show='days'>
+            Offered on
+            <span class='day' ng-repeat='day in dialectic.days'>{{day}}</span>
+          </div>
+          <div class='times' ng-show='times'>
+            Offered potentially at
+            <span class='time' ng-repeat='time in dialectic.times'>
+              <span ng-show='$index != 0'>,</span>
+              {{time}}
+            </span>
+          </div>
+          <div class='hidden desktop_map hidden-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
+          <div class='hidden phone_map visible-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
+          <div class='message alert alert-success' ng-show='dialectic.message'>
+            {{dialectic.message}}
+          </div>
+          <div class='btn' ng-click='register(dialectic)'>
+            Register
+          </div>
+          <div class='btn' ng-click='save(dialectic)'>
+            <div class='visible-phone' ng-class='{"icon-star-empty":!dialectic.saved,"icon-star":dialectic.saved}'>&nbsp;</div>
+            <div class='hidden-phone'>
+              <span ng-hide='dialectic.saved'>Save</span>
+              <span ng-show='dialectic.saved'>Remove</span>
+            </div>
+          </div>
+          <div class='btn' ng-click='faq()'>
+            <div class='visible-phone icon-question-sign'>&nbsp;</div>
+            <div class='hidden-phone'>What/why/how register?</div>
+          </div>
+          <div class='hideIt btn btn-danger' ng-click='dialectic.details = false'>
+            <div class='visible-phone icon-remove-sign'>&nbsp;</div>
+            <div class='hidden-phone'>Close</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='loading' ng-hide='dialectics'>
+      <img src="/images/spinner.gif" />
+      Loading my classes.
+    </div>
+  </div>
+</div>

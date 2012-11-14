@@ -1,0 +1,20 @@
+<div class='wrapper' ng-controller='BookCtrl'>
+  <input ng-model='searchText' placeholder='Enter title, author or description to search' type='text' />
+  <div class='btn' ng-click='search()'>Search</div>
+  <div class='results' ng-show='results'>
+    <strong>Top 10 results</strong>
+    <div class='result' ng-repeat='item in results'>
+      <div class='title'>
+        <strong>{{item.attributes.Title}}</strong>
+      </div>
+      <div class='details'>
+        <div class='author'>{{item.attributes.Author}}</div>
+        <div class='manufacturer'>{{item.attributes.Manufacturer}}</div>
+        <div class='url'>
+          <a href='{{item.url}}' target='books'>See more about this book.</a>
+        </div>
+      </div>
+      <div class='btn' ng-click='addBookAsPrerequisite(item)'>Add book as class prerequisite.</div>
+    </div>
+  </div>
+</div>

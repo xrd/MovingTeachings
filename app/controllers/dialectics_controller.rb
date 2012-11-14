@@ -2,7 +2,7 @@ class DialecticsController < ApplicationController
   def teach
     respond_to do |format|
       format.html { render template: 'welcome/index' }
-      format.json { render layout: false, template: 'dialectics/teach.html.haml' }
+      format.js { render layout: false, template: 'dialectics/teach.html.haml' }
     end
   end
 

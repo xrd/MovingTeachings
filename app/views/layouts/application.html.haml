@@ -8,6 +8,7 @@
     = javascript_include_tag "http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"
     = csrf_meta_tags
 
+    = render partial: 'layouts/og'
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}
     = render partial: 'layouts/ga'
   %body{ 'ng-app' => 'movingteachings', 'ng-controller' => "MainCtrl" }
