@@ -14,23 +14,12 @@ class RoutesController < ApplicationController
     render json: route.dialectics
   end
 
-  def show
-    @route = Route.find params[:id]
-  end
-  
   def alternatives
     render json: Dialectic.approved.all(limit: 10)
   end
 
   def index
-    respond_to do |format|
-      format.html {
-        render template: 'welcome/index'
-      }
-      format.json {
-        render json: Route.all
-      }
-    end
+    render json: Route.all
   end
   
 end
