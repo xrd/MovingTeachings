@@ -78,6 +78,7 @@ class DialecticCtrl
                                 $timeout ( () -> $scope.errors = "" ), 3000
 
                 $scope.save = (dialectic) ->
+                        console.log "Inside save"
                         Favorite.save {}, { dialectic_id: dialectic.id }, (response) ->
                                 dialectic.message = "Saved to your favorites"
                                 $timeout ( () -> dialectic.message = "" ), 3000

@@ -37,10 +37,6 @@ Movingteachings::Application.routes.draw do
   end
   resources :dialectics do
     collection do
-      get :teach
-      get :learn
-      get :map
-      get :book
       get :mine
     end
   end

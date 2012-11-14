@@ -4,11 +4,11 @@ class RouteCtrl
 
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
-                                if $routeParams.route_id and $routeParams.location_id
-                                        $location.path( "/locations/#{$routeParams.location_id}/#{$routeParams.route_id}" )
+                                if $routeParams.second and $routeParams.first
+                                        $location.path( "/locations/#{$routeParams.first}/#{$routeParams.second}" )
                         $scope.$watch 'location', (newVal, oldVal) ->
-                                if $routeParams.location_id and !$routeParams.route_id
-                                        $location.path( "/locations/#{$routeParams.location_id}" )
+                                if $routeParams.first and !$routeParams.second
+                                        $location.path( "/locations/#{$routeParams.first}" )
 
                 $scope.watchRoutes()
 
@@ -19,9 +19,9 @@ class RouteCtrl
                 Location.index {}, (response) ->
                         $scope.locations = response
                         $scope.locations.push { name: "Your city not here?", requestIt: true }
-                        if $routeParams.location_id
+                        if $routeParams.first
                                 for location in response
-                                        if location.id == parseInt($routeParams.location_id)
+                                        if location.id == parseInt($routeParams.first)
                                                 $scope.location = location
                                                 $scope.loadRoutes($scope.location)
 
@@ -55,9 +55,9 @@ class RouteCtrl
                         else
                                 Location.routes { id: location.id }, (response) ->
                                         $scope.routes = response
-                                        if $routeParams.route_id
+                                        if $routeParams.second
                                                 for route in response
-                                                        if route.id == parseInt($routeParams.route_id)
+                                                        if route.id == parseInt($routeParams.second)
                                                                 $scope.route = route
                                                                 $scope.loadStops($scope.route)
 

@@ -3,6 +3,9 @@
 class MainCtrl
         constructor: ( $scope, Route, User, Dialectic, $window ) ->
 
+                $scope.$on 'event:auth-loginConfirmed', () ->
+                        console.log "Hey, we need to login"
+
                 User.loggedIn {}, (response) ->
                         $scope.loggedIn = response.loggedIn
 

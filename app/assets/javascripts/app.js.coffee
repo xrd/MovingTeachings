@@ -1,4 +1,4 @@
-appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize', 'ui' ]
+appmod = angular.module 'movingteachings', [ 'ngResource', 'ngSanitize', 'ui', 'http-auth-interceptor' ]
 
 appmod.factory 'User', [ '$resource', ($resource) ->
         $resource "/users/:action", {},
