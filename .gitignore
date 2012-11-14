@@ -13,3 +13,8 @@ public/system
 spec/compiled
 \#*\#
 .#*
+# Ignore the build directory
+/build
+
+# Ignore Sass' cache
+/.sass-cache

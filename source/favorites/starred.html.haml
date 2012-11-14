@@ -1,0 +1,8 @@
+.favorites{ 'ng-controller' => 'FavoriteCtrl' }
+  %h1 My favorites.
+  .none{ 'ng-hide' => 'favorites' }
+    You have not favorited any items.
+
+  .favorite{ 'ng-repeat' => 'favorite in favorites', 'ng-show' => 'favorites' }
+    .foo{ 'ng-class' => 'dialectic = favorite.dialectic' }
+    = partial 'dialectics/dialectic'
