@@ -1,0 +1,28 @@
+%h1 Find a class.
+.routes{ 'ng-controller' => 'RouteCtrl' }
+  = render partial: 'city'
+  = render partial: 'routes', :locals => { :loadMethod => 'loadClasses' }
+  .dialecic{ 'ng-show' => 'route', 'ng-controller' => 'DialecticCtrl' }
+    .dialectics{ 'ng-show' => 'dialectics' }
+      %h3 Classes on {{route.route_description}}
+      %span.visible-phone Share
+      %span.hidden-phone Share classes on this route
+      .btn{ 'ng-click' => 'shareRoute("facebook")' }
+        = image_tag 'facebook.png'
+      .btn{ 'ng-click' => 'shareRoute("twitter")' }
+        = image_tag 'twitter.png'
+      .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
+        = render partial: 'dialectics/dialectic'
+    .nodialectics{ 'ng-hide' => 'dialectics' }
+      %h3 There are no classes offered on the route: {{route.route_description}}
+      %h5 "Not all those who wander are lost." Why not take a different path sometime? Here are some classes offered on other routes.        
+
+      .noalternatives{ 'ng-show' => 'noAlternatives' }
+        Sorry, there are no courses offered in your city right now.
+      .alternatives{ 'ng-hide' => 'noAlternatives' }
+        .spinner{ 'ng-hide' => 'alternatives' }
+          %img{ src: '/assets/spinner.gif' }  
+          Please wait, loading alternative classes.
+        .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
+          = render partial: 'dialectics/dialectic'
+

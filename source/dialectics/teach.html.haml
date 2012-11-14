@@ -21,7 +21,7 @@
 
       %label Where do you want to teach this class
       = partial 'city'
-      = partial 'routes'
+      = partial 'routes', :locals => { loadMethod: 'loadStops' }
       = partial 'stops'
 
       .hide
