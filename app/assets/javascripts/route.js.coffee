@@ -1,12 +1,12 @@
 @appmod.config ($routeProvider, $locationProvider) ->
 
-        for route in [ 'teach', 'learn', 'favorites' ]
+        for route in [ 'teach', 'learn' ]
                 $routeProvider.when "/#{route}/:first/:second", templateUrl: "/tmpl/dialectics/#{route}"
                 $routeProvider.when "/#{route}/:first", templateUrl: "/tmpl/dialectics/#{route}"
                 $routeProvider.when "/#{route}", templateUrl: "/tmpl/dialectics/#{route}"
 
-        # $routeProvider.when '/favorites', templateUrl: '/favorites/starred'
-        # $routeProvider.when '/share', templateUrl: '/favorites/share'
+        $routeProvider.when '/favorites', templateUrl: '/tmpl/favorites/starred'
+        $routeProvider.when '/share', templateUrl: '/tmpl/favorites/share'
         # $routeProvider.when '/locations/:location_id/:route_id', templateUrl: '/learn'
         # $routeProvider.when '/locations/:location_id', templateUrl: '/learn'
         # $routeProvider.when '/learn/:dialectic_id', templateUrl: '/learn'

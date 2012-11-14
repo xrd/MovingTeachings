@@ -10,7 +10,7 @@
       .btn{ 'ng-click' => 'shareRoute("facebook")' }
         = image_tag 'facebook.png'
       .btn{ 'ng-click' => 'shareRoute("twitter")' }
-        = image_tag 'twitter.png'
+        = image_tag '/assets/twitter.png'
       .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
         = partial 'dialectics/dialectic'
     .nodialectics{ 'ng-hide' => 'dialectics' }

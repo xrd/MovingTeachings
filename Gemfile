@@ -26,7 +26,9 @@ group :assets do
   gem "haml-rails"
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer'
-
+  gem "therubyracer"
+  gem "less-rails"
+  gem "twitter-bootstrap-rails"
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -46,7 +48,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
-gem "twitter-bootstrap-rails"
 gem "faker"
 gem "nokogiri"
 
