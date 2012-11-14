@@ -25,68 +25,18 @@
   <div class='dialecic' ng-controller='DialecticCtrl' ng-show='route'>
     <div class='dialectics' ng-show='dialectics'>
       <h3>Classes on {{route.route_description}}</h3>
-      <span class='visible-phone'>Share</span>
-      <span class='hidden-phone'>Share classes on this route</span>
       <div class='btn' ng-click='shareRoute("facebook")'>
+        <span class='visible-phone'>Share</span>
+        <span class='hidden-phone'>Share this route on Facebook</span>
         <img src="/assets/facebook.png" />
       </div>
       <div class='btn' ng-click='shareRoute("twitter")'>
+        <span class='visible-phone'>Share</span>
+        <span class='hidden-phone'>Share this route on Twitter</span>
         <img src="/assets/twitter.png" />
       </div>
       <div class='wrapper' ng-repeat='dialectic in dialectics'>
-        <div class='stop alert alert-block padded' ng-click='dialectic.details = !dialectic.details'>
-          <div class='wrapper'>
-            <strong>{{dialectic.title}}</strong>
-            <span class='route' ng-show='dialectic.route'>
-              (on route <a href="/locations/{{dialectic.route.location_id}}/{{dialectic.route.id}}">{{dialectic.route.route_description}} {{dialectic.route.direction_description}}</a>)
-            </span>
-            <div class='expand'>
-              <small>
-                <span ng-show='dialectic.favorited_count &gt; 1'>
-                  Favorited by {{dialectic.favorited_count-1}} other(s).
-                </span>
-                Click for more details
-              </small>
-            </div>
-          </div>
-        </div>
-        <div class='details alert alert-block' ng-show='dialectic.details'>
-          <div class='description' ng-bind-html='mkdwn(dialectic.description) || "No dialectic description available"'></div>
-          <div class='days' ng-show='days'>
-            Offered on
-            <span class='day' ng-repeat='day in dialectic.days'>{{day}}</span>
-          </div>
-          <div class='times' ng-show='times'>
-            Offered potentially at
-            <span class='time' ng-repeat='time in dialectic.times'>
-              <span ng-show='$index != 0'>,</span>
-              {{time}}
-            </span>
-          </div>
-          <div class='hidden desktop_map hidden-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
-          <div class='hidden phone_map visible-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
-          <div class='message alert alert-success' ng-show='dialectic.message'>
-            {{dialectic.message}}
-          </div>
-          <div class='btn' ng-click='register(dialectic)'>
-            Register
-          </div>
-          <div class='btn' ng-click='save(dialectic)'>
-            <div class='visible-phone' ng-class='{"icon-star-empty":!dialectic.saved,"icon-star":dialectic.saved}'>&nbsp;</div>
-            <div class='hidden-phone'>
-              <span ng-hide='dialectic.saved'>Save</span>
-              <span ng-show='dialectic.saved'>Remove</span>
-            </div>
-          </div>
-          <div class='btn' ng-click='faq()'>
-            <div class='visible-phone icon-question-sign'>&nbsp;</div>
-            <div class='hidden-phone'>What/why/how register?</div>
-          </div>
-          <div class='hideIt btn btn-danger' ng-click='dialectic.details = false'>
-            <div class='visible-phone icon-remove-sign'>&nbsp;</div>
-            <div class='hidden-phone'>Close</div>
-          </div>
-        </div>
+        <div ng-include='"/tmpl/dialectics/dialectic"'></div>
       </div>
     </div>
     <div class='nodialectics' ng-hide='dialectics'>
@@ -101,59 +51,7 @@
           Please wait, loading alternative classes.
         </div>
         <div class='wrapper' ng-repeat='dialectic in alternatives'>
-          <div class='stop alert alert-block padded' ng-click='dialectic.details = !dialectic.details'>
-            <div class='wrapper'>
-              <strong>{{dialectic.title}}</strong>
-              <span class='route' ng-show='dialectic.route'>
-                (on route <a href="/locations/{{dialectic.route.location_id}}/{{dialectic.route.id}}">{{dialectic.route.route_description}} {{dialectic.route.direction_description}}</a>)
-              </span>
-              <div class='expand'>
-                <small>
-                  <span ng-show='dialectic.favorited_count &gt; 1'>
-                    Favorited by {{dialectic.favorited_count-1}} other(s).
-                  </span>
-                  Click for more details
-                </small>
-              </div>
-            </div>
-          </div>
-          <div class='details alert alert-block' ng-show='dialectic.details'>
-            <div class='description' ng-bind-html='mkdwn(dialectic.description) || "No dialectic description available"'></div>
-            <div class='days' ng-show='days'>
-              Offered on
-              <span class='day' ng-repeat='day in dialectic.days'>{{day}}</span>
-            </div>
-            <div class='times' ng-show='times'>
-              Offered potentially at
-              <span class='time' ng-repeat='time in dialectic.times'>
-                <span ng-show='$index != 0'>,</span>
-                {{time}}
-              </span>
-            </div>
-            <div class='hidden desktop_map hidden-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
-            <div class='hidden phone_map visible-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>
-            <div class='message alert alert-success' ng-show='dialectic.message'>
-              {{dialectic.message}}
-            </div>
-            <div class='btn' ng-click='register(dialectic)'>
-              Register
-            </div>
-            <div class='btn' ng-click='save(dialectic)'>
-              <div class='visible-phone' ng-class='{"icon-star-empty":!dialectic.saved,"icon-star":dialectic.saved}'>&nbsp;</div>
-              <div class='hidden-phone'>
-                <span ng-hide='dialectic.saved'>Save</span>
-                <span ng-show='dialectic.saved'>Remove</span>
-              </div>
-            </div>
-            <div class='btn' ng-click='faq()'>
-              <div class='visible-phone icon-question-sign'>&nbsp;</div>
-              <div class='hidden-phone'>What/why/how register?</div>
-            </div>
-            <div class='hideIt btn btn-danger' ng-click='dialectic.details = false'>
-              <div class='visible-phone icon-remove-sign'>&nbsp;</div>
-              <div class='hidden-phone'>Close</div>
-            </div>
-          </div>
+          <div ng-include='/tmpl/dialectics/dialectic'></div>
         </div>
       </div>
     </div>

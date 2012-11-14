@@ -1,6 +1,11 @@
 class DialecticsController < ApplicationController
 
-  before_filter :require_login
+  before_filter :require_login, :except => [ :learn, :teach ]
+
+  def learn
+    render template: 'welcome/intro'
+  end
+  alias :teach :learn
   
   def register
   end
