@@ -18,6 +18,10 @@ class RoutesController < ApplicationController
     render json: Dialectic.approved.all(limit: 10)
   end
 
+  def show
+    @route = Route.find params[:id]
+  end
+  
   def index
     render json: Route.all
   end
