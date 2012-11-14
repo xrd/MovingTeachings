@@ -1,3 +1,22 @@
+GIT
+  remote: git://github.com/sferik/rails_admin.git
+  revision: 15cb7bc66c2fb22a6e00af8a71c62b5f9d93abf5
+  specs:
+    rails_admin (0.2.0)
+      bootstrap-sass (~> 2.1)
+      builder (~> 3.0)
+      coffee-rails (~> 3.1)
+      font-awesome-sass-rails (~> 2.0)
+      haml (~> 3.1)
+      jquery-rails (~> 2.1)
+      jquery-ui-rails (~> 2.0)
+      kaminari (~> 0.14)
+      nested_form (~> 0.2.3)
+      rack-pjax (~> 0.6)
+      rails (~> 3.1)
+      remotipart (~> 1.0)
+      sass-rails (~> 3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -184,20 +203,6 @@ GEM
       activesupport (= 3.2.6)
       bundler (~> 1.0)
       railties (= 3.2.6)
-    rails_admin (0.2.0)
-      bootstrap-sass (~> 2.1)
-      builder (~> 3.0)
-      coffee-rails (~> 3.1)
-      font-awesome-sass-rails (~> 2.0)
-      haml (~> 3.1)
-      jquery-rails (~> 2.1)
-      jquery-ui-rails (~> 2.0)
-      kaminari (~> 0.14)
-      nested_form (~> 0.2.3)
-      rack-pjax (~> 0.6)
-      rails (~> 3.1)
-      remotipart (~> 1.0)
-      sass-rails (~> 3.1)
     railties (3.2.6)
       actionpack (= 3.2.6)
       activesupport (= 3.2.6)
@@ -281,7 +286,7 @@ DEPENDENCIES
   omniauth-google-oauth2
   pg
   rails (= 3.2.6)
-  rails_admin
+  rails_admin!
   rdiscount
   rspec-rails (~> 2.0)
   sass-rails (~> 3.2.3)

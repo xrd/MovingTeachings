@@ -50,7 +50,7 @@ gem "twitter-bootstrap-rails"
 gem "faker"
 gem "nokogiri"
 
-gem "rails_admin"
+gem "rails_admin", :git => 'git://github.com/sferik/rails_admin.git'
 
 
 gem "devise"
@@ -60,5 +60,7 @@ gem 'omniauth-facebook'
 gem 'omniauth-google-oauth2'
 gem "rdiscount"
 gem "vacuum", '~> 0.3.x'
-gem "middleman", "~>3.0.6"
+group :middleman do
+  gem "middleman", "~>3.0.6"
+end
 gem "haml"
