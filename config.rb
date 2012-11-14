@@ -53,7 +53,7 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
-set :build_dir, "../beta/public/tmpl"
+set :build_dir, "public/tmpl"
 
 # Build-specific configuration
 configure :build do

@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.6'
+gem 'rails', '3.2.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -61,3 +61,4 @@ gem 'omniauth-google-oauth2'
 gem "rdiscount"
 gem "vacuum", '~> 0.3.x'
 gem "middleman", "~>3.0.6"
+gem "haml"
