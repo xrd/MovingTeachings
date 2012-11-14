@@ -1,4 +1,7 @@
 class DialecticsController < ApplicationController
+
+  before_filter :require_login
+  
   def register
   end
 

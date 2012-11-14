@@ -25,7 +25,7 @@ class DialecticCtrl
                         $scope.modals = {}
                         $scope.modals.includes = {}
                         $scope.modals.map = true
-                        $scope.modals.includes.maps = "/dialectics/map"
+                        $scope.modals.includes.maps = "/tmpl/dialectics/map"
                         $scope.prereq.type == "location"
                         $scope.$broadcast 'clearMap'
 
@@ -33,7 +33,7 @@ class DialecticCtrl
                         $scope.modals = {}
                         $scope.modals.includes = {}
                         $scope.modals.book = true
-                        $scope.modals.includes.books = "/dialectics/book"
+                        $scope.modals.includes.books = "/tmpl/dialectics/book"
                         $scope.prereq.type == "book"
                         $scope.$broadcast 'clearBooks'
 

@@ -2,6 +2,6 @@
 
 .btn{ 'ng-click' => 'loadSampleDialectics()' } Browse sample classes
 
-.dialectics{ 'ng-show' => 'samples' }
+.dialectics{ 'ng-show' => 'samples', 'ng-controller' => 'DialecticCtrl' }
   .wrapper{ 'ng-repeat' => 'dialectic in samples' }
     = render partial: 'dialectics/dialectic'

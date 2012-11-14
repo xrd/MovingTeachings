@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_filter :require_login
+
   def create
     current_user.favorites.create dialectic_id: params[:dialectic_id]
     render json: { status: :ok }
@@ -14,11 +16,9 @@ class FavoritesController < ApplicationController
   def starred
     render layout: false
   end
-  
+
   def index
-    respond_to do |format|
-      format.json { render json: current_user.favorites }
-      format.html { render template: 'welcome/index' }
-    end
+    render json: current_user.favorites
   end
+  
 end
