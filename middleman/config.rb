@@ -53,7 +53,7 @@
 
 #set :images_dir, 'images'
 
-set :build_dir, "public/tmpl"
+set :build_dir, "../public/tmpl"
 
 # Build-specific configuration
 configure :build do
