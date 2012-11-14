@@ -5,14 +5,16 @@
   .dialecic{ 'ng-show' => 'route', 'ng-controller' => 'DialecticCtrl' }
     .dialectics{ 'ng-show' => 'dialectics' }
       %h3 Classes on {{route.route_description}}
-      %span.visible-phone Share
-      %span.hidden-phone Share classes on this route
       .btn{ 'ng-click' => 'shareRoute("facebook")' }
+        %span.visible-phone Share
+        %span.hidden-phone Share this route on Facebook
         = image_tag '/assets/facebook.png'
       .btn{ 'ng-click' => 'shareRoute("twitter")' }
+        %span.visible-phone Share
+        %span.hidden-phone Share this route on Twitter
         = image_tag '/assets/twitter.png'
       .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
-        = partial 'dialectics/dialectic'
+        %div{ 'ng-include' => '"/tmpl/dialectics/dialectic"' }
     .nodialectics{ 'ng-hide' => 'dialectics' }
       %h3 There are no classes offered on the route: {{route.route_description}}
       %h5 "Not all those who wander are lost." Why not take a different path sometime? Here are some classes offered on other routes.        
@@ -24,5 +26,5 @@
           %img{ src: '/assets/spinner.gif' }  
           Please wait, loading alternative classes.
         .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
-          = partial 'dialectics/dialectic'
+          %div{ 'ng-include' => '/tmpl/dialectics/dialectic'
 
