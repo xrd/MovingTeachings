@@ -1,0 +1,16 @@
+.wrapper{ 'ng-controller' => 'BookCtrl' }
+  %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
+  .btn{ 'ng-click' => 'search()' } Search
+
+  .results{ 'ng-show' => 'results' }
+    %strong Top 10 results
+    
+    .result{ 'ng-repeat' => 'item in results' }
+      .title
+        %strong {{item.attributes.Title}}
+      .details
+        .author {{item.attributes.Author}}
+        .manufacturer {{item.attributes.Manufacturer}}
+        .url
+          %a{ href: '{{item.url}}', target: 'books' } See more about this book.
+      .btn{ 'ng-click' => 'addBookAsPrerequisite(item)' } Add book as class prerequisite.

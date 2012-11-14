@@ -1,0 +1,6 @@
+.city
+  .choice-selection
+    %strong Choose a city:
+  .choice
+    %select{ 'ng-options' => 'l.name for l in locations', 'ng-model' => 'location', 'ng-change' => 'loadRoutes(location)' }
+  

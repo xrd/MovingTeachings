@@ -1,0 +1,86 @@
+%h1 Teach something.
+.dialectics{ 'ng-controller' => 'RouteCtrl' }
+  .invite
+    Do you have an idea for a tiny class you could teach on a bus?
+    Do you want to connect with people riding with you?
+    .btn.small{ 'ng-click' => 'setAction("create")' } Offer a class
+    .btn.small{ 'ng-click' => 'loadDialectics()' } See my offered classes
+  
+  .create{ 'ng-show' => 'action.create' }
+    %form{ 'ng-hide' => 'created', 'ng-controller' => 'DialecticCtrl' }
+      %legend Create a class
+      .alert.alert-error{ 'ng-show' => 'errors' } {{errors}}
+      %label Title
+      %input{ 'ng-model' => 'dialectic.title', type: 'text', required: true }
+      %label Description
+      %textarea{ 'ng-model' => 'dialectic.description', type: 'text', required: true }
+      .small
+        %a{ 'ng-click' => 'useTemplate()' } Use template
+        == | Fancy formatting using 
+        %a{ href: 'http://daringfireball.net/projects/markdown/', target: "_new" } Markdown 
+
+      %label Where do you want to teach this class
+      = partial 'city'
+      = partial 'routes'
+      = partial 'stops'
+
+      .hide
+        %label Maximum participants?
+        %select{ 'ng-options' => 'c for c in maxOptions', "ng-model" => "dialectic.maximum" }
+          %option{ val: '' } No maximum
+  
+        %label Minimum participants?
+        %select{ 'ng-options' => 'c for c in minOptions', "ng-model" => "dialectic.minimum" }
+          %option{ val: '' } No minimum
+  
+      .after_route{ 'ng-show' => 'stop' }
+        %label (optional) What days do you want to offer the class?
+        .btn-group
+          %span.btn{ 'ng-repeat' => 'd in days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d.name}}
+  
+        %label (optional) What time slots are you willing to offer your class?
+        %select{ 'ng-options' => 'c for c in times', "ng-model" => "dialectic.times", multiple: true }
+
+        .prereqs.visible-phone
+          If you edit this on a desktop computer you can edit prereqs, like books to read in advance, links to check out, or even locations to visit.
+        .prereqs.hidden-phone
+          %div
+            Prereqs:
+            .none{ 'ng-hide' => 'prereqs' } No prereqs added yet.
+            .prerequisite{ 'ng-repeat' => 'p in prereqs' }
+              %a{ href: "{{p.link}}" } {{p.comment}}
+              .btn{ 'ng-click' => 'remove(p)' } Remove
+
+          %label (optional) Add a prerequisite (book, link, location to visit)?
+          .btn-group{ 'ng-hide' => 'prereq.type' }
+            .btn{ 'ng-click' => 'prereq.type = "link"' } Add link
+            .btn{ 'ng-click' => 'openMapDialog()' } Add location
+            .btn{ 'ng-click' => 'openBooksDialog()' } Add book
+
+          .link{ 'ng-show' => 'prereq.type == "link"' }
+            %label Add link
+            %input{ 'ng-model' => 'prereq.link', type: 'text', placeholder: 'Enter URL' }
+            .btn{ 'ng-click' => 'addPrerequisite()' } Add link
+
+          #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
+            %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
+          #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
+            %div{ 'ng-include' => 'modals.includes.maps', 'onload' => 'clearMap()' }
+  
+      %br
+      .btn{ 'ng-click' => 'create()' } Create this class
+      .btn{ 'ng-click' => 'setAction()' } Cancel
+    %div{ 'ng-show' => 'created' }
+      {{message}}
+
+  
+  .dialectics{ 'ng-show' => 'action.mine' }
+    .classes{ 'ng-show' => 'dialectics' }
+      %h3 My classes:
+      .wrapper{ 'ng-repeat' => 'dialectic in dialectics' }
+        = partial "dialectic"
+    .loading{ 'ng-hide' => 'dialectics' }
+      = image_tag 'spinner.gif'
+      Loading my classes.
+   
+  

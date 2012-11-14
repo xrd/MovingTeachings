@@ -1,0 +1,11 @@
+.route{ 'ng-show' => 'route' }      
+  .stops{ 'ng-hide' => 'stops' }
+    = image_tag 'spinner.gif'
+    Loading stops, please wait.
+  .stops{ 'ng-show' => 'stops' }
+    .choice-selection
+      %strong What stop do you board?
+      (This information is kept private.)
+    .choice
+      %select{ 'ng-options' => 's.name for s in stops | orderBy:["kml_stop_id"]', 'ng-model' => 'stop', 'ng-change' => "updateMap()" }
+  
