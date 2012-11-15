@@ -3,18 +3,22 @@ class RouteCtrl
                 $scope.action = undefined
 
                 $scope.watchRoutes = () ->
-                        $scope.$watch 'route', (newVal, oldVal) ->
+                        $scope.$watch( 'route', ( (newVal, oldVal) ->
                                 if $routeParams.route_id and $routeParams.location_id
-                                        $location.path( "/locations/#{$routeParams.location_id}/#{$routeParams.route_id}" )
-                        $scope.$watch 'location', (newVal, oldVal) ->
+                                        console.log "Updating route"
+                                        $scope.loadClasses(newVal)
+                                        $location.path( "/locations/#{$routeParams.location_id}/#{newVal.id}" ) if newVal ), true )
+
+                        $scope.$watch( 'location', ( (newVal, oldVal) ->
                                 if $routeParams.location_id and !$routeParams.route_id
-                                        $location.path( "/locations/#{$routeParams.location_id}" )
+                                        console.log "Updating location"
+                                        $scope.route = undefined
+                                        $location.path( "/locations/#{newVal.id}" ) if newVal ), true )
 
                 $scope.watchRoutes()
 
                 $scope.updateMap = () ->
                         console.log "Let's initialize the map"
-                        # $scope.
 
                 Location.index {}, (response) ->
                         $scope.locations = response
