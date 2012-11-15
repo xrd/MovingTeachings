@@ -4,11 +4,11 @@ class RouteCtrl
 
                 $scope.watchRoutes = () ->
                         $scope.$watch 'route', (newVal, oldVal) ->
-                                if $routeParams.second and $routeParams.first
-                                        $location.path( "/locations/#{$routeParams.first}/#{$routeParams.second}" )
+                                if $routeParams.route_id and $routeParams.location_id
+                                        $location.path( "/locations/#{$routeParams.location_id}/#{$routeParams.route_id}" )
                         $scope.$watch 'location', (newVal, oldVal) ->
-                                if $routeParams.first and !$routeParams.second
-                                        $location.path( "/locations/#{$routeParams.first}" )
+                                if $routeParams.location_id and !$routeParams.route_id
+                                        $location.path( "/locations/#{$routeParams.location_id}" )
 
                 $scope.watchRoutes()
 
@@ -19,9 +19,9 @@ class RouteCtrl
                 Location.index {}, (response) ->
                         $scope.locations = response
                         $scope.locations.push { name: "Your city not here?", requestIt: true }
-                        if $routeParams.first
+                        if $routeParams.location_id
                                 for location in response
-                                        if location.id == parseInt($routeParams.first)
+                                        if location.id == parseInt($routeParams.location_id)
                                                 $scope.location = location
                                                 $scope.loadRoutes($scope.location)
 
@@ -55,15 +55,15 @@ class RouteCtrl
                         else
                                 Location.routes { id: location.id }, (response) ->
                                         $scope.routes = response
-                                        if $routeParams.second
+                                        if $routeParams.route_id
                                                 for route in response
-                                                        if route.id == parseInt($routeParams.second)
+                                                        if route.id == parseInt($routeParams.route_id)
                                                                 $scope.route = route
                                                                 $scope.loadStops($scope.route)
 
                 $scope.shareRoute = (method) ->
                         text = "Moving teachings, little classes on the bus. This route looks fun: "
-                        url = "http://movingteachings.com/routes/#{$scope.routeId}"
+                        url = "http://#{$scope.domain}/routes/#{$scope.routeId}"
                         if method == "facebook"
                                 $window.open( "http://facebook.com/sharer.php?u=#{url}", method )
                         else if method = "twitter"

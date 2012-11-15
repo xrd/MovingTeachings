@@ -3,6 +3,7 @@
 class MainCtrl
         constructor: ( $scope, Route, User, Dialectic, $window ) ->
 
+                $scope.domain = "beta.movingteachings.com"
 
                 User.loggedIn {}, (response) ->
                         $scope.loggedIn = response.loggedIn
