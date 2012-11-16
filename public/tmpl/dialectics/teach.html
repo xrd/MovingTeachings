@@ -82,8 +82,10 @@
             Prereqs:
             <div class='none' ng-hide='prereqs'>No prereqs added yet.</div>
             <div class='prerequisite' ng-repeat='p in prereqs'>
-              <a href='{{p.link}}'>{{p.comment}}</a>
-              <div class='btn' ng-click='remove(p)'>Remove</div>
+              <div class='prereq'>
+                <a href='{{p.link}}'>{{p.comment}}</a>
+              </div>
+              <div class='btn' ng-click='removePrereq(p)'>Remove</div>
             </div>
           </div>
           <label>(optional) Add a prerequisite (book, link, location to visit)?</label>
@@ -95,7 +97,8 @@
           <div class='link' ng-show='prereq.type == "link"'>
             <label>Add link</label>
             <input ng-model='prereq.link' placeholder='Enter URL' type='text' />
-            <div class='btn' ng-click='addPrerequisite()'>Add link</div>
+            <div class='btn' ng-click='prereq.comment = prereq.link; addPrerequisite()'>Add link</div>
+            <div class='btn' ng-click='prereq = undefined'>Cancel</div>
           </div>
           <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
             <div ng-include='modals.includes.books' onload='clearBooks()'></div>

@@ -47,6 +47,10 @@ class DialecticCtrl
 
                 $scope.times = times()
 
+                $scope.removePrereq = (item) ->
+                        if -1 != ( toRemove = $scope.prereqs.indexOf( item ) )
+                                $scope.prereqs.splice toRemove, 1
+
                 $scope.addPrerequisite = ( item ) ->
                         $scope.prereqs.push item
                         console.log "Adding item as prerequisite (#{$scope.prereqs.length})"
