@@ -25,13 +25,12 @@
       <div class='description' ng-bind-html='mkdwn(dialectic.description) || "No dialectic description available"'></div>
       <div class='days' ng-show='days'>
         Offered on
-        <span class='day' ng-repeat='day in dialectic.days'>{{day}}</span>
+        <span class='badge day' ng-repeat='day in dialectic.days'>{{day}}</span>
       </div>
       <div class='times' ng-show='times'>
         Offered potentially at
         <span class='time' ng-repeat='time in dialectic.times'>
-          <span ng-show='$index != 0'>,</span>
-          {{time}}
+          <span class='badge'>{{time}}</span>
         </span>
       </div>
       <div class='hidden desktop_map hidden-phone' ui-event="{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }" ui-map='myMap' ui-options='mapOptions'></div>

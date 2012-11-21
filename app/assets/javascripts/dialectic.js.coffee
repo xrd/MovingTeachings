@@ -6,8 +6,6 @@ class DialecticCtrl
                         $scope.dialectic.days = {}
 
                 $scope.prereq = {}
-                $scope.prereqs = []
-
                 $scope.resetDialectic()
                 $scope.days = [
                         { name: "Su" },
@@ -48,12 +46,13 @@ class DialecticCtrl
                 $scope.times = times()
 
                 $scope.removePrereq = (item) ->
-                        if -1 != ( toRemove = $scope.prereqs.indexOf( item ) )
-                                $scope.prereqs.splice toRemove, 1
+                        if -1 != ( toRemove = $scope.dialectic.prereqs.indexOf( item ) )
+                                $scope.dialectic.prereqs.splice toRemove, 1
 
                 $scope.addPrerequisite = ( item ) ->
-                        $scope.prereqs.push item
-                        console.log "Adding item as prerequisite (#{$scope.prereqs.length})"
+                        $scope.dialectic.prereqs ||= []
+                        $scope.dialectic.prereqs.push item
+                        console.log "Adding item as prerequisite (#{$scope.dialectic.prereqs.length})"
                         $scope.prereq = {}
                         $scope.modals = {}
 

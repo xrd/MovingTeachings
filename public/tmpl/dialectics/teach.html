@@ -80,8 +80,8 @@
         <div class='prereqs hidden-phone'>
           <div>
             Prereqs:
-            <div class='none' ng-hide='prereqs'>No prereqs added yet.</div>
-            <div class='prerequisite' ng-repeat='p in prereqs'>
+            <div class='none' ng-hide='dialectic.prereqs'>No prereqs added yet.</div>
+            <div class='prerequisite' ng-repeat='p in dialectic.prereqs'>
               <div class='prereq'>
                 <a href='{{p.link}}'>{{p.comment}}</a>
               </div>
@@ -98,7 +98,7 @@
             <label>Add link</label>
             <input ng-model='prereq.link' placeholder='Enter URL' type='text' />
             <div class='btn' ng-click='prereq.comment = prereq.link; addPrerequisite()'>Add link</div>
-            <div class='btn' ng-click='prereq = undefined'>Cancel</div>
+            <div class='btn' ng-click='prereq = {}'>Cancel</div>
           </div>
           <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
             <div ng-include='modals.includes.books' onload='clearBooks()'></div>

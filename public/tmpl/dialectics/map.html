@@ -10,7 +10,7 @@
           <div ng-show='item.expanded.shown'>
             {{item.description}}
             <div>
-              <textarea cols='15' ng-model='item.comment' placeholder='Add a comment for people regarding this location (what to do there, what to look for, etc.)' rows='5'></textarea>
+              <textarea class='comment' cols='15' ng-model='item.comment' placeholder='Add a comment for people regarding this location (what to do there, what to look for, etc.)' rows='5'></textarea>
               <div class='btn btn-mini' ng-click='addPrerequisite(item)'>Add prerequisite</div>
               <div class='btn btn-mini' ng-click='item.expanded = {}'>Cancel</div>
             </div>

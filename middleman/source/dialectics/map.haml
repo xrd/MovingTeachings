@@ -10,7 +10,7 @@
           %div{ 'ng-show' => 'item.expanded.shown' }
             {{item.description}}
             %div
-              %textarea{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
+              %textarea.comment{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
               .btn.btn-mini{ 'ng-click' => 'addPrerequisite(item)' } Add prerequisite
               .btn.btn-mini{ 'ng-click' => 'item.expanded = {}' } Cancel
   

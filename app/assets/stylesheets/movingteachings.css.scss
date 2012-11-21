@@ -163,3 +163,11 @@
     width: 200px;
     display: inline-block;
 }
+
+.search {
+    .result {
+        textarea.comment {
+            width: 175px;
+        }
+    }
+}

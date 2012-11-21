@@ -46,8 +46,8 @@
         .prereqs.hidden-phone
           %div
             Prereqs:
-            .none{ 'ng-hide' => 'prereqs' } No prereqs added yet.
-            .prerequisite{ 'ng-repeat' => 'p in prereqs' }
+            .none{ 'ng-hide' => 'dialectic.prereqs' } No prereqs added yet.
+            .prerequisite{ 'ng-repeat' => 'p in dialectic.prereqs' }
               .prereq
                 %a{ href: "{{p.link}}" } {{p.comment}}
               .btn{ 'ng-click' => 'removePrereq(p)' } Remove
@@ -62,7 +62,7 @@
             %label Add link
             %input{ 'ng-model' => 'prereq.link', type: 'text', placeholder: 'Enter URL' }
             .btn{ 'ng-click' => 'prereq.comment = prereq.link; addPrerequisite()' } Add link
-            .btn{ 'ng-click' => 'prereq = undefined' } Cancel
+            .btn{ 'ng-click' => 'prereq = {}' } Cancel
 
           #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
             %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
