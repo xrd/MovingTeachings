@@ -13,7 +13,7 @@ class BookCtrl
 
                 $scope.addBookAsPrerequisite = (book) ->
                         console.log "Adding book prereq, in book ctrl"
-                        $scope.addPrerequisite { comment: book.attributes.Title, type: "book", link: book.url }
+                        $scope.addPrerequisite { comment: book.attributes.Title, ptype: "book", link: book.url }
                         $scope.bookModal = false
 
 BookCtrl.$inject = [ '$scope', 'Book' ]

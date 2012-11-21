@@ -89,15 +89,15 @@
             </div>
           </div>
           <label>(optional) Add a prerequisite (book, link, location to visit)?</label>
-          <div class='btn-group' ng-hide='prereq.type'>
-            <div class='btn' ng-click='prereq.type = "link"'>Add link</div>
+          <div class='btn-group' ng-hide='prereq.ptype'>
+            <div class='btn' ng-click='prereq.ptype = "link"'>Add link</div>
             <div class='btn' ng-click='openMapDialog()'>Add location</div>
             <div class='btn' ng-click='openBooksDialog()'>Add book</div>
           </div>
-          <div class='link' ng-show='prereq.type == "link"'>
+          <div class='link' ng-show='prereq.ptype == "link"'>
             <label>Add link</label>
-            <input ng-model='prereq.link' placeholder='Enter URL' type='text' />
-            <div class='btn' ng-click='prereq.comment = prereq.link; addPrerequisite()'>Add link</div>
+            <input ng-model='prereq.link' placeholder='Enter URL' ptype='text' />
+            <div class='btn' ng-click='prereq.comment = prereq.link; addPrerequisite(prereq)'>Add link</div>
             <div class='btn' ng-click='prereq = {}'>Cancel</div>
           </div>
           <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>

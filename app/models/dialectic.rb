@@ -1,7 +1,7 @@
 class Dialectic < ActiveRecord::Base
   belongs_to :user
   belongs_to :route
-  has_many :prerequisites
+  has_many :prerequisites, :dependent => :destroy
   scope :approved, where( [ "approved = ?", true ] )
   serialize :times
   serialize :days
@@ -12,10 +12,12 @@ class Dialectic < ActiveRecord::Base
   after_create :add_prerequisites
 
   def add_prerequisites
-    self.prereqs.each do |p|
-      if p
-        logger.info "P: #{p.inspect}"
-        self.prerequisites.create p.slice( :link, :comment )
+    if self.prereqs
+      self.prereqs.each do |p|
+        if p
+          logger.info "P: #{p.inspect}"
+          self.prerequisites.create p.slice( :link, :comment, :lat, :lng, :formatted_address, :icon, :ptype )
+        end
       end
     end
   end
@@ -31,7 +33,9 @@ class Dialectic < ActiveRecord::Base
   
   def as_json(options={})
     options[:except] ||= :user_id
-    options[:include] ||= :route
+    options[:include] ||= []
+    options[:include] << :route
+    options[:include] << :prerequisites
     super( options )
   end
 end

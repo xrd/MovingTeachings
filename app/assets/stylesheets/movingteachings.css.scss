@@ -159,10 +159,12 @@
     display: inline-block;
 }
 
-.prereq {
-    width: 200px;
-    display: inline-block;
-}
+.create {
+    .prereq {
+        width: 200px;
+        display: inline-block;
+    }
+}   
 
 .search {
     .result {

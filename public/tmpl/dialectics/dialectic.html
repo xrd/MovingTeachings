@@ -31,6 +31,12 @@
   <div class='message alert alert-success' ng-show='dialectic.message'>
     {{dialectic.message}}
   </div>
+  <div class='prereqs' ng-show='dialectic.prerequisites'>
+    <div class='muted'>Please note these prerequisites for this class:</div>
+    <div class='prereq' ng-repeat='prereq in dialectic.prerequisites'>
+      {{ prereq.comment }} / {{ prereq.ptype}}
+    </div>
+  </div>
   <div class='btn' ng-click='register(dialectic)'>
     Register
   </div>

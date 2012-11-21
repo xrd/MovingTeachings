@@ -49,6 +49,12 @@ class DialecticCtrl
                         if -1 != ( toRemove = $scope.dialectic.prereqs.indexOf( item ) )
                                 $scope.dialectic.prereqs.splice toRemove, 1
 
+                $scope.addMapPrerequisite = (item) ->
+                        item.lat = item.geometry.location.$a
+                        item.lng = item.geometry.location.ab
+                        item.ptype = "map"
+                        $scope.addPrerequisite( item )
+
                 $scope.addPrerequisite = ( item ) ->
                         $scope.dialectic.prereqs ||= []
                         $scope.dialectic.prereqs.push item
@@ -75,10 +81,10 @@ class DialecticCtrl
                                         $scope.created = true
                                         $scope.message = "Created your new class. New classes require approval, and we will notify you when your class has been approved"
                                         $scope.resetDialectic()
-                                        $timeout ( () -> $scope.doCreate = false; $scope.created = false ), 3000
+                                        $timeout ( () -> $scope.action = {}; $scope.created = false ), 3000
                         else
                                 $scope.errors = "You must provide at least a title, description and choose a stop on a route"
-                                $timeout ( () -> $scope.errors = "" ), 3000
+                                $timeout ( () -> $scope.errors = "" ), 10000
 
                 $scope.save = (dialectic) ->
                         console.log "Inside save"

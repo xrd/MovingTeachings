@@ -23,6 +23,11 @@
 
   .message.alert.alert-success{ 'ng-show' => 'dialectic.message' }
     {{dialectic.message}}
+  .prereqs{ 'ng-show' => 'dialectic.prerequisites' }
+    .muted Please note these prerequisites for this class:
+    .prereq{ 'ng-repeat' => 'prereq in dialectic.prerequisites' }
+      {{ prereq.comment }} / {{ prereq.ptype}}
+
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register
   .btn{ 'ng-click' => 'save(dialectic)' } 

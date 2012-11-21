@@ -53,15 +53,15 @@
               .btn{ 'ng-click' => 'removePrereq(p)' } Remove
 
           %label (optional) Add a prerequisite (book, link, location to visit)?
-          .btn-group{ 'ng-hide' => 'prereq.type' }
-            .btn{ 'ng-click' => 'prereq.type = "link"' } Add link
+          .btn-group{ 'ng-hide' => 'prereq.ptype' }
+            .btn{ 'ng-click' => 'prereq.ptype = "link"' } Add link
             .btn{ 'ng-click' => 'openMapDialog()' } Add location
             .btn{ 'ng-click' => 'openBooksDialog()' } Add book
 
-          .link{ 'ng-show' => 'prereq.type == "link"' }
+          .link{ 'ng-show' => 'prereq.ptype == "link"' }
             %label Add link
-            %input{ 'ng-model' => 'prereq.link', type: 'text', placeholder: 'Enter URL' }
-            .btn{ 'ng-click' => 'prereq.comment = prereq.link; addPrerequisite()' } Add link
+            %input{ 'ng-model' => 'prereq.link', ptype: 'text', placeholder: 'Enter URL' }
+            .btn{ 'ng-click' => 'prereq.comment = prereq.link; addPrerequisite(prereq)' } Add link
             .btn{ 'ng-click' => 'prereq = {}' } Cancel
 
           #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
