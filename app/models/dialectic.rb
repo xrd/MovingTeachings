@@ -5,18 +5,17 @@ class Dialectic < ActiveRecord::Base
   scope :approved, where( [ "approved = ?", true ] )
   serialize :times
   serialize :days
-
   attr_accessor :prereqs
-  
   before_create :update_days
   after_create :add_prerequisites
 
   def add_prerequisites
+    
     if self.prereqs
       self.prereqs.each do |p|
         if p
           logger.info "P: #{p.inspect}"
-          self.prerequisites.create p.slice( :link, :comment, :lat, :lng, :formatted_address, :icon, :ptype )
+          self.prerequisites.create p.slice( :link, :comment, :lat, :lng, :formatted_address, :icon, :ptype, :name )
         end
       end
     end

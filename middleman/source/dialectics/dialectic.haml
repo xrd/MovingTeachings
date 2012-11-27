@@ -10,7 +10,7 @@
         Click for more details
 .details.alert.alert-block{ 'ng-show' => 'dialectic.details' }
   .description{ 'ng-bind-html' => 'mkdwn(dialectic.description) || "No dialectic description available"' }
-  .days{ 'ng-show' => 'days' }
+  .days{ 'ng-show' => 'dialectic.days' }
     Offered on 
     %span.badge.day{ 'ng-repeat' => 'day in dialectic.days' }{{day}}
   .times{ 'ng-show' => 'dialectic.times' }

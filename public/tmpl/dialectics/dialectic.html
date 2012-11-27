@@ -16,7 +16,7 @@
 </div>
 <div class='details alert alert-block' ng-show='dialectic.details'>
   <div class='description' ng-bind-html='mkdwn(dialectic.description) || "No dialectic description available"'></div>
-  <div class='days' ng-show='days'>
+  <div class='days' ng-show='dialectic.days'>
     Offered on
     <span class='badge day' ng-repeat='day in dialectic.days'>{{day}}</span>
   </div>
