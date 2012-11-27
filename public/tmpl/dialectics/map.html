@@ -11,7 +11,7 @@
         <div class='address'>{{focused.map.formatted_address}}</div>
       </div>
       <div class='results'>
-        <div class='result' ng-class-odd='"odd"' ng-repeat='item in map.results'>
+        <div class='result' ng-class-odd='"odd"' ng-mouseenter='centerToItem(item.geometry.location)' ng-mouseleave='removeHoverItem()' ng-repeat='item in map.results'>
           {{item.name}}
           <div class='btn btn-mini add' ng-click='item.expanded.shown = !item.expanded.shown'>+</div>
           <div ng-show='item.expanded.shown'>

@@ -83,7 +83,7 @@
             <div class='none' ng-hide='dialectic.prereqs'>No prereqs added yet.</div>
             <div class='prerequisite' ng-repeat='p in dialectic.prereqs'>
               <div class='prereq'>
-                <a href='{{p.link}}'>{{p.comment}}</a>
+                <a href='{{p.link}}'>{{p.name}}</a>
               </div>
               <div class='btn' ng-click='removePrereq(p)'>Remove</div>
             </div>

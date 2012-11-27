@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121121220739) do
+ActiveRecord::Schema.define(:version => 20121127204123) do
 
   create_table "dialectics", :force => true do |t|
     t.integer  "route_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20121121220739) do
     t.string   "ptype"
     t.string   "formatted_address"
     t.string   "icon"
+    t.string   "name"
   end
 
   create_table "rails_admin_histories", :force => true do |t|

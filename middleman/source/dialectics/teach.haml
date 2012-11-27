@@ -49,7 +49,7 @@
             .none{ 'ng-hide' => 'dialectic.prereqs' } No prereqs added yet.
             .prerequisite{ 'ng-repeat' => 'p in dialectic.prereqs' }
               .prereq
-                %a{ href: "{{p.link}}" } {{p.comment}}
+                %a{ href: "{{p.link}}" } {{p.name}}
               .btn{ 'ng-click' => 'removePrereq(p)' } Remove
 
           %label (optional) Add a prerequisite (book, link, location to visit)?

@@ -9,7 +9,6 @@ class MapCtrl
 
                         console.log "Setting center to: #{$scope.stop.lat} #{$scope.stop.lng}"
                         $scope.myMarkers = {};
-
                         $scope.initMap( $scope.stop )
 
 
@@ -27,14 +26,24 @@ class MapCtrl
                                 $scope.map.results = results
                                 $scope.$digest()
 
+                $scope.removeHoverItem = () ->
+                        $scope.hoveredItem.setMap(null)
+
+                $scope.centerToItem = (location) ->
+                        center = new google.maps.LatLng( location.lat(), location.lng() )
+                        $scope.map.mine.setCenter center
+                        $scope.hoveredItem = new google.maps.Marker map: $scope.map.mine, position: center, visible: true
+
                 $scope.initialize = () ->
-                        unless $scope.action?.editing
-                                # load up the items for the dialectic
-                                console.log "Loading items"
+                        if $scope.action?.create
+                                $scope.initMap $scope.stop
+                                center = new google.maps.LatLng( $scope.stop.lat, $scope.stop.lng )
+                        else
                                 $scope.initMap $scope.focused.map
                                 center = new google.maps.LatLng( $scope.focused.map.lat, $scope.focused.map.lng )
-                                $scope.marker = new google.maps.Marker map: $scope.map.mine, position: center, visible: true
-                                $scope.map.mine.setCenter center
+
+                        $scope.marker = new google.maps.Marker map: $scope.map.mine, position: center, visible: true
+                        $scope.map.mine.setCenter center
 
                 $scope.searchPlaces = () ->
                         request =

@@ -43,7 +43,8 @@
     <div class='prereq' ng-repeat='prereq in dialectic.prerequisites'>
       <div class='map' ng-click='openPrereq(prereq)'>
         <i ng-class='iconFromType(prereq.ptype)'></i>
-        {{ prereq.comment }}
+        <a ng-href='{{prereq.link}}' target='prereq'>{{ prereq.name }}</a>
+        ({{ (prereq.ptype=='map'&&'place on a map')||(prereq.ptype=='book'&&'book')||'hyperlink'}})
       </div>
     </div>
   </div>

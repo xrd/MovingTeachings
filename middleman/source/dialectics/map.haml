@@ -9,7 +9,7 @@
         .comment {{focused.map.comment}}
         .address {{focused.map.formatted_address}}
       .results
-        .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"' }
+        .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"', 'ng-mouseenter' => 'centerToItem(item.geometry.location)', 'ng-mouseleave' => 'removeHoverItem()' }
           {{item.name}}
           %div.btn.btn-mini.add{  'ng-click' => 'item.expanded.shown = !item.expanded.shown' } +
           %div{ 'ng-show' => 'item.expanded.shown' }

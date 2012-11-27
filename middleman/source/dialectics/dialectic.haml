@@ -28,7 +28,8 @@
     .prereq{ 'ng-repeat' => 'prereq in dialectic.prerequisites' }
       .map{ 'ng-click' => 'openPrereq(prereq)' }
         %i{ 'ng-class' => 'iconFromType(prereq.ptype)' }
-        {{ prereq.comment }} 
+        %a{ 'ng-href' => '{{prereq.link}}', target: 'prereq' } {{ prereq.name }} 
+        ({{ (prereq.ptype=='map'&&'place on a map')||(prereq.ptype=='book'&&'book')||'hyperlink'}})
 
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register

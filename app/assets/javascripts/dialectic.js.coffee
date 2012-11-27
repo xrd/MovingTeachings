@@ -27,9 +27,10 @@ class DialecticCtrl
                                 when "link" then 'icon-bookmark'
 
                 $scope.openPrereq = (prereq) ->
-                        if "map" == prereq.ptype
-                                $scope.focused.map = prereq
-                                $scope.openMapDialog()
+                        switch prereq.ptype
+                                when "map"
+                                        $scope.focused.map = prereq
+                                        $scope.openMapDialog()
 
                 $scope.openMapDialog = () ->
                         $scope.modals = {}
@@ -64,6 +65,7 @@ class DialecticCtrl
                 $scope.addMapPrerequisite = (item) ->
                         item.lat = item.geometry.location.$a
                         item.lng = item.geometry.location.ab
+                        item.name = item.name
                         item.ptype = "map"
                         $scope.addPrerequisite( item )
 
