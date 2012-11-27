@@ -11,7 +11,7 @@ class RoutesController < ApplicationController
 
   def dialectics
     route = Route.find params[:id]
-    render json: route.dialectics
+    render json: route.dialectics.approved
   end
 
   def alternatives
