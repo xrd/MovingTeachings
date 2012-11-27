@@ -33,6 +33,7 @@ class MainCtrl
                         $scope.popDialog()
 
                 $scope.loadSampleDialectics = () ->
+                        $scope.samplesLoaded = true
                         Route.samples {}, (response) ->
                                 $scope.samples = response
 

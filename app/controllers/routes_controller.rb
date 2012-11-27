@@ -1,7 +1,7 @@
 class RoutesController < ApplicationController
 
   def samples
-    render json: Dialectic.all( limit: 10 )
+    render json: Dialectic.approved.all( limit: 10 )
   end
   
   def stops
