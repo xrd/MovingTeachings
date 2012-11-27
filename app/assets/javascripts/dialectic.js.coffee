@@ -1,6 +1,7 @@
 class DialecticCtrl
         constructor: ( $scope, $timeout, Favorite, Dialectic ) ->
                 $scope.modals = {}
+                $scope.focused = {}
                 $scope.resetDialectic = () ->
                         $scope.dialectic = {}
                         $scope.dialectic.days = {}
@@ -19,8 +20,15 @@ class DialecticCtrl
                 $scope.minOptions = [ 0...5 ]
                 $scope.maxOptions = [ 2...10 ]
 
+                $scope.iconFromType = (type) ->
+                        switch type
+                                when "map" then 'icon-map-marker'
+                                when "book" then 'icon-book'
+                                when "link" then 'icon-bookmark'
+
                 $scope.openPrereq = (prereq) ->
                         if "map" == prereq.ptype
+                                $scope.focused.map = prereq
                                 $scope.openMapDialog()
 
                 $scope.openMapDialog = () ->

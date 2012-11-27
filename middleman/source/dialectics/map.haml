@@ -4,13 +4,17 @@
       .editing{ 'ng-show' => 'action.create' }
         %input{ 'ng-model' => 'map.query', placeholder: "Enter a location..." }
         .btn{ 'ng-click' => 'searchPlaces()' } Search
+      .focused{ 'ng-hide' => 'action.create' }
+        %h2 {{focused.map.name}}
+        .comment {{focused.map.comment}}
+        .address {{focused.map.formatted_address}}
       .results
         .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"' }
           {{item.name}}
           %div.btn.btn-mini.add{  'ng-click' => 'item.expanded.shown = !item.expanded.shown' } +
           %div{ 'ng-show' => 'item.expanded.shown' }
             {{item.description}}
-            %div{ 'ng-show' => 'actio.create' }
+            %div{ 'ng-show' => 'action.create' }
               %textarea.comment{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
               .btn.btn-mini{ 'ng-click' => 'addMapPrerequisite(item)' } Add prerequisite
               .btn.btn-mini{ 'ng-click' => 'item.expanded = {}' } Cancel

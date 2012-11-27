@@ -42,7 +42,8 @@
     <div class='muted'>Please note these prerequisites for this class:</div>
     <div class='prereq' ng-repeat='prereq in dialectic.prerequisites'>
       <div class='map' ng-click='openPrereq(prereq)'>
-        {{ prereq.comment }} / {{ prereq.ptype}}
+        <i ng-class='iconFromType(prereq.ptype)'></i>
+        {{ prereq.comment }}
       </div>
     </div>
   </div>

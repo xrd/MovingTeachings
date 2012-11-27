@@ -27,7 +27,8 @@
     .muted Please note these prerequisites for this class:
     .prereq{ 'ng-repeat' => 'prereq in dialectic.prerequisites' }
       .map{ 'ng-click' => 'openPrereq(prereq)' }
-        {{ prereq.comment }} / {{ prereq.ptype}}
+        %i{ 'ng-class' => 'iconFromType(prereq.ptype)' }
+        {{ prereq.comment }} 
 
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register
