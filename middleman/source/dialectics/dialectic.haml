@@ -26,7 +26,8 @@
   .prereqs{ 'ng-show' => 'dialectic.prerequisites' }
     .muted Please note these prerequisites for this class:
     .prereq{ 'ng-repeat' => 'prereq in dialectic.prerequisites' }
-      {{ prereq.comment }} / {{ prereq.ptype}}
+      .map{ 'ng-click' => 'openPrereq(prereq)' }
+        {{ prereq.comment }} / {{ prereq.ptype}}
 
   .btn{ 'ng-click' => 'register(dialectic)' }
     Register
@@ -43,4 +44,6 @@
   .hideIt.btn.btn-danger{ 'ng-click' => 'dialectic.details = false' } 
     .visible-phone.icon-remove-sign &nbsp;
     .hidden-phone Close
+
+= partial 'dialectics/modals'
 

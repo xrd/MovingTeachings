@@ -1,15 +1,17 @@
-<div class='wrapper' ng-controller='MapCtrl'>
+<div class='wrapper' ng-controller='MapCtrl' ng-init='initialize()'>
   <div class='column'>
     <div class='search'>
-      <input ng-model='map.query' placeholder='Enter a location...' />
-      <div class='btn' ng-click='searchPlaces()'>Search</div>
+      <div class='editing' ng-show='action.create'>
+        <input ng-model='map.query' placeholder='Enter a location...' />
+        <div class='btn' ng-click='searchPlaces()'>Search</div>
+      </div>
       <div class='results'>
         <div class='result' ng-class-odd='"odd"' ng-repeat='item in map.results'>
           {{item.name}}
           <div class='btn btn-mini add' ng-click='item.expanded.shown = !item.expanded.shown'>+</div>
           <div ng-show='item.expanded.shown'>
             {{item.description}}
-            <div>
+            <div ng-show='actio.create'>
               <textarea class='comment' cols='15' ng-model='item.comment' placeholder='Add a comment for people regarding this location (what to do there, what to look for, etc.)' rows='5'></textarea>
               <div class='btn btn-mini' ng-click='addMapPrerequisite(item)'>Add prerequisite</div>
               <div class='btn btn-mini' ng-click='item.expanded = {}'>Cancel</div>

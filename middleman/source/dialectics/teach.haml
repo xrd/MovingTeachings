@@ -64,11 +64,8 @@
             .btn{ 'ng-click' => 'prereq.comment = prereq.link; addPrerequisite(prereq)' } Add link
             .btn{ 'ng-click' => 'prereq = {}' } Cancel
 
-          #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
-            %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
-          #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
-            %div{ 'ng-include' => 'modals.includes.maps', 'onload' => 'clearMap()' }
-  
+          = partial 'modals'
+
       %br
       .btn{ 'ng-click' => 'create()' } Create this class
       .btn{ 'ng-click' => 'setAction()' } Cancel

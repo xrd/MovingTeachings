@@ -19,6 +19,10 @@ class DialecticCtrl
                 $scope.minOptions = [ 0...5 ]
                 $scope.maxOptions = [ 2...10 ]
 
+                $scope.openPrereq = (prereq) ->
+                        if "map" == prereq.ptype
+                                $scope.openMapDialog()
+
                 $scope.openMapDialog = () ->
                         $scope.modals = {}
                         $scope.modals.includes = {}

@@ -34,7 +34,9 @@
   <div class='prereqs' ng-show='dialectic.prerequisites'>
     <div class='muted'>Please note these prerequisites for this class:</div>
     <div class='prereq' ng-repeat='prereq in dialectic.prerequisites'>
-      {{ prereq.comment }} / {{ prereq.ptype}}
+      <div class='map' ng-click='openPrereq(prereq)'>
+        {{ prereq.comment }} / {{ prereq.ptype}}
+      </div>
     </div>
   </div>
   <div class='btn' ng-click='register(dialectic)'>
@@ -55,4 +57,10 @@
     <div class='visible-phone icon-remove-sign'>&nbsp;</div>
     <div class='hidden-phone'>Close</div>
   </div>
+</div>
+<div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
+  <div ng-include='modals.includes.books' onload='clearBooks()'></div>
+</div>
+<div class='fade modal' id='mapModal' ng-model='modals.map' ui-modal='ui-modal'>
+  <div ng-include='modals.includes.maps' onload='clearMap()'></div>
 </div>

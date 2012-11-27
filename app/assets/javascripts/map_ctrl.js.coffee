@@ -27,6 +27,11 @@ class MapCtrl
                                 $scope.map.results = results
                                 $scope.$digest()
 
+                $scope.initialize = () ->
+                        unless $scope.action?.editing
+                                # load up the items for the dialectic
+                                console.log "Loading items"
+
                 $scope.searchPlaces = () ->
                         request =
                                 location: $scope.map.center,
