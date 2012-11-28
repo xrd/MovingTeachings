@@ -28,7 +28,6 @@ group :assets do
   # gem 'therubyracer'
   gem "therubyracer"
   gem "less-rails"
-  gem "twitter-bootstrap-rails"
   gem 'uglifier', '>= 1.0.3'
 end
 
@@ -65,3 +64,7 @@ group :middleman do
   gem "middleman", "~>3.0.6"
 end
 gem "haml"
+
+gem 'bootswatch-rails'
+
+# gem 'anjlab-bootstrap-rails', '>= 2.2', :require => 'bootstrap-rails'
