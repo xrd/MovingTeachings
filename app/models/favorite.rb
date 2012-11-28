@@ -14,9 +14,11 @@ class Favorite < ActiveRecord::Base
   end
   
   def update_favorited_count( incr )
-    count = self.dialectic.favorited_count || 0
-    count += incr
-    count = 0 if count < 0 
-    self.dialectic.update_attribute( :favorited_count, count )
+    if self.dialectic
+      count = self.dialectic.favorited_count || 0
+      count += incr
+      count = 0 if count < 0 
+      self.dialectic.update_attribute( :favorited_count, count )
+    end
   end
 end

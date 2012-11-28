@@ -44,6 +44,12 @@ ActiveRecord::Schema.define(:version => 20121127204123) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "outputkml", :primary_key => "ogc_fid", :force => true do |t|
+    t.binary "wkb_geometry"
+    t.string "name",         :limit => 80
+    t.string "descriptio",   :limit => 80
+  end
+
   create_table "prerequisites", :force => true do |t|
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
@@ -64,7 +70,7 @@ ActiveRecord::Schema.define(:version => 20121127204123) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 5
+    t.integer  "year",       :limit => 8
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
