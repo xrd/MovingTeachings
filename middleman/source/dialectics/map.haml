@@ -1,26 +1,29 @@
-.wrapper{ 'ng-controller' => 'MapCtrl', 'ng-init' => 'initialize()' }
-  .column
-    .search
-      .editing{ 'ng-show' => 'action.create' }
-        %input{ 'ng-model' => 'map.query', placeholder: "Enter a location..." }
-        .btn{ 'ng-click' => 'searchPlaces()' } Search
-      .focused{ 'ng-hide' => 'action.create' }
-        %h2 {{focused.map.name}}
-        .comment {{focused.map.comment}}
-        .address {{focused.map.formatted_address}}
-      .results
-        .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"', 'ng-mouseenter' => 'centerToItem(item.geometry.location)', 'ng-mouseleave' => 'removeHoverItem()' }
-          {{item.name}}
-          %div.btn.btn-mini.add{  'ng-click' => 'item.expanded.shown = !item.expanded.shown' } +
-          %div{ 'ng-show' => 'item.expanded.shown' }
-            {{item.description}}
-            %div{ 'ng-show' => 'action.create' }
-              %textarea.comment{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
-              .btn.btn-mini{ 'ng-click' => 'addMapPrerequisite(item)' } Add prerequisite
-              .btn.btn-mini{ 'ng-click' => 'item.expanded = {}' } Cancel
-
-  .column
-    .map
-      #map_canvas
-
-
+.container-fluid
+  .wrapper.row-fluid{ 'ng-controller' => 'MapCtrl', 'ng-init' => 'initialize()' }
+    .span3
+      .search
+        .editing{ 'ng-show' => 'action.create' }
+          %input{ 'ng-model' => 'map.query', placeholder: "Enter a location..." }
+          .btn.btn-warning.search{ 'ng-click' => 'searchPlaces()' }
+            %i.icon-search
+          %small.text-info Powered by Google Places
+        .focused{ 'ng-hide' => 'action.create' }
+          %h2 {{focused.map.name}}
+          .comment {{focused.map.comment}}
+          .address {{focused.map.formatted_address}}
+        .results
+          .result{ 'ng-repeat' => 'item in map.results', 'ng-class-odd' => '"odd"', 'ng-mouseenter' => 'centerToItem(item.geometry.location)', 'ng-mouseleave' => 'removeHoverItem()' }
+            {{item.name}}
+            %div.btn.btn-mini.add{  'ng-click' => 'item.expanded.shown = !item.expanded.shown' } +
+            %div{ 'ng-show' => 'item.expanded.shown' }
+              {{item.description}}
+              %div{ 'ng-show' => 'action.create' }
+                %textarea.comment{ 'ng-model' => 'item.comment', placeholder: "Add a comment for people regarding this location (what to do there, what to look for, etc.)", rows: 5, cols: 15 }
+                .btn.btn-mini{ 'ng-click' => 'addMapPrerequisite(item)' } Add
+                .btn.btn-mini{ 'ng-click' => 'item.expanded = {}' } Cancel
+  
+    .span9
+      .map
+        #map_canvas
+  
+  

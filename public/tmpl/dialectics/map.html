@@ -1,34 +1,39 @@
-<div class='wrapper' ng-controller='MapCtrl' ng-init='initialize()'>
-  <div class='column'>
-    <div class='search'>
-      <div class='editing' ng-show='action.create'>
-        <input ng-model='map.query' placeholder='Enter a location...' />
-        <div class='btn' ng-click='searchPlaces()'>Search</div>
-      </div>
-      <div class='focused' ng-hide='action.create'>
-        <h2>{{focused.map.name}}</h2>
-        <div class='comment'>{{focused.map.comment}}</div>
-        <div class='address'>{{focused.map.formatted_address}}</div>
-      </div>
-      <div class='results'>
-        <div class='result' ng-class-odd='"odd"' ng-mouseenter='centerToItem(item.geometry.location)' ng-mouseleave='removeHoverItem()' ng-repeat='item in map.results'>
-          {{item.name}}
-          <div class='btn btn-mini add' ng-click='item.expanded.shown = !item.expanded.shown'>+</div>
-          <div ng-show='item.expanded.shown'>
-            {{item.description}}
-            <div ng-show='action.create'>
-              <textarea class='comment' cols='15' ng-model='item.comment' placeholder='Add a comment for people regarding this location (what to do there, what to look for, etc.)' rows='5'></textarea>
-              <div class='btn btn-mini' ng-click='addMapPrerequisite(item)'>Add prerequisite</div>
-              <div class='btn btn-mini' ng-click='item.expanded = {}'>Cancel</div>
+<div class='container-fluid'>
+  <div class='wrapper row-fluid' ng-controller='MapCtrl' ng-init='initialize()'>
+    <div class='span3'>
+      <div class='search'>
+        <div class='editing' ng-show='action.create'>
+          <input ng-model='map.query' placeholder='Enter a location...' />
+          <div class='btn btn-warning search' ng-click='searchPlaces()'>
+            <i class='icon-search'></i>
+          </div>
+          <small class='text-info'>Powered by Google Places</small>
+        </div>
+        <div class='focused' ng-hide='action.create'>
+          <h2>{{focused.map.name}}</h2>
+          <div class='comment'>{{focused.map.comment}}</div>
+          <div class='address'>{{focused.map.formatted_address}}</div>
+        </div>
+        <div class='results'>
+          <div class='result' ng-class-odd='"odd"' ng-mouseenter='centerToItem(item.geometry.location)' ng-mouseleave='removeHoverItem()' ng-repeat='item in map.results'>
+            {{item.name}}
+            <div class='btn btn-mini add' ng-click='item.expanded.shown = !item.expanded.shown'>+</div>
+            <div ng-show='item.expanded.shown'>
+              {{item.description}}
+              <div ng-show='action.create'>
+                <textarea class='comment' cols='15' ng-model='item.comment' placeholder='Add a comment for people regarding this location (what to do there, what to look for, etc.)' rows='5'></textarea>
+                <div class='btn btn-mini' ng-click='addMapPrerequisite(item)'>Add</div>
+                <div class='btn btn-mini' ng-click='item.expanded = {}'>Cancel</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class='column'>
-    <div class='map'>
-      <div id='map_canvas'></div>
+    <div class='span9'>
+      <div class='map'>
+        <div id='map_canvas'></div>
+      </div>
     </div>
   </div>
 </div>

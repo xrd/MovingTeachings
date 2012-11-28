@@ -136,15 +136,13 @@
         padding: 20px;
         position: relative;
     }
-
-    .search {
-        display: inline-block;
-        width: 200px;
-        vertical-align: top;
-
-        .results {
-            max-height: 400px;
-            overflow: auto;
+    
+    .editing {
+        .search {
+            display: inline-block;
+        }
+        input {
+            width: 60% !important;
         }
     }
 
@@ -167,9 +165,13 @@
 }   
 
 .search {
-    .result {
-        textarea.comment {
-            width: 175px;
+    .results {
+        overflow: auto;
+        max-height: 300px;
+        .result {
+            textarea.comment {
+                width: 85%;
+            }
         }
     }
 }
