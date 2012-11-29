@@ -1,7 +1,9 @@
 #bookModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.book" }
-  %div{ 'ng-include' => 'modals.includes.books', 'onload' => 'clearBooks()' }
+  %div{ 'ng-include' => 'modals.includes.book', 'onload' => 'clearBooks()' }
 #mapModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.map" }
-  %div{ 'ng-include' => 'modals.includes.maps', 'onload' => 'clearMap()' }
-#registrationModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.registrations" }
-  %div{ 'ng-include' => 'modals.includes.registrations' }
+  %div{ 'ng-include' => 'modals.includes.map', 'onload' => 'clearMap()' }
+#registrationModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.registration" }
+  %div{ 'ng-include' => 'modals.includes.registration' }
+#loginModal.modal{ "ui-modal" => true, class: "fade", "ng-model" => "modals.login" }
+  %div{ 'ng-include' => 'modals.includes.login' }
 

@@ -1,19 +1,12 @@
 
 
 class MainCtrl
-        constructor: ( $scope, Route, User, Dialectic, $window ) ->
+        constructor: ( $scope, Route, User, $window ) ->
 
-                $scope.domain = "beta.movingteachings.com"
+                $scope.domain = "movingteachings.com"
 
                 User.loggedIn {}, (response) ->
-                        $scope.loggedIn = response.loggedIn
-
-                $scope.register = (dialectic) ->
-                        unless $scope.loggedIn
-                                $('.login .btn').tooltip("toggle")
-                        else
-                                Dialectic.register { id: dialectic.id }, {}, (response) ->
-                                        console.log "Registered!"
+                        $scope.loggedIn = parseInt( response.loggedIn )
 
                 $scope.mkdwn = (text) ->
                         out = ""
@@ -37,5 +30,5 @@ class MainCtrl
                         Route.samples {}, (response) ->
                                 $scope.samples = response
 
-MainCtrl.$inject = [ "$scope", "Route", "User", "Dialectic", "$window" ]
+MainCtrl.$inject = [ "$scope", "Route", "User", "$window" ]
 @MainCtrl = MainCtrl

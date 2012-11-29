@@ -32,25 +32,32 @@ class DialecticCtrl
                                         $scope.focused.map = prereq
                                         $scope.openMapDialog()
 
-                $scope.openRegistrationDialog = () ->
+                $scope.register = (dialectic) ->
+                        unless $scope.loggedIn
+                                $scope.openDialog( "login" )
+                        else
+                                $scope.openRegistrationDialog()
+
+                $scope.openDialog = (type) ->
                         $scope.modals = {}
                         $scope.modals.includes = {}
-                        $scope.modals.registrations = true
-                        $scope.modals.includes.registrations = "/tmpl/dialectics/registrations"
+                        $scope.modals[type] = true
+                        $scope.modals.includes[type] = "/tmpl/modals/#{type}"
+
+                $scope.openRegistrationDialog = () ->
+                        $scope.openDialog( 'registration' )
+                        $scope.registering = true
+                        Dialectic.register { id: dialectic.id }, {}, (response) ->
+                                console.log "Registered!"
+                                $scope.registering = false
 
                 $scope.openMapDialog = () ->
-                        $scope.modals = {}
-                        $scope.modals.includes = {}
-                        $scope.modals.map = true
-                        $scope.modals.includes.maps = "/tmpl/dialectics/map"
+                        $scope.openDialog( 'map' )
                         $scope.prereq.type == "location"
                         $scope.$broadcast 'clearMap'
 
                 $scope.openBooksDialog = () ->
-                        $scope.modals = {}
-                        $scope.modals.includes = {}
-                        $scope.modals.book = true
-                        $scope.modals.includes.books = "/tmpl/dialectics/book"
+                        $scope.openDialog( 'book' )
                         $scope.prereq.type == "book"
                         $scope.$broadcast 'clearBooks'
 

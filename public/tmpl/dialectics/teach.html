@@ -101,13 +101,16 @@
             <div class='btn' ng-click='prereq = {}'>Cancel</div>
           </div>
           <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.books' onload='clearBooks()'></div>
+            <div ng-include='modals.includes.book' onload='clearBooks()'></div>
           </div>
           <div class='fade modal' id='mapModal' ng-model='modals.map' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.maps' onload='clearMap()'></div>
+            <div ng-include='modals.includes.map' onload='clearMap()'></div>
           </div>
-          <div class='fade modal' id='registrationModal' ng-model='modals.registrations' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.registrations'></div>
+          <div class='fade modal' id='registrationModal' ng-model='modals.registration' ui-modal='ui-modal'>
+            <div ng-include='modals.includes.registration'></div>
+          </div>
+          <div class='fade modal' id='loginModal' ng-model='modals.login' ui-modal='ui-modal'>
+            <div ng-include='modals.includes.login'></div>
           </div>
         </div>
       </div>

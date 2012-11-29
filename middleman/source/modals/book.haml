@@ -2,6 +2,11 @@
   %input{ type: 'text', placeholder: 'Enter title, author or description to search', 'ng-model' => 'searchText' }
   .btn{ 'ng-click' => 'search()' } Search
 
+  .none{ 'ng-show' => 'none' } No results could be found for {{searchText}}
+
+  .loading{ 'ng-show' => 'loading' }
+    %img{ src: '/assets/ajax-loader.gif' }
+
   .results{ 'ng-show' => 'results' }
     %strong Top 10 results
     
