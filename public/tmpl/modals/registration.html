@@ -1,2 +1,21 @@
-<h1>Thanks for registering</h1>
-We will notify this instructor and let them you know are interested in their class.
+<div class='wrapper registration'>
+  <div class='pre' ng-hide='registered'>
+    <label>At what stop do you board? This is kept anonymous from the instructor, but is used to match up the best connection stop for you to start the class.</label>
+    <select ng-model='stop' ng-options='s.name for s in stops | orderBy:["kml_stop_id"]'></select>
+    <div class='days'>
+      <label>These days are when the instructor is offering the class. Choose the best day or days for you.</label>
+      <div class='btn-group'>
+        <span class='btn' ng-class='{ "btn-inverse": d.selected }' ng-click='d.selected = !d.selected' ng-repeat='d in registering.days'>{{d}}</span>
+      </div>
+    </div>
+    <div class='times' ng-show='registering.times'>
+      <label>(optional) These are the time slots the instructor is offering the class. Choose the best time or times for you.</label>
+      <span class='btn' ng-class='{ "btn-inverse": d.selected }' ng-click='d.selected = !d.selected' ng-repeat='d in registering.times'>{{d}}</span>
+    </div>
+    <div class='btn btn-large' ng-click='confirmRegistration()'>Register now!</div>
+  </div>
+  <div class='post' ng-show='registered'>
+    <h1>Thanks for registering</h1>
+    We will notify this instructor and let them you know are interested in their class.
+  </div>
+</div>

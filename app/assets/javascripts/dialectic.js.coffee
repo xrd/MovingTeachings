@@ -1,5 +1,5 @@
 class DialecticCtrl
-        constructor: ( $scope, $timeout, Favorite, Dialectic ) ->
+        constructor: ( $scope, $timeout, Favorite, Dialectic, Route ) ->
                 $scope.modals = {}
                 $scope.focused = {}
                 $scope.resetDialectic = () ->
@@ -36,7 +36,7 @@ class DialecticCtrl
                         unless $scope.loggedIn
                                 $scope.openDialog( "login" )
                         else
-                                $scope.openRegistrationDialog()
+                                $scope.openRegistrationDialog(dialectic)
 
                 $scope.openDialog = (type) ->
                         $scope.modals = {}
@@ -44,19 +44,25 @@ class DialecticCtrl
                         $scope.modals[type] = true
                         $scope.modals.includes[type] = "/tmpl/modals/#{type}"
 
-                $scope.openRegistrationDialog = () ->
+                $scope.openRegistrationDialog = (dialectic) ->
+                        $scope.registered = false
+                        Route.stops {id: dialectic.route_id}, (response) ->
+                                $scope.stops = response
                         $scope.openDialog( 'registration' )
-                        $scope.registering = true
-                        Dialectic.register { id: dialectic.id }, {}, (response) ->
-                                console.log "Registered!"
-                                $scope.registering = false
+                        $scope.registering = dialectic
+
+                $scope.confirmRegistration = () ->
+                        Dialectic.register { id: $scope.registering.id }, {}, (response) ->
+                                $scope.registered = true
+                                $scope.registering = undefined
+                                $timeout ( () -> $scope.modals = {} ), 5000
 
                 $scope.openMapDialog = () ->
                         $scope.openDialog( 'map' )
                         $scope.$broadcast 'clearMap'
 
                 $scope.openMapDialogForPrereq = () ->
-                        $scope.map.center = $scope.stop
+                        $scope.center = $scope.stop
                         $scope.openDialog( 'map' )
 
                 $scope.openBooksDialog = () ->
@@ -122,5 +128,5 @@ class DialecticCtrl
                                 dialectic.message = "Saved to your favorites"
                                 $timeout ( () -> dialectic.message = "" ), 3000
 
-DialecticCtrl.$inject = [ "$scope", "$timeout", "Favorite", "Dialectic" ]
+DialecticCtrl.$inject = [ "$scope", "$timeout", "Favorite", "Dialectic", "Route" ]
 @DialecticCtrl = DialecticCtrl

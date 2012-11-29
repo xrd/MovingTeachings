@@ -1,3 +1,23 @@
-%h1 Thanks for registering
+.wrapper.registration
+  .pre{ 'ng-hide' => 'registered' }
 
-We will notify this instructor and let them you know are interested in their class.
+    %label At what stop do you board? This is kept anonymous from the instructor, but is used to match up the best connection stop for you to start the class.
+    %select{ 'ng-options' => 's.name for s in stops | orderBy:["kml_stop_id"]', 'ng-model' => 'stop' }
+
+    .days  
+      %label These days are when the instructor is offering the class. Choose the best day or days for you.
+      .btn-group
+        %span.btn{ 'ng-repeat' => 'd in registering.days', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d}}
+
+    .times{ 'ng-show' => 'registering.times' }
+      %label (optional) These are the time slots the instructor is offering the class. Choose the best time or times for you.
+      %span.btn{ 'ng-repeat' => 'd in registering.times', 'ng-class' => '{ "btn-inverse": d.selected }', 'ng-click' => 'd.selected = !d.selected' }{{d}}
+
+    .btn.btn-large{ 'ng-click' => 'confirmRegistration()' } Register now!
+  
+  .post{ 'ng-show' => 'registered' }
+  
+    %h1 Thanks for registering
+  
+    We will notify this instructor and let them you know are interested in their class.
+  
