@@ -91,7 +91,7 @@
           <label>(optional) Add a prerequisite (book, link, location to visit)?</label>
           <div class='btn-group' ng-hide='prereq.ptype'>
             <div class='btn' ng-click='prereq.ptype = "link"'>Add link</div>
-            <div class='btn' ng-click='openMapDialog()'>Add location</div>
+            <div class='btn' ng-click='openMapDialogForPrereq()'>Add location</div>
             <div class='btn' ng-click='openBooksDialog()'>Add book</div>
           </div>
           <div class='link' ng-show='prereq.ptype == "link"'>
@@ -100,18 +100,7 @@
             <div class='btn' ng-click='prereq.comment = prereq.link; prereq.name = prereq.link; addPrerequisite(prereq)'>Add link</div>
             <div class='btn' ng-click='prereq = {}'>Cancel</div>
           </div>
-          <div class='fade modal' id='bookModal' ng-model='modals.book' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.book' onload='clearBooks()'></div>
-          </div>
-          <div class='fade modal' id='mapModal' ng-model='modals.map' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.map' onload='clearMap()'></div>
-          </div>
-          <div class='fade modal' id='registrationModal' ng-model='modals.registration' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.registration'></div>
-          </div>
-          <div class='fade modal' id='loginModal' ng-model='modals.login' ui-modal='ui-modal'>
-            <div ng-include='modals.includes.login'></div>
-          </div>
+          <div ng-include="'/tmpl/modals/modals'"></div>
         </div>
       </div>
       <br />

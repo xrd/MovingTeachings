@@ -55,7 +55,7 @@
           %label (optional) Add a prerequisite (book, link, location to visit)?
           .btn-group{ 'ng-hide' => 'prereq.ptype' }
             .btn{ 'ng-click' => 'prereq.ptype = "link"' } Add link
-            .btn{ 'ng-click' => 'openMapDialog()' } Add location
+            .btn{ 'ng-click' => 'openMapDialogForPrereq()' } Add location
             .btn{ 'ng-click' => 'openBooksDialog()' } Add book
 
           .link{ 'ng-show' => 'prereq.ptype == "link"' }
@@ -64,7 +64,7 @@
             .btn{ 'ng-click' => 'prereq.comment = prereq.link; prereq.name = prereq.link; addPrerequisite(prereq)' } Add link
             .btn{ 'ng-click' => 'prereq = {}' } Cancel
 
-          = partial 'modals'
+          %div{ 'ng-include' => "'/tmpl/modals/modals'" }
 
       %br
       .btn{ 'ng-click' => 'create()' } Create this class

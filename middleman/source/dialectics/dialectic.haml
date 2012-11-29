@@ -17,16 +17,12 @@
     Offered potentially at 
     %span.time{ 'ng-repeat' => 'time in dialectic.times' }
       %span.badge {{time}}
-
-  .hidden.desktop_map.hidden-phone{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
-  .hidden.phone_map.visible-phone{ "ui-map" => "myMap", "ui-event" => "{'map-click': 'addMarker($event)', 'map-zoom_changed': 'setZoomMessage(myMap.getZoom())' }", "ui-options" => "mapOptions" }
-
   .message.alert.alert-success{ 'ng-show' => 'dialectic.message' }
     {{dialectic.message}}
   .prereqs{ 'ng-show' => 'dialectic.prerequisites' }
     .muted Please note these prerequisites for this class:
     .prereq{ 'ng-repeat' => 'prereq in dialectic.prerequisites' }
-      .map{ 'ng-click' => 'openPrereq(prereq)' }
+      %div{ 'ng-click' => 'openPrereq(prereq)' }
         %i{ 'ng-class' => 'iconFromType(prereq.ptype)' }
         %a{ 'ng-href' => '{{prereq.link}}', target: 'prereq' } {{ prereq.name }} 
         ({{ (prereq.ptype=='map'&&'place on a map')||(prereq.ptype=='book'&&'book')||'hyperlink'}})
@@ -43,5 +39,4 @@
     .visible-phone.icon-remove-sign &nbsp;
     .hidden-phone Close
 
-= partial 'dialectics/modals'
 

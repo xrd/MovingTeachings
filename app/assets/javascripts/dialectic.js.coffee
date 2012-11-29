@@ -29,7 +29,7 @@ class DialecticCtrl
                 $scope.openPrereq = (prereq) ->
                         switch prereq.ptype
                                 when "map"
-                                        $scope.focused.map = prereq
+                                        $scope.focused.map = $scope.center = prereq
                                         $scope.openMapDialog()
 
                 $scope.register = (dialectic) ->
@@ -53,8 +53,11 @@ class DialecticCtrl
 
                 $scope.openMapDialog = () ->
                         $scope.openDialog( 'map' )
-                        $scope.prereq.type == "location"
                         $scope.$broadcast 'clearMap'
+
+                $scope.openMapDialogForPrereq = () ->
+                        $scope.map.center = $scope.stop
+                        $scope.openDialog( 'map' )
 
                 $scope.openBooksDialog = () ->
                         $scope.openDialog( 'book' )

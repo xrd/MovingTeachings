@@ -6,20 +6,18 @@ class MapCtrl
                 $scope.$on 'clearMap', () ->
                         $scope.map.results = undefined
                         $scope.map.query = undefined
-
-                        console.log "Setting center to: #{$scope.stop.lat} #{$scope.stop.lng}"
+                        console.log "Setting center to: #{$scope.center.lat} #{$scope.center.lng}"
                         $scope.myMarkers = {};
-                        $scope.initMap( $scope.stop )
-
+                        $scope.initMap( $scope.center )
 
                 $scope.initMap = ( center ) ->
+                        console.log "Initializing map canvas"
                         $scope.map.center = new google.maps.LatLng( center.lat, center.lng )
                         $scope.map.options =
                                 center: $scope.map.center
                                 zoom: 12,
                                 mapTypeId: google.maps.MapTypeId.ROADMAP
                         $scope.map.mine = new google.maps.Map( document.getElementById('map_canvas'), $scope.map.options)
-
 
                 callback = (results, status) ->
                         if status == google.maps.places.PlacesServiceStatus.OK
@@ -35,6 +33,7 @@ class MapCtrl
                         $scope.hoveredItem = new google.maps.Marker map: $scope.map.mine, position: center, visible: true
 
                 $scope.initialize = () ->
+                        console.log "Inside initialize"
                         if $scope.action?.create
                                 $scope.initMap $scope.stop
                                 center = new google.maps.LatLng( $scope.stop.lat, $scope.stop.lng )
