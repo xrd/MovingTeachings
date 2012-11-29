@@ -16,29 +16,30 @@
 
     .navbar.navbar-inverse.navbar-fixed-top
       .navbar-inner
-        .container
-          .brand Moving Teachings
-          .bar
+        .container-fluid
+          %a.brand{ href: '/' } Moving Teachings
+          %ul.nav
             - if current_user
-              %ul.nav
-                %li= link_to "Register", learn_path()
-                %li= link_to "Teach", teach_path()
-                %li= link_to "Favorites", favorites_path()
-              .hidden-phone.pull-right              
-                %li
+              %li= link_to "Register", learn_path()
+              %li= link_to "Teach", teach_path()
+              %li= link_to "Favorites", favorites_path()
+          %ul.nav.pull-right
+            - if current_user
+              %li.hidden-phone
+                %a
                   = current_user.name
                   - if current_user.provider.eql?( "facebook" )
                     %img{ src: "/assets/#{current_user.provider}.png" }
-                  = link_to "Logout", destroy_user_session_path(), :method => :delete
-              .visible-phone{ 'ng-click' => 'logout()' }
-                .icon-off.btn
-            - else
-              %ul.nav
-                %li.hidden-phone= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
-                %li.hidden-phone= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
-                %li.visible-phone= link_to "Facebook", user_omniauth_authorize_path(:facebook)
-                %li.visible-phone= link_to "Google", user_omniauth_authorize_path(:google_oauth2)
-      
+              %li.hidden-phone= link_to "Logout", destroy_user_session_path(), :method => :delete
+              %li.visible-phone.pull-right{ 'ng-click' => 'logout()' }
+                %i.icon-off
+                %a
+            - else 
+              %li.hidden-phone= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook)
+              %li.hidden-phone= link_to "Sign in with Google", user_omniauth_authorize_path(:google_oauth2)
+              %li.visible-phone= link_to "Facebook", user_omniauth_authorize_path(:facebook)
+              %li.visible-phone= link_to "Google", user_omniauth_authorize_path(:google_oauth2)
+
     .container.movingteachings
       = yield
       = render partial: 'layouts/common'
