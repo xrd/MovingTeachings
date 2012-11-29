@@ -30,7 +30,7 @@
       </div>
       <div class='route' ng-show='location'>
         <div class='routes' ng-hide='routes'>
-          <img src="/assets/spinner.gif" />
+          <img src="/assets/ajax-loader.gif" />
           Loading routes, please wait.
         </div>
         <div class='routes' ng-show='routes'>
@@ -44,7 +44,7 @@
       </div>
       <div class='route' ng-show='route'>
         <div class='stops' ng-hide='stops'>
-          <img src="/assets/spinner.gif" />
+          <img src="/assets/ajax-loader.gif" />
           Loading stops, please wait.
         </div>
         <div class='stops' ng-show='stops'>
@@ -106,6 +106,9 @@
           <div class='fade modal' id='mapModal' ng-model='modals.map' ui-modal='ui-modal'>
             <div ng-include='modals.includes.maps' onload='clearMap()'></div>
           </div>
+          <div class='fade modal' id='registrationModal' ng-model='modals.registrations' ui-modal='ui-modal'>
+            <div ng-include='modals.includes.registrations'></div>
+          </div>
         </div>
       </div>
       <br />
@@ -124,7 +127,7 @@
       </div>
     </div>
     <div class='loading' ng-hide='dialectics'>
-      <img src="/assets/spinner.gif" />
+      <img src="/assets/ajax-loader.gif" />
       Loading my classes.
     </div>
   </div>

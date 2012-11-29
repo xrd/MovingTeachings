@@ -32,6 +32,12 @@ class DialecticCtrl
                                         $scope.focused.map = prereq
                                         $scope.openMapDialog()
 
+                $scope.openRegistrationDialog = () ->
+                        $scope.modals = {}
+                        $scope.modals.includes = {}
+                        $scope.modals.registrations = true
+                        $scope.modals.includes.registrations = "/tmpl/dialectics/registrations"
+
                 $scope.openMapDialog = () ->
                         $scope.modals = {}
                         $scope.modals.includes = {}
