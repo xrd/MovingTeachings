@@ -1,6 +1,6 @@
 .stop.alert.alert-block.padded{ 'ng-click' => 'dialectic.details = !dialectic.details' }
   .wrapper
-    %strong {{dialectic.title}} 
+    %h3 {{dialectic.title}} 
     %span.route{ 'ng-show' => 'dialectic.route' }
       == (on route #{link_to "{{dialectic.route.route_description}} {{dialectic.route.direction_description}}", "/locations/{{dialectic.route.location_id}}/{{dialectic.route.id}}"})
     .expand

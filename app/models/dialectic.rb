@@ -2,6 +2,7 @@ class Dialectic < ActiveRecord::Base
   belongs_to :user
   belongs_to :route
   has_many :prerequisites, :dependent => :destroy
+  has_many :registrations, :dependent => :destroy
   scope :approved, where( [ "approved = ?", true ] )
   serialize :times
   serialize :days
@@ -9,8 +10,11 @@ class Dialectic < ActiveRecord::Base
   before_create :update_days
   after_create :add_prerequisites
 
+  def register_user( user )
+    self.registrations.create user_id: user.id
+  end
+  
   def add_prerequisites
-    
     if self.prereqs
       self.prereqs.each do |p|
         if p
@@ -20,7 +24,7 @@ class Dialectic < ActiveRecord::Base
       end
     end
   end
-  
+
   def update_days
     only_selected_days = self.days.collect { |d|
       logger.info "Day: #{d.inspect}"

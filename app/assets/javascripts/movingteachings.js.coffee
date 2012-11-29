@@ -12,7 +12,7 @@ class MainCtrl
                         unless $scope.loggedIn
                                 $('.login .btn').tooltip("toggle")
                         else
-                                Dialectic.register { dialectic: dialectic.id }, (response) ->
+                                Dialectic.register { id: dialectic.id }, {}, (response) ->
                                         console.log "Registered!"
 
                 $scope.mkdwn = (text) ->

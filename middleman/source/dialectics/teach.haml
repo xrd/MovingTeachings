@@ -61,7 +61,7 @@
           .link{ 'ng-show' => 'prereq.ptype == "link"' }
             %label Add link
             %input{ 'ng-model' => 'prereq.link', ptype: 'text', placeholder: 'Enter URL' }
-            .btn{ 'ng-click' => 'prereq.comment = prereq.link; addPrerequisite(prereq)' } Add link
+            .btn{ 'ng-click' => 'prereq.comment = prereq.link; prereq.name = prereq.link; addPrerequisite(prereq)' } Add link
             .btn{ 'ng-click' => 'prereq = {}' } Cancel
 
           = partial 'modals'

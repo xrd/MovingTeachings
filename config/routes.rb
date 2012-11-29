@@ -39,6 +39,9 @@ Movingteachings::Application.routes.draw do
     collection do
       get :mine
     end
+    member do
+      post :register
+    end
   end
 
   match 'locations/:id/:route_id' => 'locations#show'
