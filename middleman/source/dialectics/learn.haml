@@ -23,7 +23,7 @@
         Sorry, there are no courses offered in your city right now.
       .alternatives{ 'ng-hide' => 'noAlternatives' }
         .spinner{ 'ng-hide' => 'alternatives' }
-          %img{ src: '/assets/spinner.gif' }  
+          %img{ src: '/assets/ajax-loader.gif' }  
           Please wait, loading alternative classes.
         .wrapper{ 'ng-repeat' => 'dialectic in alternatives' }
           %div{ 'ng-include' => "'/tmpl/dialectics/dialectic'" }
