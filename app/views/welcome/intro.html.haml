@@ -2,6 +2,13 @@
 
 .btn{ 'ng-click' => 'loadSampleDialectics()' } Browse sample classes
 
+.nothing{ 'ng-hide' => 'samples' }
+  %br
+  %h3 Learn more about Moving Teachings by watching this short video.
+  %h4 Take and teach mini classes on the bus.
+  %br
+  %iframe{  'width' => "560", :height => "315", :src => "http://www.youtube.com/embed/JALJ5PSXPvc", :frameborder => "0",  :allowfullscreen => true }
+
 .nothing{ 'ng-show' => 'samplesLoaded && !samples' } No dialectics found. Please try again later.
 
 .dialectics{ 'ng-show' => 'samples', 'ng-controller' => 'DialecticCtrl' }
