@@ -34,6 +34,9 @@ Movingteachings::Application.routes.draw do
     member do
       get :routes
     end
+    collection do
+      post :submit_request
+    end
   end
   resources :dialectics do
     collection do

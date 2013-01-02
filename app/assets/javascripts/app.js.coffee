@@ -19,6 +19,7 @@ appmod.factory 'Favorite', [ '$resource', ($resource) ->
 appmod.factory 'Location', [ '$resource', ($resource) ->
         $resource "/locations/:id/:action", { id: '@id' },
                 index: { method: 'GET', isArray: true },
+                submit_request: { method: 'POST', isArray: false, params: { action: 'submit_request' } },
                 routes: { method: 'GET', isArray: true, params: { action: 'routes' } }
                 ]
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128234635) do
+ActiveRecord::Schema.define(:version => 20130102172341) do
 
   create_table "dialectics", :force => true do |t|
     t.integer  "route_id"
@@ -40,14 +40,11 @@ ActiveRecord::Schema.define(:version => 20121128234635) do
     t.string   "name"
     t.integer  "lat"
     t.integer  "lng"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "outputkml", :primary_key => "ogc_fid", :force => true do |t|
-    t.binary "wkb_geometry"
-    t.string "name",         :limit => 80
-    t.string "descriptio",   :limit => 80
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.boolean  "approved"
+    t.integer  "requested"
+    t.string   "canonical_name"
   end
 
   create_table "prerequisites", :force => true do |t|
@@ -70,7 +67,7 @@ ActiveRecord::Schema.define(:version => 20121128234635) do
     t.integer  "item"
     t.string   "table"
     t.integer  "month",      :limit => 2
-    t.integer  "year",       :limit => 8
+    t.integer  "year",       :limit => 5
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end

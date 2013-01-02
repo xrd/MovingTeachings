@@ -47,12 +47,14 @@ class RouteCtrl
 
                 $scope.loadRoutes = (location) ->
                         if location.requestIt
-                                location = prompt "Should we add your city? What city?"
-                                if location
+                                name = prompt "Should we add your city? What city?"
+                                if name
+                                        Location.submit_request {}, { name: name }, (response) ->
+                                                console.log "Added city"
                                         # Add it...
-                                        share = confirm "The best way to convince us to add your city is for others to say they want it too! Would you go to our sharing page now and share on Twitter and Facebook?"
-                                        if share
-                                                $location.path( "/share" )
+                                        #share = confirm "The best way to convince us to add your city is for others to say they want it too! Would you go to our sharing page now and share on Twitter and Facebook?"
+                                        #if share
+                                        #        $location.path( "/share" )
 
                                 $scope.location = undefined
                                 $scope.route = undefined
