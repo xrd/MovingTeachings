@@ -51,6 +51,7 @@ class RouteCtrl
                                 if name
                                         Location.submit_request {}, { name: name }, (response) ->
                                                 console.log "Added city"
+                                                alert "Thanks, we've added your city and will try to add it soon"
                                         # Add it...
                                         #share = confirm "The best way to convince us to add your city is for others to say they want it too! Would you go to our sharing page now and share on Twitter and Facebook?"
                                         #if share
